@@ -149,6 +149,7 @@
             this.mainGamePanel.Name = "mainGamePanel";
             this.mainGamePanel.Size = new System.Drawing.Size(348, 306);
             this.mainGamePanel.TabIndex = 1;
+            this.mainGamePanel.Visible = false;
             // 
             // Form1
             // 
