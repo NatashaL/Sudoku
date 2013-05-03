@@ -35,6 +35,21 @@ namespace Sudoku
 
         }
 
+        int view = 0;
+
+        public void changeView(int view)
+        {
+            if (view == 1)
+            {
+                startPanel.Visible = false;
+                mainGamePanel.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Ova uste ne e implementirano");
+            }
+        }
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.SelectedCells.Count == 1)
@@ -48,6 +63,12 @@ namespace Sudoku
         private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView1.SelectedCells[0].Style.BackColor = Color.White;
+        }
+
+        private void btnNewGame_Click(object sender, EventArgs e)
+        {
+            view = 1;
+            changeView(view);
         }
 
     }

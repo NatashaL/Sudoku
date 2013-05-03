@@ -39,8 +39,12 @@
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mainGamePanel = new System.Windows.Forms.Panel();
+            this.startPanel = new System.Windows.Forms.Panel();
+            this.btnNewGame = new System.Windows.Forms.Button();
+            this.btnScores = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.mainGamePanel.SuspendLayout();
+            this.startPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -57,7 +61,7 @@
             this.Column7,
             this.Column8,
             this.Column9});
-            this.dataGridView1.Location = new System.Drawing.Point(3, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(57, 9);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
@@ -145,21 +149,52 @@
             // mainGamePanel
             // 
             this.mainGamePanel.Controls.Add(this.dataGridView1);
-            this.mainGamePanel.Location = new System.Drawing.Point(2, 3);
+            this.mainGamePanel.Location = new System.Drawing.Point(12, 12);
             this.mainGamePanel.Name = "mainGamePanel";
-            this.mainGamePanel.Size = new System.Drawing.Size(348, 306);
+            this.mainGamePanel.Size = new System.Drawing.Size(327, 286);
             this.mainGamePanel.TabIndex = 1;
+            this.mainGamePanel.Visible = false;
+            // 
+            // startPanel
+            // 
+            this.startPanel.Controls.Add(this.btnScores);
+            this.startPanel.Controls.Add(this.btnNewGame);
+            this.startPanel.Location = new System.Drawing.Point(12, 12);
+            this.startPanel.Name = "startPanel";
+            this.startPanel.Size = new System.Drawing.Size(327, 286);
+            this.startPanel.TabIndex = 2;
+            // 
+            // btnNewGame
+            // 
+            this.btnNewGame.Location = new System.Drawing.Point(93, 67);
+            this.btnNewGame.Name = "btnNewGame";
+            this.btnNewGame.Size = new System.Drawing.Size(128, 51);
+            this.btnNewGame.TabIndex = 0;
+            this.btnNewGame.Text = " New Game";
+            this.btnNewGame.UseVisualStyleBackColor = true;
+            this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
+            // 
+            // btnScores
+            // 
+            this.btnScores.Location = new System.Drawing.Point(93, 133);
+            this.btnScores.Name = "btnScores";
+            this.btnScores.Size = new System.Drawing.Size(128, 32);
+            this.btnScores.TabIndex = 1;
+            this.btnScores.Text = "High Scores";
+            this.btnScores.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(351, 310);
+            this.Controls.Add(this.startPanel);
             this.Controls.Add(this.mainGamePanel);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.mainGamePanel.ResumeLayout(false);
+            this.startPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -177,6 +212,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.Panel mainGamePanel;
+        private System.Windows.Forms.Panel startPanel;
+        private System.Windows.Forms.Button btnScores;
+        private System.Windows.Forms.Button btnNewGame;
 
     }
 }
