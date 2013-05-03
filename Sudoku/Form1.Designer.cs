@@ -40,11 +40,18 @@
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mainGamePanel = new System.Windows.Forms.Panel();
             this.startPanel = new System.Windows.Forms.Panel();
-            this.btnNewGame = new System.Windows.Forms.Button();
             this.btnScores = new System.Windows.Forms.Button();
+            this.btnNewGame = new System.Windows.Forms.Button();
+            this.highScorePanel = new System.Windows.Forms.Panel();
+            this.btnMainMenuBack = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.btnMainGameBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.mainGamePanel.SuspendLayout();
             this.startPanel.SuspendLayout();
+            this.highScorePanel.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -148,6 +155,7 @@
             // 
             // mainGamePanel
             // 
+            this.mainGamePanel.Controls.Add(this.btnMainGameBack);
             this.mainGamePanel.Controls.Add(this.dataGridView1);
             this.mainGamePanel.Location = new System.Drawing.Point(12, 12);
             this.mainGamePanel.Name = "mainGamePanel";
@@ -164,6 +172,16 @@
             this.startPanel.Size = new System.Drawing.Size(327, 286);
             this.startPanel.TabIndex = 2;
             // 
+            // btnScores
+            // 
+            this.btnScores.Location = new System.Drawing.Point(93, 133);
+            this.btnScores.Name = "btnScores";
+            this.btnScores.Size = new System.Drawing.Size(128, 32);
+            this.btnScores.TabIndex = 1;
+            this.btnScores.Text = "High Scores";
+            this.btnScores.UseVisualStyleBackColor = true;
+            this.btnScores.Click += new System.EventHandler(this.btnScores_Click);
+            // 
             // btnNewGame
             // 
             this.btnNewGame.Location = new System.Drawing.Point(93, 67);
@@ -174,27 +192,70 @@
             this.btnNewGame.UseVisualStyleBackColor = true;
             this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
             // 
-            // btnScores
+            // highScorePanel
             // 
-            this.btnScores.Location = new System.Drawing.Point(93, 133);
-            this.btnScores.Name = "btnScores";
-            this.btnScores.Size = new System.Drawing.Size(128, 32);
-            this.btnScores.TabIndex = 1;
-            this.btnScores.Text = "High Scores";
-            this.btnScores.UseVisualStyleBackColor = true;
+            this.highScorePanel.Controls.Add(this.btnMainMenuBack);
+            this.highScorePanel.Controls.Add(this.groupBox1);
+            this.highScorePanel.Location = new System.Drawing.Point(12, 12);
+            this.highScorePanel.Name = "highScorePanel";
+            this.highScorePanel.Size = new System.Drawing.Size(327, 286);
+            this.highScorePanel.TabIndex = 3;
+            this.highScorePanel.TabStop = true;
+            this.highScorePanel.Visible = false;
+            // 
+            // btnMainMenuBack
+            // 
+            this.btnMainMenuBack.Location = new System.Drawing.Point(6, 260);
+            this.btnMainMenuBack.Name = "btnMainMenuBack";
+            this.btnMainMenuBack.Size = new System.Drawing.Size(75, 23);
+            this.btnMainMenuBack.TabIndex = 1;
+            this.btnMainMenuBack.Text = "<< Back";
+            this.btnMainMenuBack.UseVisualStyleBackColor = true;
+            this.btnMainMenuBack.Click += new System.EventHandler(this.btnMainMenuBack_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.listBox1);
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(324, 165);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Rank List";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(6, 19);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(312, 134);
+            this.listBox1.TabIndex = 0;
+            // 
+            // btnMainGameBack
+            // 
+            this.btnMainGameBack.Location = new System.Drawing.Point(6, 259);
+            this.btnMainGameBack.Name = "btnMainGameBack";
+            this.btnMainGameBack.Size = new System.Drawing.Size(75, 23);
+            this.btnMainGameBack.TabIndex = 1;
+            this.btnMainGameBack.Text = "<< Back";
+            this.btnMainGameBack.UseVisualStyleBackColor = true;
+            this.btnMainGameBack.Click += new System.EventHandler(this.btnMainGameBack_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(351, 310);
-            this.Controls.Add(this.startPanel);
             this.Controls.Add(this.mainGamePanel);
+            this.Controls.Add(this.startPanel);
+            this.Controls.Add(this.highScorePanel);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.mainGamePanel.ResumeLayout(false);
             this.startPanel.ResumeLayout(false);
+            this.highScorePanel.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -215,6 +276,11 @@
         private System.Windows.Forms.Panel startPanel;
         private System.Windows.Forms.Button btnScores;
         private System.Windows.Forms.Button btnNewGame;
+        private System.Windows.Forms.Panel highScorePanel;
+        private System.Windows.Forms.Button btnMainMenuBack;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button btnMainGameBack;
 
     }
 }

@@ -44,6 +44,22 @@ namespace Sudoku
                 startPanel.Visible = false;
                 mainGamePanel.Visible = true;
             }
+            else if (view == 20)
+            {
+                highScorePanel.Visible = false;
+                startPanel.Visible = true;
+            }
+            else if (view == 2)
+            {
+                startPanel.Visible = false;
+                highScorePanel.Visible = true;
+            }
+            else if (view == 10)
+            {
+                mainGamePanel.Visible = false;
+                startPanel.Visible = true;
+            }
+            
             else
             {
                 MessageBox.Show("Ova uste ne e implementirano");
@@ -69,6 +85,22 @@ namespace Sudoku
         {
             view = 1;
             changeView(view);
+        }
+
+        private void btnMainMenuBack_Click(object sender, EventArgs e)
+        {
+            view = 20;
+            changeView(view);
+        }
+
+        private void btnScores_Click(object sender, EventArgs e)
+        {
+            changeView(2);
+        }
+
+        private void btnMainGameBack_Click(object sender, EventArgs e)
+        {
+            changeView(10);
         }
 
     }
