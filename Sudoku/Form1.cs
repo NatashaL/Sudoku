@@ -21,6 +21,8 @@ namespace Sudoku
             //var cell = dataGridView1.Rows[0].Cells[0];
             dataGridView1.Rows[2].DividerHeight = 3;
             dataGridView1.Rows[5].DividerHeight = 3;
+            dataGridView1.Rows[2].Height = 24;
+            dataGridView1.Rows[5].Height = 24;
 
             //dataGridView1.Rows[0].Cells[0].Style.BackColor = ColorTranslator.FromHtml("#C00");
             for (int i = 0; i < 9; i++)
@@ -32,8 +34,6 @@ namespace Sudoku
                     dataGridView1.Rows[i].Cells[j].ValueType=typeof(int);
                 }
             }
-
-
         }
 
         int view = 0;
