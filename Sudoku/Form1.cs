@@ -31,7 +31,7 @@ namespace Sudoku
                 for (int j = 0; j < 9; j++)
                 {
                     dataGridView1.Rows[i].Cells[j].Style.SelectionBackColor = Color.Pink;
-                    dataGridView1.Rows[i].Cells[j].ValueType = typeof(int);
+                    //dataGridView1.Rows[i].Cells[j].ValueType = typeof(int);
                 }
             }
         }
@@ -98,8 +98,35 @@ namespace Sudoku
         {
             changeView(10);
         }
-        /* if ((e.KeyCode >= Keys.NumPad1 && e.KeyCode <= Keys.NumPad9)){
-           MessageBox.Show(String.Format("{0}",e.KeyCode.ToString()));
-           }*/
+
+        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (e.Control is DataGridViewTextBoxEditingControl)
+            {
+                DataGridViewTextBoxEditingControl tb = e.Control as DataGridViewTextBoxEditingControl;
+                tb.KeyDown -= dataGridView1_KeyDown;
+                tb.KeyDown += new KeyEventHandler(dataGridView1_KeyDown);
+            }
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            //dataGridView1.SelectedCells[0].Value = "";
+            if (!(e.KeyValue >= 49 && e.KeyValue <= 57 || e.KeyValue >= 97 && e.KeyValue <= 105))
+            {
+                dataGridView1.SelectedCells[0].ReadOnly = true;
+                if(dataGridView1.SelectedCells[0].Value == "")
+                {
+                dataGridView1.SelectedCells[0].Value = "";
+                }
+                dataGridView1.SelectedCells[0].ReadOnly = false;
+            }
+            else
+            {
+                
+            }
+
+        }
+       
     }
 }
