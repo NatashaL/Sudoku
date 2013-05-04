@@ -22,13 +22,14 @@ namespace Sudoku
             dataGridView1.Rows[2].DividerHeight = 3;
             dataGridView1.Rows[5].DividerHeight = 3;
 
-            dataGridView1.Rows[0].Cells[0].Style.BackColor = ColorTranslator.FromHtml("#C00");
+            //dataGridView1.Rows[0].Cells[0].Style.BackColor = ColorTranslator.FromHtml("#C00");
             for (int i = 0; i < 9; i++)
             {
                 //dataGridView1.Rows[i].Resizable;
                 for (int j = 0; j < 9; j++)
                 {
                     dataGridView1.Rows[i].Cells[j].Style.SelectionBackColor = Color.Pink;
+                    dataGridView1.Rows[i].Cells[j].ValueType=typeof(int);
                 }
             }
 
@@ -68,12 +69,7 @@ namespace Sudoku
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView1.SelectedCells.Count == 1)
-            {
-                
-                
-
-            }
+            
         }
 
         private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
