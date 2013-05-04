@@ -31,7 +31,7 @@ namespace Sudoku
                 for (int j = 0; j < 9; j++)
                 {
                     dataGridView1.Rows[i].Cells[j].Style.SelectionBackColor = Color.Pink;
-                    dataGridView1.Rows[i].Cells[j].ValueType=typeof(int);
+                    dataGridView1.Rows[i].Cells[j].ValueType = typeof(int);
                 }
             }
         }
@@ -60,7 +60,7 @@ namespace Sudoku
                 mainGamePanel.Visible = false;
                 startPanel.Visible = true;
             }
-            
+
             else
             {
                 MessageBox.Show("Ova uste ne e implementirano");
@@ -69,7 +69,7 @@ namespace Sudoku
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
@@ -98,6 +98,8 @@ namespace Sudoku
         {
             changeView(10);
         }
-
+        /* if ((e.KeyCode >= Keys.NumPad1 && e.KeyCode <= Keys.NumPad9)){
+           MessageBox.Show(String.Format("{0}",e.KeyCode.ToString()));
+           }*/
     }
 }
