@@ -134,4 +134,48 @@ namespace Sudoku
             }
         }
     }
+    public class Game
+    {
+        public int[][] startState;
+        public int[][] solution;
+
+        public Game(int[][] startState, int[][] solution)
+        {
+            this.startState = startState;
+            this.solution = solution;
+        }
+        public Game(Game game)
+        {
+            this.startState = game.startState;
+            this.solution = game.solution;
+        }
+
+    }
+    public class StandardSudoku : Game
+    {
+        public StandardSudoku(int[][] startState, int [][]solution) : base (startState,solution)
+        {
+        }
+        public StandardSudoku(Game game) : base (game)
+        {
+        }
+    }
+    public class SquigglySudoku : Game
+    {
+        public List<List<Field>> groups;
+        public SquigglySudoku(int[][] startState, int[][] solution, List<List<Field>> groups)
+            : base(startState, solution)
+        {
+            this.groups = groups;
+        }
+        public SquigglySudoku(Game game, List<List<Field>> groups) : base (game)
+        {
+            this.groups = groups;
+        }
+    }
+    public class Field
+    {
+        public int i {get; set;}
+        public int j {get; set;}
+    }
 }
