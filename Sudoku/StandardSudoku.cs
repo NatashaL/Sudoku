@@ -8,7 +8,7 @@ namespace Sudoku
 {
     public class StandardSudoku : Game
     {
-        public StandardSudoku(int[][] startState, int[][] solution)
+        public StandardSudoku(int[,] startState, int[,] solution)
             : base(startState, solution)
         {
         }

@@ -59,6 +59,9 @@
     <Compile Include="PuzzleGenerator.cs" />
     <Compile Include="PuzzleGrid.cs" />
     <Compile Include="PuzzleSolver.cs" />
+    <Compile Include="SquigglyGenerator.cs" />
+    <Compile Include="SquigglyGrid.cs" />
+    <Compile Include="SquigglySolver.cs" />
     <Compile Include="SquigglySudoku.cs" />
     <Compile Include="StandardSudoku.cs" />
     <EmbeddedResource Include="Form1.resx">

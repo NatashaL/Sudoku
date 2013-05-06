@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace Sudoku
 {
-    public class PuzzleGenerator
+    public class SquigglyGenerator
     {
-        private PuzzleSolver puzzleSolver;
-        public PuzzleGrid PermaGrid;
-        public PuzzleGrid SolutionGrid;
+        private SquigglySolver squigglySolver;
+        public SquigglyGrid PermaGrid;
+        public SquigglyGrid SolutionGrid;
         private Difficulty difficulty;
 
-        /// This constructs a puzzle generator class.
-        public PuzzleGenerator(Difficulty difficultyIn)
+        /// This constructs a squiggly generator class.
+        public SquigglyGenerator(Difficulty difficultyIn)
         {
-            puzzleSolver = new PuzzleSolver();
+            squigglySolver = new SquigglySolver();
             difficulty = difficultyIn;
         }
 
-        public PuzzleGrid InitGrid()
+        public SquigglyGrid InitGrid()
         {
-            //Randomly fill in the first row and column of puzzlegrid
-            PuzzleGrid tempGrid = new PuzzleGrid { };       //temporary grid to assign values into
+            //Randomly fill in the first row and column of squigglygrid
+            SquigglyGrid tempGrid = new SquigglyGrid { };       //temporary grid to assign values into
             int row = 0;                         		    //variable for navigating 'rows'
             int col = 0;                        			//variable for navigating 'columns'
             int newVal;                        	            //value to place into grid
@@ -69,28 +69,28 @@ namespace Sudoku
             }
             do
             {
-                puzzleSolver = new PuzzleSolver();
-                puzzleSolver.SolveGrid((PuzzleGrid)tempGrid.Clone(), false); //Slv to fill remainder of grid
-                SolutionGrid = puzzleSolver.SolutionGrid;
+                squigglySolver = new SquigglySolver();
+                squigglySolver.SolveGrid((SquigglyGrid)tempGrid.Clone(), false); //Slv to fill remainder of grid
+                SolutionGrid = squigglySolver.SolutionGrid;
             } while (SolutionGrid == null || SolutionGrid.IsBlank());
             PermaGrid = Blanker(SolutionGrid);       //call Blanker to carry out the
             return PermaGrid;         //blanking of fileds,then return the grid to user to solve
         }
 
-        //	Call SolveGrid to solve puzzlegrid
+        //	Call SolveGrid to solve squigglygrid
         //Store solved gamegrid as the correct solution in solutiongrid
 
-        public PuzzleGrid Blanker(PuzzleGrid solvedGrid)
+        public SquigglyGrid Blanker(SquigglyGrid solvedGrid)
         {                          //enable blanking of squares based on difficulty
-            PuzzleGrid tempGrid;
-            PuzzleGrid saveCopy;
+            SquigglyGrid tempGrid;
+            SquigglyGrid saveCopy;
             //temporary grids to save between tests
             bool unique = true;          //flag for if blanked form has unique soln
             int totalBlanks = 0;	                      //count of current blanks
             int tries = 0;                  //count of tries to blank appropriately
             int desiredBlanks;            //amount of blanks desired via difficulty
             int symmetry = 0;                                       //symmetry type
-            tempGrid = (PuzzleGrid)solvedGrid.Clone();
+            tempGrid = (SquigglyGrid)solvedGrid.Clone();
             //cloned input grid (no damage)
             Random rnd = new Random();         //allow for random number generation
 
@@ -113,14 +113,14 @@ namespace Sudoku
             symmetry = rnd.Next(0, 2);                   //Randomly select symmetry
             do
             {          //call RandomlyBlank() to blank random squares symmetrically
-                saveCopy = (PuzzleGrid)tempGrid.Clone();     // in case undo needed
+                saveCopy = (SquigglyGrid)tempGrid.Clone();     // in case undo needed
                 tempGrid = RandomlyBlank(tempGrid, symmetry, ref totalBlanks);
                 //blanks 1 or 2 squares according to symmetry chosen
-                puzzleSolver = new PuzzleSolver();
-                unique = puzzleSolver.SolveGrid((PuzzleGrid)tempGrid.Clone(), true);         // will it solve uniquely?
+                squigglySolver = new SquigglySolver();
+                unique = squigglySolver.SolveGrid((SquigglyGrid)tempGrid.Clone(), true);         // will it solve uniquely?
                 if (!unique)
                 {
-                    tempGrid = (PuzzleGrid)saveCopy.Clone();
+                    tempGrid = (SquigglyGrid)saveCopy.Clone();
                     tries++;
                 }
             } while ((totalBlanks < desiredBlanks) && (tries < 1000));
@@ -129,7 +129,7 @@ namespace Sudoku
             return solvedGrid;
         }
 
-        public PuzzleGrid RandomlyBlank(PuzzleGrid tempGrid, int sym, ref int blankCount)
+        public SquigglyGrid RandomlyBlank(SquigglyGrid tempGrid, int sym, ref int blankCount)
         {
             //blank one or two squares(depending on if on center line) randomly
             Random rnd = new Random(); //allow random number generation

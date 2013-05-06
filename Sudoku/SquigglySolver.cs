@@ -7,40 +7,40 @@ using System.Threading.Tasks;
 namespace Sudoku
 {
     /// <summary>
-    /// Puzzle Solver contains the public interface SolveGrid, which takes a 
-    /// puzzle grid as input, sets the solution grid if solvable, and returns
+    /// Squiggly Solver contains the public interface SolveGrid, which takes a 
+    /// squiggly grid as input, sets the solution grid if solvable, and returns
     /// a bool. The other methods in this class are helper methods to serve
     /// SolveGrid.
     /// </summary>
-    public class PuzzleSolver
+    public class SquigglySolver
     {
-        public PuzzleGrid SolutionGrid;   //The solution with all values filled
+        public SquigglyGrid SolutionGrid;   //The solution with all values filled
         int[] gridRow;                                //holds a row of the grid
         bool[] list;                                  //List of possible values
-        PuzzleGrid[] final;                          //Array of found solutions
+        SquigglyGrid[] final;                          //Array of found solutions
         int numSolns;                               //Number of solutions found
         bool stoplooking;                      //Stop trying to find a solution
         int recursions;                       // count the number of recursions
         const int MaxDepth = 1000;   // upper limit on the number of recursions
 
 
-        public PuzzleSolver()
+        public SquigglySolver()
         {
             //Initialize arrays
             list = new bool[10];             //Naturally indexed for simplicity
             gridRow = new int[9];
-            final = new PuzzleGrid[2];
+            final = new SquigglyGrid[2];
         }
         /// <summary>
         /// IsSolved checks to see if all cells in the grid contain a value.
-        /// If so, due to how the solve algorithm solves, the puzzle must be 
+        /// If so, due to how the solve algorithm solves, the squiggly must be 
         ///  solved correctly.
         /// </summary>
-        /// <param name="grid">Current state of the puzzle grid</param>
-        /// <returns>TRUE: Puzzle is solved, FALSE: Not solved</returns>
-        public bool IsSolved(PuzzleGrid grid)
+        /// <param name="grid">Current state of the squiggly grid</param>
+        /// <returns>TRUE: Squiggly is solved, FALSE: Not solved</returns>
+        private bool IsSolved(SquigglyGrid grid)
         {
-            bool result = true;                       //Assume puzzle is solved
+            bool result = true;                       //Assume squiggly is solved
             int r, c;
             r = 0;
             while (result == true && r < 9)                   //Check every row
@@ -60,7 +60,7 @@ namespace Sudoku
         /// empty cell then returns that value
         /// </summary>
         /// <returns>Integer value of smallest possible cell value</returns>
-        public int FirstTrue()
+        private int FirstTrue()
         {
             int i = 1;
             int result = 0;
@@ -78,8 +78,8 @@ namespace Sudoku
         /// PickOneTrue randomly chooses a value to try. If random number does
         /// not have a value of "true", increment until true value is found.
         /// </summary>
-        /// <returns>Integer to insert in puzzle</returns>
-        public int PickOneTrue()
+        /// <returns>Integer to insert in squiggly</returns>
+        private int PickOneTrue()
         {
             int i;
             int result = 0;
@@ -105,40 +105,23 @@ namespace Sudoku
             }
             else
             {
-                result = 0;//No valid true values exist, puzzle can't be solved
+                result = 0;//No valid true values exist, squiggly can't be solved
             }
             return result;
         }
         /// <summary>
         /// IsInRow checks if given value occurs in the given row
         /// </summary>
-        /// <param name="grid">Current state of puzzle grid</param>
+        /// <param name="grid">Current state of squiggly grid</param>
         /// <param name="row">Row to check</param>
         /// <param name="value">Value to look for</param>
         /// <returns></returns>
-        public bool IsInRow(PuzzleGrid grid, int row, int value)
+        private bool IsInRow(SquigglyGrid grid, int row, int value)
         {
             bool result = false;
             for (int i = 0; i < 9; i++)                   //Iterate through row
             {                          //check if cell holds value being sought
                 result = result || (Math.Abs(grid.Grid[row, i]) == value);
-            }
-            return result;
-        }
-        public bool IsInRow(PuzzleGrid grid, int row, int value,out int ii, out int jj)
-        {
-            bool result = false;
-            ii = -1;
-            jj = -1;
-            for (int i = 0; i < 9; i++)                   //Iterate through row
-            {                          //check if cell holds value being sought
-                if (Math.Abs(grid.Grid[row, i]) == value)
-                {
-                    result = true;
-                    ii = row;
-                    jj = i;
-                }
-
             }
             return result;
         }
@@ -149,28 +132,12 @@ namespace Sudoku
         /// <param name="col">Column being check</param>
         /// <param name="value">Value being sought</param>
         /// <returns></returns>
-        public bool IsInCol(PuzzleGrid grid, int col, int value)
+        private bool IsInCol(SquigglyGrid grid, int col, int value)
         {
             bool result = false;
             for (int i = 0; i < 9; i++)                //Iterate through column
             {                          //check if cell holds value being sought
                 result = result || (Math.Abs(grid.Grid[i, col]) == value);
-            }
-            return result;
-        }
-        public bool IsInCol(PuzzleGrid grid, int col, int value,out int ii, out int jj)
-        {
-            bool result = false;
-            ii = -1;
-            jj = -1;
-            for (int i = 0; i < 9; i++)                //Iterate through column
-            {                          //check if cell holds value being sought
-                if (Math.Abs(grid.Grid[i, col]) == value)
-                {
-                    result = true;
-                    ii = i;
-                    jj = col;
-                }
             }
             return result;
         }
@@ -181,7 +148,7 @@ namespace Sudoku
         /// </summary>
         /// <param name="rc">Number of the row or column being checked</param>
         /// <returns>Integer denoting which third (0, 1, or 2)</returns>
-        public int GroupNum(int rc)
+        private int GroupNum(int rc)
         {
             //return 0 for rc = 0..2; 1 for rc = 3..5; 2 for rc = 6..9
             int result;
@@ -201,7 +168,7 @@ namespace Sudoku
         /// <param name="col">Column of cell being checked</param>
         /// <param name="value">Value being sought</param>
         /// <returns>True if Value is found, false if not</returns>
-        public bool IsIn3X3(PuzzleGrid g, int row, int col, int value)
+        private bool IsIn3X3(SquigglyGrid g, int row, int col, int value)
         {
             int rLow;
             int cLow;
@@ -215,29 +182,6 @@ namespace Sudoku
                     if (Math.Abs(g.Grid[i, j]) == value)
                     {
                         result = true;
-                    }
-                }
-            }
-            return result;
-        }
-        public bool IsIn3X3(PuzzleGrid g, int row, int col, int value,out int ii, out int jj)
-        {
-            int rLow;
-            int cLow;
-            ii = -1;
-            jj = -1;
-            rLow = 3 * GroupNum(row);    //Index of smallest number row in grid
-            cLow = 3 * GroupNum(col);//Index of smallest number columin in grid
-            bool result = false;
-            for (int i = rLow; i < rLow + 3; i++) //Check all 3 rows in subgrid
-            {
-                for (int j = cLow; j < cLow + 3; j++)     //Check all 3 columns
-                {               //Compare value of cell with value being sought
-                    if (Math.Abs(g.Grid[i, j]) == value)
-                    {
-                        result = true;
-                        ii = i;
-                        jj = j;
                     }
                 }
             }
@@ -251,7 +195,7 @@ namespace Sudoku
         /// <param name="col">column of target cell</param>
         /// <param name="value">value being sought</param>
         /// <returns>True if value can occupy cell at [row, col]</returns>
-        public bool IsPossible(PuzzleGrid g, int row, int col, int value)
+        private bool IsPossible(SquigglyGrid g, int row, int col, int value)
         {                     //Return true if value can go into [row, col] now
             bool result;
             result = (!IsInRow(g, row, value) && !IsInCol(g, col, value) &&
@@ -267,7 +211,7 @@ namespace Sudoku
         /// <param name="col">Column of target cell</param>
         /// <param name="g">current state of grid</param>
         /// <returns>Integer count of possible values for given cell</returns>
-        public int ListPossible(int row, int col, PuzzleGrid g)
+        private int ListPossible(int row, int col, SquigglyGrid g)
         {
             int count = 0;
             ClearList();              //Create a fresh list for bool population
@@ -290,7 +234,7 @@ namespace Sudoku
         /// with only one possible value, it fills in that value.
         /// </summary>
         /// <param name="grid">Current state of grid</param>
-        public void FillSingleChoices(PuzzleGrid grid)
+        private void FillSingleChoices(SquigglyGrid grid)
         {
             bool anyChanges = false;                    //Set if cell value set
             int numChoices;                           //Number of choices found
@@ -325,7 +269,7 @@ namespace Sudoku
         /// <param name="c">OUTPUT sets c for use in caller</param>
         /// <param name="numChoices">OUTPUT sets var for use in caller</param>
         /// <returns>Returns true if valid cell found, false if not</returns>
-        public bool FindFewestChoices(PuzzleGrid grid, out int r, out int c,
+        private bool FindFewestChoices(SquigglyGrid grid, out int r, out int c,
             out int numChoices)
         {
             bool[] minList = new bool[10];
@@ -388,7 +332,7 @@ namespace Sudoku
         /// ClearList clears the values currently held in list[] by setting all
         /// values to false.
         /// </summary>
-        public void ClearList()
+        private void ClearList()
         {
             for (int i = 0; i < 10; i++)
             {
@@ -396,20 +340,20 @@ namespace Sudoku
             }
         }
         /// <summary>
-        /// SolveGrid attempts to solve a puzzle by checking through all
+        /// SolveGrid attempts to solve a squiggly by checking through all
         /// possible values for each cell, discarding values that do not lead
         /// to a valid solution. On a try, it recursively calls itself to
         /// maintain previous states of the grid to back track to if the
         /// current path fails. It creates a local version of the grid to
-        /// facilitate this. It also checks if the puzzle is uniquely solvable.
+        /// facilitate this. It also checks if the squiggly is uniquely solvable.
         /// </summary>
         /// <param name="g">Current state of the grid</param>
         /// <param name="checkUnique">Do we care if it has unique soln?</param>
         /// <returns></returns>
-        public bool SolveGrid(PuzzleGrid g, bool checkUnique)
+        public bool SolveGrid(SquigglyGrid g, bool checkUnique)
         {
-            PuzzleGrid grid = new PuzzleGrid();
-            grid = (PuzzleGrid)g.Clone();                 //Copy the input grid
+            SquigglyGrid grid = new SquigglyGrid();
+            grid = (SquigglyGrid)g.Clone();                 //Copy the input grid
             int i, choice, r, c, numChoices;
             bool done, got_one, solved, result;
             got_one = false;
@@ -417,7 +361,7 @@ namespace Sudoku
             FillSingleChoices(grid);  //First, fill in all single choice values
             if (IsSolved(grid))                        //If it's already solved
             {
-                if (numSolns > 0 && checkUnique )               //If another soln already found
+                if (numSolns > 0)               //If another soln already found
                 {
                     stoplooking = true;                   //Don't look for more
                     result = false;              //Return false, no UNIQUE soln
@@ -425,7 +369,7 @@ namespace Sudoku
                 else                               //If no other soln found yet
                 {
                     numSolns++;
-                    final[numSolns] = (PuzzleGrid)g.Clone();  //Save found soln
+                    final[numSolns] = (SquigglyGrid)g.Clone();  //Save found soln
                     result = true;
                     SolutionGrid = grid;
                 }

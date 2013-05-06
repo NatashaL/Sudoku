@@ -24,6 +24,13 @@ namespace Sudoku
     public partial class Form1 : Form
     {
 
+        public StandardSudoku standardSudoku;
+        public PuzzleSolver standardSolver;
+        public PuzzleGrid standardGrid;
+
+        public SquigglySudoku squigglySudoku;
+        public SquigglySolver squigglySolver;
+        public SquigglyGrid squigglyGrid;
 
         public Form1()
         {
@@ -143,30 +150,110 @@ namespace Sudoku
                 if (!(e.KeyValue >= 49 && e.KeyValue <= 57 || e.KeyValue >= 97 && e.KeyValue <= 105))
                 {
                     //MessageBox.Show(String.Format("{0}",e.KeyValue));
-                    if (e.KeyValue == 27 || e.KeyValue == 8 || e.KeyValue == 46)
+                    if (e.KeyValue == 27 || e.KeyValue == 8 || e.KeyValue == 46)   // Use e.KeyCode == Keys.Enter  etc.
                     {
                         selected.Value = "";
                     }
+
                 }
                 else
                 {
+                    int value = -1;
                     if (e.KeyValue >= 49 && e.KeyValue <= 57)
                     {
                         selected.Value = (char)e.KeyValue;
+                        value = e.KeyValue - '0';
                     }
                     else
                     {
                         selected.Value = String.Format("{0}", e.KeyValue - 96);
+                        value = e.KeyValue - 96;
+                    }
+
+
+
+                    int i = dataGridView1.CurrentCell.RowIndex;
+                    int j = dataGridView1.CurrentCell.ColumnIndex;
+
+                    if (standardSolver.IsPossible(standardGrid, i, j, value))
+                    {
+                        standardGrid.Grid[i, j] = value;
+                    }
+                    else
+                    {
+                        int ii = -1;
+                        int jj = -1;
+                        standardGrid.Grid[i, j] = value;
+                        if (standardSolver.IsInRow(standardGrid, i, value, out ii, out jj))
+                        {
+                            dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.Red;                            
+                            dataGridView1.Rows[ii].Cells[jj].Style.BackColor = Color.Red;
+                        }
+
+                        if (standardSolver.IsInCol(standardGrid, j, value, out ii, out jj))
+                        {
+                            dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.Red;
+                            dataGridView1.Rows[ii].Cells[jj].Style.BackColor = Color.Red;
+                        }
+
+                        if (standardSolver.IsIn3X3(standardGrid, i, j, value, out ii, out jj))
+                        {
+                            dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.Red;
+                            dataGridView1.Rows[ii].Cells[jj].Style.BackColor = Color.Red;
+                        }
+                    }
+
+
+                }
+                
+                if (standardSolver.SolveGrid(standardGrid, false))
+                {
+                    for (int i = 0; i < 9; i++)
+                    {
+                        for (int j = 0; j < 9; j++)
+                        {
+                            dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                        }
                     }
                 }
+                
             }
         }
         public void setGrid(gameType type, Difficulty level)
         {
+
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    dataGridView1.Rows[i].Cells[j].Value = "";
+                }
+            }
             if (type == gameType.Standard)
             {
+
                 PuzzleGenerator gen = new PuzzleGenerator(level);
                 PuzzleGrid grid = gen.InitGrid();
+                standardSudoku = new StandardSudoku(grid.Grid, gen.SolutionGrid.Grid);
+                standardSolver = new PuzzleSolver();
+                standardSolver.SolutionGrid = gen.SolutionGrid;
+                standardGrid = new PuzzleGrid();
+                for (int i = 0; i < 9; i++)
+                {
+                    for (int j = 0; j < 9; j++)
+                    {
+                        if (grid.Grid[i, j] != 0)
+                            dataGridView1.Rows[i].Cells[j].Value = -grid.Grid[i, j];
+                        standardGrid.Grid[i, j] = -grid.Grid[i, j];
+                    }
+                }
+
+            }
+            else
+            {
+                /*SquigglyGenerator gen = new SquigglyGenerator(level);
+                SquigglyGrid grid = gen.InitGrid();
+                squigglySudoku = new SquigglySudoku(grid.Grid, gen.SolutionGrid.Grid, new List<List<Field>>());
 
                 for (int i = 0; i < 9; i++)
                 {
@@ -175,11 +262,7 @@ namespace Sudoku
                         if (grid.Grid[i, j] != 0)
                             dataGridView1.Rows[i].Cells[j].Value = -grid.Grid[i, j];
                     }
-                }
-
-            }
-            else
-            {
+                }*/
 
             }
         }

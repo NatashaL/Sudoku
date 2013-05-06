@@ -9,7 +9,7 @@ namespace Sudoku
     public class SquigglySudoku : Game
     {
         public List<List<Field>> groups;
-        public SquigglySudoku(int[][] startState, int[][] solution, List<List<Field>> groups)
+        public SquigglySudoku(int[,] startState, int[,] solution, List<List<Field>> groups)
             : base(startState, solution)
         {
             this.groups = groups;
