@@ -78,14 +78,12 @@ namespace Sudoku
 
         private void btnNewGame_Click(object sender, EventArgs e)
         {
-            view = 1;
-            changeView(view);
+            changeView(1);
         }
 
         private void btnMainMenuBack_Click(object sender, EventArgs e)
         {
-            view = 20;
-            changeView(view);
+            changeView(20);
         }
 
         private void btnScores_Click(object sender, EventArgs e)
