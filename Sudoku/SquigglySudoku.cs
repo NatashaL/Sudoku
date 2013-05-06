@@ -20,5 +20,5 @@ namespace Sudoku
             this.groups = groups;
         }
     }
-   
+
 }

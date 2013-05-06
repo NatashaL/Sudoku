@@ -10,8 +10,21 @@ using System.Windows.Forms;
 
 namespace Sudoku
 {
+    public enum gameType
+    {
+        Standard,
+        Squiggly
+    }
+    public enum Difficulty
+    {
+        Easy,
+        Medium,
+        Hard
+    }
     public partial class Form1 : Form
     {
+
+
         public Form1()
         {
             InitializeComponent();
@@ -38,6 +51,23 @@ namespace Sudoku
                 mainGamePanel.Visible = true;
                 dataGridView1.Focus();
                 dataGridView1.ClearSelection();
+
+                gameType type = gameType.Standard;
+                if (radioSquigglyMode.Checked)
+                {
+                    type = gameType.Squiggly;
+                }
+                Difficulty level = Difficulty.Easy;
+                if (radioMediumMode.Checked)
+                {
+                    level = Difficulty.Medium;
+                }
+                else if (radioHardMode.Checked)
+                {
+                    level = Difficulty.Hard;
+                }
+
+                setGrid(type, level);
             }
             else if (view == 20)
             {
@@ -131,6 +161,28 @@ namespace Sudoku
                 }
             }
         }
+        public void setGrid(gameType type, Difficulty level)
+        {
+            if (type == gameType.Standard)
+            {
+                PuzzleGenerator gen = new PuzzleGenerator(level);
+                PuzzleGrid grid = gen.InitGrid();
+
+                for (int i = 0; i < 9; i++)
+                {
+                    for (int j = 0; j < 9; j++)
+                    {
+                        if (grid.Grid[i, j] != 0)
+                            dataGridView1.Rows[i].Cells[j].Value = -grid.Grid[i, j];
+                    }
+                }
+
+            }
+            else
+            {
+
+            }
+        }
     }
-    
+
 }
