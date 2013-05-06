@@ -162,7 +162,7 @@ namespace Sudoku
                     if (e.KeyValue >= 49 && e.KeyValue <= 57)
                     {
                         selected.Value = (char)e.KeyValue;
-                        value = e.KeyValue - '0';
+                        value = e.KeyValue-48;
                     }
                     else
                     {
@@ -172,8 +172,8 @@ namespace Sudoku
 
 
 
-                    int i = dataGridView1.CurrentCell.RowIndex;
-                    int j = dataGridView1.CurrentCell.ColumnIndex;
+                    int i = selected.RowIndex;
+                    int j = selected.ColumnIndex;
 
                     if (standardSolver.IsPossible(standardGrid, i, j, value))
                     {
@@ -200,6 +200,14 @@ namespace Sudoku
                         {
                             dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.Red;
                             dataGridView1.Rows[ii].Cells[jj].Style.BackColor = Color.Red;
+                        }
+
+                        if (!(standardSolver.IsInRow(standardGrid, i, value, out ii, out jj)
+                            && standardSolver.IsInCol(standardGrid, j, value, out ii, out jj)
+                            && standardSolver.IsIn3X3(standardGrid, i, j, value, out ii, out jj)))
+                        {
+                            dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                            dataGridView1.Rows[ii].Cells[jj].Style.BackColor = Color.White;
                         }
                     }
 
