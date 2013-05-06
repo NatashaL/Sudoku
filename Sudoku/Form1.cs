@@ -16,12 +16,8 @@ namespace Sudoku
         {
             InitializeComponent();
             dataGridView1.RowCount = 9;
-            dataGridView1.GetRowDisplayRectangle(3, false);
-            dataGridView1.Rows.GetNextRow(2, DataGridViewElementStates.None);
-            //var cell = dataGridView1.Rows[0].Cells[0];
             dataGridView1.Rows[2].DividerHeight = 3;
             dataGridView1.Rows[5].DividerHeight = 3;
-            //dataGridView1.Rows[0].Cells[0].Style.BackColor = ColorTranslator.FromHtml("#C00");
             for (int i = 0; i < 9; i++)
             {
                 dataGridView1.Rows[i].Height = 25;
@@ -30,12 +26,9 @@ namespace Sudoku
                     dataGridView1.Rows[i].Cells[j].Style.SelectionBackColor = Color.Gray;
                 }
             }
-
             dataGridView1.Rows[2].Height = 26;
             dataGridView1.Rows[5].Height = 26;
         }
-
-        int view = 0;
 
         public void changeView(int view)
         {
@@ -43,6 +36,7 @@ namespace Sudoku
             {
                 startPanel.Visible = false;
                 mainGamePanel.Visible = true;
+                dataGridView1.Focus();
             }
             else if (view == 20)
             {
@@ -132,48 +126,5 @@ namespace Sudoku
             }
         }
     }
-    public class Game
-    {
-        public int[][] startState;
-        public int[][] solution;
-
-        public Game(int[][] startState, int[][] solution)
-        {
-            this.startState = startState;
-            this.solution = solution;
-        }
-        public Game(Game game)
-        {
-            this.startState = game.startState;
-            this.solution = game.solution;
-        }
-
-    }
-    public class StandardSudoku : Game
-    {
-        public StandardSudoku(int[][] startState, int [][]solution) : base (startState,solution)
-        {
-        }
-        public StandardSudoku(Game game) : base (game)
-        {
-        }
-    }
-    public class SquigglySudoku : Game
-    {
-        public List<List<Field>> groups;
-        public SquigglySudoku(int[][] startState, int[][] solution, List<List<Field>> groups)
-            : base(startState, solution)
-        {
-            this.groups = groups;
-        }
-        public SquigglySudoku(Game game, List<List<Field>> groups) : base (game)
-        {
-            this.groups = groups;
-        }
-    }
-    public class Field
-    {
-        public int i {get; set;}
-        public int j {get; set;}
-    }
+    
 }

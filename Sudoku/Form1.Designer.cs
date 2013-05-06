@@ -50,6 +50,15 @@
             this.mainGamePanel = new System.Windows.Forms.Panel();
             this.btnMainGameBack = new System.Windows.Forms.Button();
             this.startPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelOptions = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioHardMode = new System.Windows.Forms.RadioButton();
+            this.radioMediumMode = new System.Windows.Forms.RadioButton();
+            this.radioEasyMode = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioSqigglyMode = new System.Windows.Forms.RadioButton();
+            this.radioNormalMode = new System.Windows.Forms.RadioButton();
             this.btnToLoadGame = new System.Windows.Forms.Button();
             this.btnScores = new System.Windows.Forms.Button();
             this.btnNewGame = new System.Windows.Forms.Button();
@@ -57,23 +66,14 @@
             this.btnMainMenuBack = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.panelOptions = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioNormalMode = new System.Windows.Forms.RadioButton();
-            this.radioSqigglyMode = new System.Windows.Forms.RadioButton();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.radioEasyMode = new System.Windows.Forms.RadioButton();
-            this.radioMediumMode = new System.Windows.Forms.RadioButton();
-            this.radioHardMode = new System.Windows.Forms.RadioButton();
-            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.mainGamePanel.SuspendLayout();
             this.startPanel.SuspendLayout();
+            this.panelOptions.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.highScorePanel.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panelOptions.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -257,15 +257,112 @@
             // startPanel
             // 
             this.startPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.startPanel.Controls.Add(this.panel1);
             this.startPanel.Controls.Add(this.panelOptions);
             this.startPanel.Controls.Add(this.btnToLoadGame);
             this.startPanel.Controls.Add(this.btnScores);
             this.startPanel.Controls.Add(this.btnNewGame);
+            this.startPanel.Controls.Add(this.panel1);
             this.startPanel.Location = new System.Drawing.Point(12, 12);
             this.startPanel.Name = "startPanel";
             this.startPanel.Size = new System.Drawing.Size(327, 286);
             this.startPanel.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::Sudoku.Properties.Resources.SudokuLogo;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(324, 143);
+            this.panel1.TabIndex = 5;
+            // 
+            // panelOptions
+            // 
+            this.panelOptions.Controls.Add(this.groupBox3);
+            this.panelOptions.Controls.Add(this.groupBox2);
+            this.panelOptions.Location = new System.Drawing.Point(158, 147);
+            this.panelOptions.Name = "panelOptions";
+            this.panelOptions.Size = new System.Drawing.Size(169, 137);
+            this.panelOptions.TabIndex = 4;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.radioHardMode);
+            this.groupBox3.Controls.Add(this.radioMediumMode);
+            this.groupBox3.Controls.Add(this.radioEasyMode);
+            this.groupBox3.Location = new System.Drawing.Point(8, 48);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(152, 87);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Difficulty";
+            // 
+            // radioHardMode
+            // 
+            this.radioHardMode.AutoSize = true;
+            this.radioHardMode.Location = new System.Drawing.Point(14, 63);
+            this.radioHardMode.Name = "radioHardMode";
+            this.radioHardMode.Size = new System.Drawing.Size(48, 17);
+            this.radioHardMode.TabIndex = 2;
+            this.radioHardMode.TabStop = true;
+            this.radioHardMode.Text = "Hard";
+            this.radioHardMode.UseVisualStyleBackColor = true;
+            // 
+            // radioMediumMode
+            // 
+            this.radioMediumMode.AutoSize = true;
+            this.radioMediumMode.Location = new System.Drawing.Point(14, 40);
+            this.radioMediumMode.Name = "radioMediumMode";
+            this.radioMediumMode.Size = new System.Drawing.Size(62, 17);
+            this.radioMediumMode.TabIndex = 1;
+            this.radioMediumMode.TabStop = true;
+            this.radioMediumMode.Text = "Medium";
+            this.radioMediumMode.UseVisualStyleBackColor = true;
+            // 
+            // radioEasyMode
+            // 
+            this.radioEasyMode.AutoSize = true;
+            this.radioEasyMode.Checked = true;
+            this.radioEasyMode.Location = new System.Drawing.Point(14, 17);
+            this.radioEasyMode.Name = "radioEasyMode";
+            this.radioEasyMode.Size = new System.Drawing.Size(48, 17);
+            this.radioEasyMode.TabIndex = 0;
+            this.radioEasyMode.TabStop = true;
+            this.radioEasyMode.Text = "Easy";
+            this.radioEasyMode.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioSqigglyMode);
+            this.groupBox2.Controls.Add(this.radioNormalMode);
+            this.groupBox2.Location = new System.Drawing.Point(8, 2);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(152, 40);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Mode";
+            // 
+            // radioSqigglyMode
+            // 
+            this.radioSqigglyMode.AutoSize = true;
+            this.radioSqigglyMode.Location = new System.Drawing.Point(79, 15);
+            this.radioSqigglyMode.Name = "radioSqigglyMode";
+            this.radioSqigglyMode.Size = new System.Drawing.Size(67, 17);
+            this.radioSqigglyMode.TabIndex = 1;
+            this.radioSqigglyMode.Text = "Sqwiggly";
+            this.radioSqigglyMode.UseVisualStyleBackColor = true;
+            // 
+            // radioNormalMode
+            // 
+            this.radioNormalMode.AutoSize = true;
+            this.radioNormalMode.Checked = true;
+            this.radioNormalMode.Location = new System.Drawing.Point(14, 15);
+            this.radioNormalMode.Name = "radioNormalMode";
+            this.radioNormalMode.Size = new System.Drawing.Size(58, 17);
+            this.radioNormalMode.TabIndex = 0;
+            this.radioNormalMode.TabStop = true;
+            this.radioNormalMode.Text = "Normal";
+            this.radioNormalMode.UseVisualStyleBackColor = true;
             // 
             // btnToLoadGame
             // 
@@ -335,123 +432,26 @@
             this.listBox1.Size = new System.Drawing.Size(312, 134);
             this.listBox1.TabIndex = 0;
             // 
-            // panelOptions
-            // 
-            this.panelOptions.Controls.Add(this.groupBox3);
-            this.panelOptions.Controls.Add(this.groupBox2);
-            this.panelOptions.Location = new System.Drawing.Point(158, 147);
-            this.panelOptions.Name = "panelOptions";
-            this.panelOptions.Size = new System.Drawing.Size(169, 137);
-            this.panelOptions.TabIndex = 4;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.radioSqigglyMode);
-            this.groupBox2.Controls.Add(this.radioNormalMode);
-            this.groupBox2.Location = new System.Drawing.Point(8, 2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(152, 40);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Mode";
-            // 
-            // radioNormalMode
-            // 
-            this.radioNormalMode.AutoSize = true;
-            this.radioNormalMode.Checked = true;
-            this.radioNormalMode.Location = new System.Drawing.Point(14, 15);
-            this.radioNormalMode.Name = "radioNormalMode";
-            this.radioNormalMode.Size = new System.Drawing.Size(58, 17);
-            this.radioNormalMode.TabIndex = 0;
-            this.radioNormalMode.TabStop = true;
-            this.radioNormalMode.Text = "Normal";
-            this.radioNormalMode.UseVisualStyleBackColor = true;
-            // 
-            // radioSqigglyMode
-            // 
-            this.radioSqigglyMode.AutoSize = true;
-            this.radioSqigglyMode.Location = new System.Drawing.Point(79, 15);
-            this.radioSqigglyMode.Name = "radioSqigglyMode";
-            this.radioSqigglyMode.Size = new System.Drawing.Size(67, 17);
-            this.radioSqigglyMode.TabIndex = 1;
-            this.radioSqigglyMode.Text = "Sqwiggly";
-            this.radioSqigglyMode.UseVisualStyleBackColor = true;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.radioHardMode);
-            this.groupBox3.Controls.Add(this.radioMediumMode);
-            this.groupBox3.Controls.Add(this.radioEasyMode);
-            this.groupBox3.Location = new System.Drawing.Point(8, 48);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(152, 87);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Difficulty";
-            // 
-            // radioEasyMode
-            // 
-            this.radioEasyMode.AutoSize = true;
-            this.radioEasyMode.Checked = true;
-            this.radioEasyMode.Location = new System.Drawing.Point(14, 17);
-            this.radioEasyMode.Name = "radioEasyMode";
-            this.radioEasyMode.Size = new System.Drawing.Size(48, 17);
-            this.radioEasyMode.TabIndex = 0;
-            this.radioEasyMode.TabStop = true;
-            this.radioEasyMode.Text = "Easy";
-            this.radioEasyMode.UseVisualStyleBackColor = true;
-            // 
-            // radioMediumMode
-            // 
-            this.radioMediumMode.AutoSize = true;
-            this.radioMediumMode.Location = new System.Drawing.Point(14, 40);
-            this.radioMediumMode.Name = "radioMediumMode";
-            this.radioMediumMode.Size = new System.Drawing.Size(62, 17);
-            this.radioMediumMode.TabIndex = 1;
-            this.radioMediumMode.TabStop = true;
-            this.radioMediumMode.Text = "Medium";
-            this.radioMediumMode.UseVisualStyleBackColor = true;
-            // 
-            // radioHardMode
-            // 
-            this.radioHardMode.AutoSize = true;
-            this.radioHardMode.Location = new System.Drawing.Point(14, 63);
-            this.radioHardMode.Name = "radioHardMode";
-            this.radioHardMode.Size = new System.Drawing.Size(48, 17);
-            this.radioHardMode.TabIndex = 2;
-            this.radioHardMode.TabStop = true;
-            this.radioHardMode.Text = "Hard";
-            this.radioHardMode.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = global::Sudoku.Properties.Resources.SudokuLogo;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(324, 143);
-            this.panel1.TabIndex = 5;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(351, 310);
+            this.Controls.Add(this.mainGamePanel);
             this.Controls.Add(this.startPanel);
             this.Controls.Add(this.highScorePanel);
-            this.Controls.Add(this.mainGamePanel);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.mainGamePanel.ResumeLayout(false);
             this.startPanel.ResumeLayout(false);
-            this.highScorePanel.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
             this.panelOptions.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.highScorePanel.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
