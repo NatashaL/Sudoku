@@ -37,6 +37,7 @@ namespace Sudoku
                 startPanel.Visible = false;
                 mainGamePanel.Visible = true;
                 dataGridView1.Focus();
+                dataGridView1.ClearSelection();
             }
             else if (view == 20)
             {
