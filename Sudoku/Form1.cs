@@ -68,7 +68,10 @@ namespace Sudoku
 
         private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-            dataGridView1.SelectedCells[0].Style.BackColor = Color.White;
+            if (dataGridView1.SelectedCells.Count > 0)
+            {
+                dataGridView1.SelectedCells[0].Style.BackColor = Color.White;
+            }
         }
 
         private void btnNewGame_Click(object sender, EventArgs e)
@@ -103,27 +106,29 @@ namespace Sudoku
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            
-            //dataGridView1.SelectedCells[0].Value = "";
-            var selected = dataGridView1.SelectedCells[0];
-            if (!(e.KeyValue >= 49 && e.KeyValue <= 57 || e.KeyValue >= 97 && e.KeyValue <= 105))
+            if (dataGridView1.SelectedCells.Count > 0)
             {
-                //MessageBox.Show(String.Format("{0}",e.KeyValue));
-                if (e.KeyValue == 27 || e.KeyValue == 8 || e.KeyValue == 46)
+                //dataGridView1.SelectedCells[0].Value = "";
+                var selected = dataGridView1.SelectedCells[0];
+                if (!(e.KeyValue >= 49 && e.KeyValue <= 57 || e.KeyValue >= 97 && e.KeyValue <= 105))
                 {
-                    selected.Value = "";
-                }
-            }
-            else
-            {
-                if (e.KeyValue >= 49 && e.KeyValue <= 57)
-                {
-                    selected.Value = (char)e.KeyValue;
+                    //MessageBox.Show(String.Format("{0}",e.KeyValue));
+                    if (e.KeyValue == 27 || e.KeyValue == 8 || e.KeyValue == 46)
+                    {
+                        selected.Value = "";
+                    }
                 }
                 else
                 {
-                    selected.Value = String.Format("{0}", e.KeyValue - 96);
-                } 
+                    if (e.KeyValue >= 49 && e.KeyValue <= 57)
+                    {
+                        selected.Value = (char)e.KeyValue;
+                    }
+                    else
+                    {
+                        selected.Value = String.Format("{0}", e.KeyValue - 96);
+                    }
+                }
             }
         }
     }
