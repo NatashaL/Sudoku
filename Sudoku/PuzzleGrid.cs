@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sudoku
 {
@@ -13,7 +14,7 @@ namespace Sudoku
         /// Reading of the private grid element is allowed. Setting it is not allowed.
         /// </summary>
         public int[,] Grid;
-
+        public int[,] CellMap;
         /// <summary>
         /// Max number in any part of the array
         /// </summary>
@@ -25,6 +26,8 @@ namespace Sudoku
         public PuzzleGrid()
         {
             Grid = new int[9, 9];
+            CellMap = new int[9, 9];
+            CellMap.Initialize();      
         }
 
         /// <summary>

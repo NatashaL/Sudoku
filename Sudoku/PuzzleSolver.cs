@@ -417,7 +417,7 @@ namespace Sudoku
             FillSingleChoices(grid);  //First, fill in all single choice values
             if (IsSolved(grid))                        //If it's already solved
             {
-                if (numSolns > 0 && checkUnique )               //If another soln already found
+                if (numSolns > 0)               //If another soln already found
                 {
                     stoplooking = true;                   //Don't look for more
                     result = false;              //Return false, no UNIQUE soln
