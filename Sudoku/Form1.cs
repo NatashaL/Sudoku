@@ -161,12 +161,12 @@ namespace Sudoku
                     int value = -1;
                     if (e.KeyValue >= 49 && e.KeyValue <= 57)
                     {
-                        selected.Value = (char)e.KeyValue;
+                        selected.Value = e.KeyValue - 48;
                         value = e.KeyValue-48;
                     }
                     else
                     {
-                        selected.Value = String.Format("{0}", e.KeyValue - 96);
+                        selected.Value = e.KeyValue - 96;
                         value = e.KeyValue - 96;
                     }
 
