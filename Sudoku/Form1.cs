@@ -21,7 +21,6 @@ namespace Sudoku
         Medium,
         Hard
     }
-
     public partial class Form1 : Form
     {
         public PuzzleSolver standardSolver;
@@ -29,6 +28,9 @@ namespace Sudoku
 
         public SquigglySolver squigglySolver;
         public SquigglyGrid squigglyGrid;
+
+        public static int NORMAL = 0;
+        public static int LOCKED = 1;
 
         public Form1()
         {
@@ -80,6 +82,16 @@ namespace Sudoku
                 MessageBox.Show("Ova uste ne e implementirano");
             }
         }
+        public void clearHighlight()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                }
+            }
+        }
         public void highlightSelectedNumber()
         {
             var selected = dataGridView1.SelectedCells[0];
@@ -121,7 +133,8 @@ namespace Sudoku
             changeView(1);
             dataGridView1.Focus();
             dataGridView1.ClearSelection();
-
+            clearHighlight();
+            
             gameType type = gameType.Standard;
             if (radioSquigglyMode.Checked)
             {
@@ -172,9 +185,16 @@ namespace Sudoku
 
                 //dataGridView1.SelectedCells[0].Value = "";
                 var selected = dataGridView1.SelectedCells[0];
+                int sel_i=selected.RowIndex;
+                int sel_j=selected.ColumnIndex;
+                if (standardGrid.CellMap[sel_i, sel_j] == LOCKED)
+                {
+                    return;
+                }
                 if (!(e.KeyValue >= 49 && e.KeyValue <= 57 || e.KeyValue >= 97 && e.KeyValue <= 105))
                 {
                     //MessageBox.Show(String.Format("{0}",e.KeyValue));
+                    
                     if (e.KeyValue == 27 || e.KeyValue == 8 || e.KeyValue == 46)   // Use e.KeyCode == Keys.Enter  etc.
                     {
                         selected.Value = "";
@@ -201,6 +221,25 @@ namespace Sudoku
 
                 }
 
+            }
+        }
+        public void LockCellMap()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    if (standardGrid.Grid[i, j] != 0)
+                    {
+                        standardGrid.CellMap[i, j] = LOCKED;
+                        //dataGridView1.Rows[i].Cells[j].Style.Font = new Font(dataGridView1.Rows[i].Cells[j].Style.Font, FontStyle.Bold);
+                        dataGridView1.Rows[i].Cells[j].Style.SelectionBackColor = System.Drawing.ColorTranslator.FromHtml("#FFA1A1");
+                    }
+                    else
+                    {
+                        dataGridView1.Rows[i].Cells[j].Style.SelectionBackColor = System.Drawing.ColorTranslator.FromHtml("#61D465");
+                    }
+                }
             }
         }
         public void setGrid(gameType type, Difficulty level)
@@ -246,9 +285,8 @@ namespace Sudoku
                             dataGridView1.Rows[i].Cells[j].Value = -grid.Grid[i, j];
                     }
                 }*/
-
             }
+            LockCellMap();
         }
     }
-
 }
