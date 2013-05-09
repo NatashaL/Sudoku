@@ -10,6 +10,10 @@ namespace Sudoku
     {
         public int i { get; set; }
         public int j { get; set; }
-        public Boolean readOnly { get; set; }
+        public Field(int i, int j)
+        {
+            this.i = i;
+            this.j = j;
+        }
     }
 }

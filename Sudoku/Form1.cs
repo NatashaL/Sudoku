@@ -32,13 +32,35 @@ namespace Sudoku
         public static int NORMAL = 0;
         public static int LOCKED = 1;
 
+        public List<List<Field>> Scheme1 = new List<List<Field>>();
+
+
+
         public Form1()
         {
+            
             InitializeComponent();
-            setTableView();
 
         }
-        public void setTableView()
+        public void setSquigglyTableView()
+        {
+            dataGridView1.RowCount = 9;
+            dataGridView1.Width = 228;
+            dataGridView1.Height = 228;
+            dataGridView1.Rows[2].DividerHeight = 0;
+            dataGridView1.Rows[5].DividerHeight = 0;
+            dataGridView1.Columns[2].DividerWidth = 0;
+            dataGridView1.Columns[5].DividerWidth = 0;
+            dataGridView1.Columns[2].Width = 25;
+            dataGridView1.Columns[5].Width = 25;
+            dataGridView1.Rows[2].Height = 25;
+            dataGridView1.Rows[5].Height = 25;
+            for (int i = 0; i < 9; i++)
+            {
+                dataGridView1.Rows[i].Height = 25;
+            }
+        }
+        public void setStandardTableView()
         {
             dataGridView1.RowCount = 9;
             dataGridView1.Rows[2].DividerHeight = 3;
@@ -46,13 +68,13 @@ namespace Sudoku
             for (int i = 0; i < 9; i++)
             {
                 dataGridView1.Rows[i].Height = 25;
-                for (int j = 0; j < 9; j++)
-                {
-                    dataGridView1.Rows[i].Cells[j].Style.SelectionBackColor = Color.Gray;
-                }
             }
             dataGridView1.Rows[2].Height = 26;
             dataGridView1.Rows[5].Height = 26;
+            dataGridView1.Columns[2].DividerWidth = 3;
+            dataGridView1.Columns[5].DividerWidth = 3;
+            dataGridView1.Columns[2].Width = 26;
+            dataGridView1.Columns[5].Width = 26;
         }
         public void changeView(int view)
         {
@@ -130,15 +152,18 @@ namespace Sudoku
 
         private void btnNewGame_Click(object sender, EventArgs e)
         {
-            changeView(1);
-            dataGridView1.Focus();
-            dataGridView1.ClearSelection();
-            clearHighlight();
-            
+
+
             gameType type = gameType.Standard;
             if (radioSquigglyMode.Checked)
             {
+                setSquigglyTableView();
                 type = gameType.Squiggly;
+            }
+            else
+            {
+                setStandardTableView();
+
             }
             Difficulty level = Difficulty.Easy;
             if (radioMediumMode.Checked)
@@ -149,6 +174,12 @@ namespace Sudoku
             {
                 level = Difficulty.Hard;
             }
+
+            changeView(1);
+            dataGridView1.Focus();
+            dataGridView1.ClearSelection();
+            clearHighlight();
+
 
             setGrid(type, level);
         }
@@ -185,8 +216,8 @@ namespace Sudoku
 
                 //dataGridView1.SelectedCells[0].Value = "";
                 var selected = dataGridView1.SelectedCells[0];
-                int sel_i=selected.RowIndex;
-                int sel_j=selected.ColumnIndex;
+                int sel_i = selected.RowIndex;
+                int sel_j = selected.ColumnIndex;
                 if (standardGrid.CellMap[sel_i, sel_j] == LOCKED)
                 {
                     return;
@@ -194,7 +225,7 @@ namespace Sudoku
                 if (!(e.KeyValue >= 49 && e.KeyValue <= 57 || e.KeyValue >= 97 && e.KeyValue <= 105))
                 {
                     //MessageBox.Show(String.Format("{0}",e.KeyValue));
-                    
+
                     if (e.KeyValue == 27 || e.KeyValue == 8 || e.KeyValue == 46)   // Use e.KeyCode == Keys.Enter  etc.
                     {
                         selected.Value = "";
