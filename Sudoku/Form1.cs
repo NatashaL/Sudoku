@@ -31,8 +31,18 @@ namespace Sudoku
 
         public static int NORMAL = 0;
         public static int LOCKED = 1;
+        
+        public static int GREEN1 = 0;
+        public static int PURPLE1 = 1;
+        public static int PINK1 = 2;
+        public static int GREEN2 = 3;
+        public static int PURPLE2 = 4;
+        public static int PINK2 = 5;
+        public static int GREEN3 = 6;
+        public static int PURPLE3 = 7;
+        public static int PINK3 = 8;
 
-        public List<List<Field>> Scheme1 = new List<List<Field>>();
+        public List<int [,]> Schemes = new List<int [,]>();
 
 
 
