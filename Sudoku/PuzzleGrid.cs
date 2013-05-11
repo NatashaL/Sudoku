@@ -14,7 +14,6 @@ namespace Sudoku
         /// Reading of the private grid element is allowed. Setting it is not allowed.
         /// </summary>
         public int[,] Grid;
-        public int[,] CellMap;
         /// <summary>
         /// Max number in any part of the array
         /// </summary>
@@ -25,9 +24,7 @@ namespace Sudoku
         /// </summary>
         public PuzzleGrid()
         {
-            Grid = new int[9, 9];
-            CellMap = new int[9, 9];
-            CellMap.Initialize();      
+            Grid = new int[9, 9];   
         }
 
         /// <summary>

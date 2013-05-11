@@ -27,7 +27,7 @@ namespace Sudoku
             int row = 0;                         		    //variable for navigating 'rows'
             int col = 0;                        			//variable for navigating 'columns'
             int newVal;                        	            //value to place into grid
-            bool solved;
+            //bool solved;
             List<int> valueSet = new List<int>(Enumerable.Range(-9, 9));   //range of numbers that can be added to the grid
 
             List<int> valueSet2 = new List<int>(); 			//placeholder values in column 0
@@ -36,9 +36,10 @@ namespace Sudoku
             randIndex = rnd.Next(0, 8); 						//get a random number and place in grid(0,0)
             newVal = valueSet[randIndex];
             tempGrid.InitSetCell(row, col, newVal);
-            valueSet.Remove(newVal);            			//remove paced value from options
+            valueSet.Remove(newVal);            			//remove placed value from options
             for (row = 1; row < 9; row++)
-            { 								//fills in column 0 with remaining possible values, storing in place-
+            { 								
+                //fills in column 0 with remaining possible values, storing in place-
                 //holder as it goes so as to preserve when placing in row 0 later
                 randIndex = rnd.Next(0, valueSet.Count);
                 newVal = valueSet[randIndex];
@@ -97,7 +98,7 @@ namespace Sudoku
             switch (difficulty)           //set desiredBlanks via chosen difficulty
             {
                 case Difficulty.Easy: //easy difficulty
-                    desiredBlanks = 45;
+                    desiredBlanks = 40;
                     break;
                 case Difficulty.Medium: //medium difficulty
                     desiredBlanks = 50;
@@ -106,7 +107,7 @@ namespace Sudoku
                     desiredBlanks = 60;
                     break;
                 default: //easy difficulty
-                    desiredBlanks = 45;
+                    desiredBlanks = 40;
                     break;
             }
 

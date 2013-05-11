@@ -12,6 +12,7 @@ namespace Sudoku
         public SquigglyGrid PermaGrid;
         public SquigglyGrid SolutionGrid;
         private Difficulty difficulty;
+        
 
         /// This constructs a squiggly generator class.
         public SquigglyGenerator(Difficulty difficultyIn)
@@ -27,7 +28,7 @@ namespace Sudoku
             int row = 0;                         		    //variable for navigating 'rows'
             int col = 0;                        			//variable for navigating 'columns'
             int newVal;                        	            //value to place into grid
-            bool solved;
+            //bool solved;
             List<int> valueSet = new List<int>(Enumerable.Range(-9, 9));   //range of numbers that can be added to the grid
 
             List<int> valueSet2 = new List<int>(); 			//placeholder values in column 0

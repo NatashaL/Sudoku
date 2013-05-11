@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Sudoku
 {
-    public class SquigglyGrid: ICloneable
+    public class SquigglyGrid : ICloneable
     {
         /// <summary>
         /// This is the internal grid element.
         /// Reading of the private grid element is allowed. Setting it is not allowed.
         /// </summary>
         public int[,] Grid;
-
+        public int[,] CellMap;
         /// <summary>
         /// Max number in any part of the array
         /// </summary>
@@ -25,6 +25,8 @@ namespace Sudoku
         public SquigglyGrid()
         {
             Grid = new int[9, 9];
+            CellMap = new int[9, 9];
+            CellMap.Initialize();      
         }
 
         /// <summary>
@@ -131,7 +133,7 @@ namespace Sudoku
         public object Clone()
         {
             //enable cloning for safe copying of the object
-            PuzzleGrid p = new PuzzleGrid();
+            SquigglyGrid p = new SquigglyGrid();
             for (int i = 0; i < Max; i++)
             {
                 for (int j = 0; j < Max; j++)
@@ -158,5 +160,11 @@ namespace Sudoku
 
             return isBlank;
         }
+
+
+
+
     }
+
 }
+

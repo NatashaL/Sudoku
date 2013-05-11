@@ -29,6 +29,8 @@ namespace Sudoku
         public SquigglySolver squigglySolver;
         public SquigglyGrid squigglyGrid;
 
+
+        public static int[,] CellMap;
         public static int NORMAL = 0;
         public static int LOCKED = 1;
         
@@ -50,6 +52,7 @@ namespace Sudoku
         {
             
             InitializeComponent();
+            schemeBuilder();
 
         }
         public void setSquigglyTableView()
@@ -164,7 +167,7 @@ namespace Sudoku
         {
 
 
-            gameType type = gameType.Standard;
+            gameType type;
             if (radioSquigglyMode.Checked)
             {
                 setSquigglyTableView();
@@ -173,7 +176,7 @@ namespace Sudoku
             else
             {
                 setStandardTableView();
-
+                type = gameType.Standard;
             }
             Difficulty level = Difficulty.Easy;
             if (radioMediumMode.Checked)
@@ -228,7 +231,7 @@ namespace Sudoku
                 var selected = dataGridView1.SelectedCells[0];
                 int sel_i = selected.RowIndex;
                 int sel_j = selected.ColumnIndex;
-                if (standardGrid.CellMap[sel_i, sel_j] == LOCKED)
+                if (CellMap[sel_i, sel_j] == LOCKED)
                 {
                     return;
                 }
@@ -249,6 +252,7 @@ namespace Sudoku
                     {
                         selected.Value = e.KeyValue - 48;
                         value = e.KeyValue - 48;
+                        
                     }
                     else
                     {
@@ -256,23 +260,33 @@ namespace Sudoku
                         value = e.KeyValue - 96;
                     }
 
-
+                    standardGrid.Grid[sel_i, sel_j] = value;
 
                     highlightSelectedNumber();
 
                 }
 
             }
+            
+            if(standardSolver.IsSolved(standardGrid)){
+                MessageBox.Show("Congratulations!!!");
+                standardGrid = null;
+            }
+
         }
         public void LockCellMap()
         {
+            CellMap = new int[9, 9];
+            CellMap.Initialize();
+
+
             for (int i = 0; i < 9; i++)
             {
                 for (int j = 0; j < 9; j++)
                 {
-                    if (standardGrid.Grid[i, j] != 0)
+                    if (dataGridView1.Rows[i].Cells[j].Value != "")
                     {
-                        standardGrid.CellMap[i, j] = LOCKED;
+                        CellMap[i, j] = LOCKED;
                         //dataGridView1.Rows[i].Cells[j].Style.Font = new Font(dataGridView1.Rows[i].Cells[j].Style.Font, FontStyle.Bold);
                         dataGridView1.Rows[i].Cells[j].Style.SelectionBackColor = System.Drawing.ColorTranslator.FromHtml("#FFA1A1");
                     }
@@ -295,7 +309,6 @@ namespace Sudoku
             }
             if (type == gameType.Standard)
             {
-
                 PuzzleGenerator gen = new PuzzleGenerator(level);
                 PuzzleGrid grid = gen.InitGrid();
                 standardSolver = new PuzzleSolver();
@@ -314,18 +327,31 @@ namespace Sudoku
             }
             else
             {
-                /*SquigglyGenerator gen = new SquigglyGenerator(level);
-                SquigglyGrid grid = gen.InitGrid();
-                squigglySudoku = new SquigglySudoku(grid.Grid, gen.SolutionGrid.Grid, new List<List<Field>>());
 
+                SquigglyGenerator gen = new SquigglyGenerator(level);
+                CustomSquiggly grid = new CustomSquiggly(Schemes[0], level);
+                /*squigglyGrid = new SquigglyGrid();
+                //squigglyGrid.Grid = grid.Grid;
+                squigglySolver = new SquigglySolver();
+                squigglySolver.SolutionGrid = gen.SolutionGrid;
                 for (int i = 0; i < 9; i++)
                 {
                     for (int j = 0; j < 9; j++)
                     {
                         if (grid.Grid[i, j] != 0)
-                            dataGridView1.Rows[i].Cells[j].Value = -grid.Grid[i, j];
+                            dataGridView1.Rows[i].Cells[j].Value = grid.Grid[i, j];
+                        squigglyGrid.Grid[i, j] = grid.Grid[i, j];
                     }
                 }*/
+                for (int i = 0; i < 9; i++)
+                {
+                    for (int j = 0; j < 9; j++)
+                    {
+                        if (grid.Grid[i, j] != 0)
+                            dataGridView1.Rows[i].Cells[j].Value = grid.Grid[i, j];
+                        //squigglyGrid.Grid[i, j] = grid.Grid[i, j];
+                    }
+                }
             }
             LockCellMap();
         }

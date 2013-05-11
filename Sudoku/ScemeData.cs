@@ -12,6 +12,7 @@ namespace Sudoku
 {
     public partial class Form1 : Form
     {
+        
         public void schemeBuilder()
         {
             int [,]Scheme = new int[9,9];
