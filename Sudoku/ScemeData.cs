@@ -104,9 +104,10 @@ namespace Sudoku
             Scheme[5, 8] =
             Scheme[6, 8] =
             Scheme[7, 8] =
-            Scheme[8, 8] = 9;
+            Scheme[8, 8] = 0;
 
             Schemes.Add(Scheme);
         }
     }
+
 }

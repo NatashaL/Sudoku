@@ -327,31 +327,22 @@ namespace Sudoku
             }
             else
             {
-
-                SquigglyGenerator gen = new SquigglyGenerator(level);
-                CustomSquiggly grid = new CustomSquiggly(Schemes[0], level);
-                /*squigglyGrid = new SquigglyGrid();
-                //squigglyGrid.Grid = grid.Grid;
-                squigglySolver = new SquigglySolver();
-                squigglySolver.SolutionGrid = gen.SolutionGrid;
+                schemeBuilder();
+                /*SquigglyGenerator gen = new SquigglyGenerator(level,Schemes[0]);
+                SquigglyGrid grid = gen.InitGrid();
+                squigglyGrid = new SquigglyGrid();
                 for (int i = 0; i < 9; i++)
                 {
                     for (int j = 0; j < 9; j++)
                     {
                         if (grid.Grid[i, j] != 0)
-                            dataGridView1.Rows[i].Cells[j].Value = grid.Grid[i, j];
-                        squigglyGrid.Grid[i, j] = grid.Grid[i, j];
+                            dataGridView1.Rows[i].Cells[j].Value = - grid.Grid[i, j];
+                        squigglyGrid.Grid[i, j] = - grid.Grid[i, j];
                     }
                 }*/
-                for (int i = 0; i < 9; i++)
-                {
-                    for (int j = 0; j < 9; j++)
-                    {
-                        if (grid.Grid[i, j] != 0)
-                            dataGridView1.Rows[i].Cells[j].Value = grid.Grid[i, j];
-                        //squigglyGrid.Grid[i, j] = grid.Grid[i, j];
-                    }
-                }
+                CustomSquiggly cs = new CustomSquiggly(Schemes[0], level);
+
+
             }
             LockCellMap();
         }

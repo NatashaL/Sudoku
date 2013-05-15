@@ -22,14 +22,15 @@ namespace Sudoku
         bool stoplooking;                      //Stop trying to find a solution
         int recursions;                       // count the number of recursions
         const int MaxDepth = 1000;   // upper limit on the number of recursions
+        public int[,] scheme;
 
-
-        public SquigglySolver()
+        public SquigglySolver(int[,] scheme)
         {
             //Initialize arrays
             list = new bool[10];             //Naturally indexed for simplicity
             gridRow = new int[9];
             final = new SquigglyGrid[2];
+            this.scheme = scheme;
         }
         /// <summary>
         /// IsSolved checks to see if all cells in the grid contain a value.
@@ -170,7 +171,7 @@ namespace Sudoku
         /// <returns>True if Value is found, false if not</returns>
         private bool IsIn3X3(SquigglyGrid g, int row, int col, int value)
         {
-            int rLow;
+            /*int rLow;
             int cLow;
             rLow = 3 * GroupNum(row);    //Index of smallest number row in grid
             cLow = 3 * GroupNum(col);//Index of smallest number columin in grid
@@ -185,7 +186,19 @@ namespace Sudoku
                     }
                 }
             }
-            return result;
+            return result;*/
+            int groupnum = scheme[row, col];
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    if (scheme[i, j] == groupnum && g.Grid[i, j] == value)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
         /// <summary>
         /// IsPossible returns true if IsInRow, IsInCol & IsIn3x3 return false

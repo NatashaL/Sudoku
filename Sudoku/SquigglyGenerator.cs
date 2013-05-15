@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 namespace Sudoku
 {
     public class SquigglyGenerator
@@ -12,12 +12,20 @@ namespace Sudoku
         public SquigglyGrid PermaGrid;
         public SquigglyGrid SolutionGrid;
         private Difficulty difficulty;
-        
+        public int[,] scheme;
+
+        public HashSet<int>[] rows;
+        public HashSet<int>[] cols;
+        public HashSet<int>[] groups;
+
+
+
 
         /// This constructs a squiggly generator class.
-        public SquigglyGenerator(Difficulty difficultyIn)
+        public SquigglyGenerator(Difficulty difficultyIn,int[,] scheme)
         {
-            squigglySolver = new SquigglySolver();
+            this.scheme = scheme;
+            squigglySolver = new SquigglySolver(scheme);
             difficulty = difficultyIn;
         }
 
@@ -29,16 +37,16 @@ namespace Sudoku
             int col = 0;                        			//variable for navigating 'columns'
             int newVal;                        	            //value to place into grid
             //bool solved;
-            List<int> valueSet = new List<int>(Enumerable.Range(-9, 9));   //range of numbers that can be added to the grid
+            List<int> valueSet = new List<int>(Enumerable.Range(1, 9));   //range of numbers that can be added to the grid
 
             List<int> valueSet2 = new List<int>(); 			//placeholder values in column 0
-            Random rnd = new Random(); 						//random variable for choosing random number
+            /*Random rnd = new Random(); 						//random variable for choosing random number
             int randIndex = 0;       						//index in valueSet/valueSet2 that is accessed
             randIndex = rnd.Next(0, 8); 						//get a random number and place in grid(0,0)
             newVal = valueSet[randIndex];
             tempGrid.InitSetCell(row, col, newVal);
             valueSet.Remove(newVal);            			//remove paced value from options
-            for (row = 1; row < 9; row++)
+            /*for (row = 1; row < 9; row++)
             { 								//fills in column 0 with remaining possible values, storing in place-
                 //holder as it goes so as to preserve when placing in row 0 later
                 randIndex = rnd.Next(0, valueSet.Count);
@@ -67,13 +75,84 @@ namespace Sudoku
                 newVal = valueSet2[randIndex];
                 valueSet2.Remove(newVal);
                 tempGrid.InitSetCell(row, col, newVal);
+            }*/
+
+            this.rows = new HashSet<int>[9];
+            this.cols = new HashSet<int>[9];
+            this.groups = new HashSet<int>[9];
+
+            for (int i = 0; i < 9; i++)
+            {
+                rows[i] = new HashSet<int>();
+                cols[i] = new HashSet<int>();
+                groups[i] = new HashSet<int>();
             }
+            Random rand = new Random();
+            HashSet<int> used = new HashSet<int>();
+
+            for (int i = 0; i < 15; i++)
+            {
+                int ii = rand.Next(0, 70) % 9;
+                int jj = rand.Next(0, 90) % 9;
+                if (tempGrid.Grid[ii,jj] == 0)
+                {
+                    int candidate = rand.Next(1, 9);
+                    if (!used.Contains(candidate))
+                    {
+                        tempGrid.InitSetCell(ii, jj, candidate);
+                        rows[ii].Add(tempGrid.Grid[ii, jj]);
+                        cols[jj].Add(tempGrid.Grid[ii, jj]);
+                        groups[scheme[ii, jj]].Add(tempGrid.Grid[ii, jj]);
+                        used.Add(candidate);
+                    }
+                    else
+                    {
+                        i = Math.Max(i - 1, 0);
+                    }
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+            string rez = "";
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    rez += tempGrid.Grid[i, j] + " ";
+                }
+                rez += "\n";
+            }
+            MessageBox.Show(rez);
             do
             {
-                squigglySolver = new SquigglySolver();
+                squigglySolver = new SquigglySolver(scheme);
                 squigglySolver.SolveGrid((SquigglyGrid)tempGrid.Clone(), false); //Slv to fill remainder of grid
                 SolutionGrid = squigglySolver.SolutionGrid;
             } while (SolutionGrid == null || SolutionGrid.IsBlank());
+
+            rez = "";
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    rez += SolutionGrid.Grid[i, j] + " ";
+                }
+                rez += "\n";
+            }
+            MessageBox.Show(rez);
+
+
+
             PermaGrid = Blanker(SolutionGrid);       //call Blanker to carry out the
             return PermaGrid;         //blanking of fileds,then return the grid to user to solve
         }
@@ -117,7 +196,7 @@ namespace Sudoku
                 saveCopy = (SquigglyGrid)tempGrid.Clone();     // in case undo needed
                 tempGrid = RandomlyBlank(tempGrid, symmetry, ref totalBlanks);
                 //blanks 1 or 2 squares according to symmetry chosen
-                squigglySolver = new SquigglySolver();
+                squigglySolver = new SquigglySolver(scheme);
                 unique = squigglySolver.SolveGrid((SquigglyGrid)tempGrid.Clone(), true);         // will it solve uniquely?
                 if (!unique)
                 {

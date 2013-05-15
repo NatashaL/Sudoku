@@ -10,12 +10,12 @@ namespace Sudoku
     {
         public int[,] scheme;
         public static int[,] solution;
-        public HashSet<int>[] rows;
-        public HashSet<int>[] cols;
-        public HashSet<int>[] groups;
+        public int[,] rows;
+        public int[,] cols;
+        public int[,] groups;
         public int[,] Grid;
         public Difficulty difficulty;
-
+        public bool foundit = false;
         public CustomSquiggly(int[,] scheme, Difficulty diff)
         {
             this.difficulty = diff;
@@ -34,23 +34,40 @@ namespace Sudoku
 
 
             this.Grid = new int[9, 9];
-            this.rows = new HashSet<int>[9];
-            this.cols = new HashSet<int>[9];
-            this.groups = new HashSet<int>[9];
+            this.rows = new int[10, 10];
+            this.cols = new int[10, 10];
+            this.groups = new int[10, 10];
 
-            for (int i = 0; i < 9; i++)
-            {
-                rows[i] = new HashSet<int>();
-                cols[i] = new HashSet<int>();
-                groups[i] = new HashSet<int>();
-            }
+
 
             solution = new int[9, 9];
 
             Random rand = new Random();
             HashSet<int> used = new HashSet<int>();
-            
-            for (int i = 0; i < 15; i++)
+
+            //easy
+            /*int []r = {0,0,0,1,1,1,1,1,1,2,2,2,3,3,3,4,4,4,4,4,5,5,5,6,6,6,7,7,7,7,7,7,8,8,8};
+            int []c = {1,5,6,0,1,2,4,6,7,0,4,5,1,6,8,0,2,4,6,8,0,2,7,3,4,8,1,2,4,6,7,8,2,3,7};
+            int[] v = { 2, 9, 6, 7, 6, 3, 9, 1, 2, 9, 2, 7, 4, 7, 5, 1, 7, 6, 8, 2, 8, 2, 5, 6, 7, 9, 7, 9, 1, 5, 8, 3, 8, 3, 4 };
+            */
+            //hard
+            int[] r = { 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 4, 5 };
+            int[] c = { 1, 5, 6, 0, 1, 2, 4, 6, 7, 0, 4, 5, 1, 6, 8, 0, 2, 4, 6, 8, 0 };
+            int[] v = { 2, 9, 6, 7, 6, 3, 9, 1, 2, 9, 2, 7, 4, 7, 5, 1, 7, 6, 8, 2, 8 };
+
+            /*int [] r = {0,0,0,0,0,1,2,2,2,3,3,5,5,6,6,6,7,8,8,8,8,8};
+            int [] c = {1,2,3,4,5,0,2,6,8,1,4,4,7,0,2,6,8,3,4,5,6,7};
+            int[] v = { 4, 7, 3, 5, 6, 3, 5, 4, 3, 9, 6, 1, 8, 4, 3, 6, 9, 1, 9, 5, 8, 3 };*/
+            for (int i = 0; i < r.Length; i++)
+            {
+                solution[r[i], c[i]] = v[i];
+                rows[r[i], v[i]] = 1;
+                cols[c[i], v[i]] = 1;
+                groups[getGroup(r[i], c[i]), v[i]] = 1;
+            }
+
+            /*
+            for (int i = 0; i < 5; i++)
             {
                 int ii = rand.Next(0, 70)%9;
                 int jj = rand.Next(0, 90)%9; 
@@ -60,9 +77,9 @@ namespace Sudoku
                     if (!used.Contains(candidate))
                     {
                         solution[ii, jj] = candidate;
-                        rows[ii].Add(solution[ii, jj]);
-                        cols[jj].Add(solution[ii, jj]);
-                        groups[getGroup(ii, jj)].Add(solution[ii, jj]);
+                        rows[ii,candidate] = 1;
+                        cols[jj,candidate] = 1;
+                        groups[getGroup(ii, jj),candidate] = 1;
                         used.Add(candidate);
                     }
                     else
@@ -71,98 +88,131 @@ namespace Sudoku
                     }
                 }
             }
+            */
             //solution[0, 0] = 3;
             rez = "";
             for (int i = 0; i < 9; i++)
             {
                 for (int j = 0; j < 9; j++)
                 {
-                    rez += solution[i, j] + " ";
+                    rez += Grid[i, j] + " ";
                 }
                 rez += "\n";
             }
             MessageBox.Show(rez);
-            enumerate(0, 0);
-            
+            foundit = false;
+            dfs(0, 0);
+
+            rez = "";
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    rez += Grid[i, j] + " ";
+                }
+                rez += "\n";
+            }
+            MessageBox.Show(rez);
+
+            /*
             SquigglyGrid squigglyGrid = new SquigglyGrid();
-            SquigglyGenerator squigglyGen = new SquigglyGenerator(diff);
-            SquigglySolver squigglySolver = new SquigglySolver();
+            SquigglyGenerator squigglyGen = new SquigglyGenerator(diff,scheme);
+            SquigglySolver squigglySolver = new SquigglySolver(scheme);
             
             squigglyGrid.Grid = solution;
             SquigglyGrid permaGrid = squigglyGen.Blanker(squigglyGrid);
-            Grid = permaGrid.Grid;
-            
-            
+            Grid = permaGrid.Grid;*/
+
+
 
         }
 
-
-        public void enumerate(int i, int j)
+        public void dfs(int i, int j)
         {
 
-            if ((i == 9) && (j == 0))
+            if (foundit) return;
+            /*
+            string rez = "$$$$$$\n";
+            for (int ii = 0; ii < 9; ii++)
             {
-                process();
+                for (int jj = 0; jj < 9; jj++)
+                {
+                    rez += solution[ii, jj] + " ";
+                }
+                rez += "\n";
+            }
+            MessageBox.Show(rez);
+            */
+
+            if (i == 9)
+            {
+                foundit = true;
+
+                string rez = "$$$$$$\n";
+                for (int ii = 0; ii < 9; ii++)
+                {
+                    for (int jj = 0; jj < 9; jj++)
+                    {
+                        rez += solution[ii, jj] + " ";
+                    }
+                    rez += "\n";
+                }
+                MessageBox.Show(rez);
+                Grid = (int[,])solution.Clone();
                 return;
             }
 
-            // we try to find the next considered field
-            int pi, pj;
-            pi = i;
-            pj = j + 1;
-            if (pj == 9)
+            int ni = i;
+            int nj = j + 1;
+
+            if (nj == 9)
             {
-                pi++;
-                pj = 0;
+                ni = i + 1;
+                nj = 0;
             }
+
 
             if (solution[i, j] != 0)
             {
-                enumerate(pi, pj);
+                dfs(ni, nj);
             }
             else
             {
-                int r;
-
-                for (r = 1; r <= 9; r++)
+                for (int val = 1; !foundit && val <= 9; val++)
                 {
-
-                    // we try to place r here
-                    solution[i, j] = r;
-
-                    if (!backtrack(i, j))
+                    if (!invalid(i, j, val))
                     {
-
-                        rows[i].Add(r);
-                        cols[j].Add(r);
-                        groups[getGroup(i, j)].Add(r);
-
-                        enumerate(pi, pj);
-
-                        rows[i].Remove(r);
-                        cols[j].Remove(r);
-                        groups[getGroup(i, j)].Remove(r);
-
+                        solution[i, j] = val;
+                        rows[i, val] = 1;
+                        cols[j, val] = 1;
+                        groups[getGroup(i, j), val] = 1;
+                        dfs(ni, nj);
+                        solution[i, j] = 0;
+                        rows[i, val] = 0;
+                        cols[j, val] = 0;
+                        groups[getGroup(i, j), val] = 0;
                     }
-                    solution[i, j] = 0;
-                }
 
+                }
             }
+
         }
         // we check whether the value on the position (i, j) is valid
-        public bool backtrack(int i, int j)
+        public bool invalid(int i, int j, int value)
         {
-            if (rows[i].Contains(solution[i, j]))
+            if (rows[i, value] == 1)
                 return true;
 
-            if (cols[j].Contains(solution[i, j]))
+            if (cols[j, value] == 1)
                 return true;
 
-            if (groups[getGroup(i, j)].Contains(solution[i, j]))
+            if (groups[getGroup(i, j), value] == 1)
                 return true;
 
             return false;
         }
+
+
 
         public void process()
         {/*
@@ -183,20 +233,23 @@ namespace Sudoku
                 {
                     Grid[i, j] = solution[i,j];
                 }
-            }
+            }*/
+            foundit = true;
             string rez = "";
-            for(int i = 0; i<9 ;i++){
-                for(int j = 0; j<9 ;j++){
-                    rez += Grid[i,j]+" ";
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    rez += Grid[i, j] + " ";
                 }
                 rez += "\n";
             }
-            MessageBox.Show(rez);*/
+            MessageBox.Show(rez);
         }
 
         public int getGroup(int i, int j)
         {
-            return scheme[i, j]-1;
+            return scheme[i, j];
         }
     }
 }
