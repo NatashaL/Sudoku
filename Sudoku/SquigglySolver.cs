@@ -171,22 +171,6 @@ namespace Sudoku
         /// <returns>True if Value is found, false if not</returns>
         private bool IsIn3X3(SquigglyGrid g, int row, int col, int value)
         {
-            /*int rLow;
-            int cLow;
-            rLow = 3 * GroupNum(row);    //Index of smallest number row in grid
-            cLow = 3 * GroupNum(col);//Index of smallest number columin in grid
-            bool result = false;
-            for (int i = rLow; i < rLow + 3; i++) //Check all 3 rows in subgrid
-            {
-                for (int j = cLow; j < cLow + 3; j++)     //Check all 3 columns
-                {               //Compare value of cell with value being sought
-                    if (Math.Abs(g.Grid[i, j]) == value)
-                    {
-                        result = true;
-                    }
-                }
-            }
-            return result;*/
             int groupnum = scheme[row, col];
             for (int i = 0; i < 9; i++)
             {

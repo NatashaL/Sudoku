@@ -5,9 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
-
+using System.Net.Sockets;
 namespace Sudoku
 {
     public enum gameType
@@ -33,7 +33,7 @@ namespace Sudoku
         public static int[,] CellMap;
         public static int NORMAL = 0;
         public static int LOCKED = 1;
-        
+
         public static int GREEN1 = 0;
         public static int PURPLE1 = 1;
         public static int PINK1 = 2;
@@ -44,16 +44,24 @@ namespace Sudoku
         public static int PURPLE3 = 7;
         public static int PINK3 = 8;
 
-        public List<int [,]> Schemes = new List<int [,]>();
-
+        public List<int[,]> Schemes = new List<int[,]>();
+        public List<Color> colors = new List<Color>();
 
 
         public Form1()
         {
-            
+
             InitializeComponent();
             schemeBuilder();
-
+            colors.Add(Color.AliceBlue);
+            colors.Add(Color.Lavender);
+            colors.Add(Color.MistyRose);
+            colors.Add(Color.LightCoral);
+            colors.Add(Color.LightYellow);
+            colors.Add(Color.LightSkyBlue);
+            colors.Add(Color.LightSlateGray);
+            colors.Add(Color.LightSalmon);
+            colors.Add(Color.Ivory);
         }
         public void setSquigglyTableView()
         {
@@ -252,7 +260,7 @@ namespace Sudoku
                     {
                         selected.Value = e.KeyValue - 48;
                         value = e.KeyValue - 48;
-                        
+
                     }
                     else
                     {
@@ -267,8 +275,9 @@ namespace Sudoku
                 }
 
             }
-            
-            if(standardSolver.IsSolved(standardGrid)){
+
+            if (standardSolver.IsSolved(standardGrid))
+            {
                 MessageBox.Show("Congratulations!!!");
                 standardGrid = null;
             }
@@ -340,11 +349,37 @@ namespace Sudoku
                         squigglyGrid.Grid[i, j] = - grid.Grid[i, j];
                     }
                 }*/
-                CustomSquiggly cs = new CustomSquiggly(Schemes[0], level);
-
-
+                bool Completed = false;
+                CustomSquiggly squigglyGrid = null;// new CustomSquiggly(Schemes[0], level);
+                while (squigglyGrid == null)
+                {
+                    squigglyGrid = Limex(() => new CustomSquiggly(Schemes[0], level), 2000,out Completed);
+                    //MessageBox.Show(Completed.ToString());
+                }
+                
+                for (int i = 0; i < 9; i++)
+                {
+                    for (int j = 0; j < 9; j++)
+                    {
+                        if (squigglyGrid.Grid[i, j] != 0)
+                            dataGridView1.Rows[i].Cells[j].Value = - squigglyGrid.Grid[i, j];
+                        dataGridView1.Rows[i].Cells[j].Style.BackColor = colors[Schemes[0][i, j]];
+                        //squigglyGrid.Grid[i, j] = -grid.Grid[i, j];
+                    }
+                }
             }
             LockCellMap();
         }
+        public static CustomSquiggly Limex<CustomSquiggly>(Func<CustomSquiggly> F, int Timeout, out bool Completed)
+        {
+            CustomSquiggly result = default(CustomSquiggly);
+            Thread thread = new Thread(() => result = F());
+            thread.Start();
+            Completed = thread.Join(Timeout);
+            if (!Completed) thread.Abort();
+            return result;
+        }
     }
+
+
 }
