@@ -90,16 +90,16 @@ namespace Sudoku
             switch (difficulty)           //set desiredBlanks via chosen difficulty
             {
                 case Difficulty.Easy: //easy difficulty
-                    desiredBlanks = 45;
+                    desiredBlanks = 40;
                     break;
                 case Difficulty.Medium: //medium difficulty
-                    desiredBlanks = 50;
+                    desiredBlanks = 45;
                     break;
                 case Difficulty.Hard: //hard difficulty
-                    desiredBlanks = 60;
+                    desiredBlanks = 50;
                     break;
                 default: //easy difficulty
-                    desiredBlanks = 45;
+                    desiredBlanks = 40;
                     break;
             }
 

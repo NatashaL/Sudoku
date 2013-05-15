@@ -39,7 +39,7 @@ namespace Sudoku
         /// </summary>
         /// <param name="grid">Current state of the squiggly grid</param>
         /// <returns>TRUE: Squiggly is solved, FALSE: Not solved</returns>
-        private bool IsSolved(SquigglyGrid grid)
+        public bool IsSolved(SquigglyGrid grid)
         {
             bool result = true;                       //Assume squiggly is solved
             int r, c;

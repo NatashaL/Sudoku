@@ -31,18 +31,9 @@ namespace Sudoku
 
 
         public static int[,] CellMap;
+        public static Color [,] ColorMap;
         public static int NORMAL = 0;
         public static int LOCKED = 1;
-
-        public static int GREEN1 = 0;
-        public static int PURPLE1 = 1;
-        public static int PINK1 = 2;
-        public static int GREEN2 = 3;
-        public static int PURPLE2 = 4;
-        public static int PINK2 = 5;
-        public static int GREEN3 = 6;
-        public static int PURPLE3 = 7;
-        public static int PINK3 = 8;
 
         public List<int[,]> Schemes = new List<int[,]>();
         public List<Color> colors = new List<Color>();
@@ -53,6 +44,8 @@ namespace Sudoku
 
             InitializeComponent();
             schemeBuilder();
+
+
             colors.Add(Color.AliceBlue);
             colors.Add(Color.Lavender);
             colors.Add(Color.MistyRose);
@@ -62,6 +55,7 @@ namespace Sudoku
             colors.Add(Color.LightSlateGray);
             colors.Add(Color.LightSalmon);
             colors.Add(Color.Ivory);
+            ColorMap = new Color[9, 9];
         }
         public void setSquigglyTableView()
         {
@@ -155,7 +149,7 @@ namespace Sudoku
                         }
                         else
                         {
-                            dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                            dataGridView1.Rows[i].Cells[j].Style.BackColor = ColorMap[i,j];
                         }
                     }
                 }
@@ -268,18 +262,31 @@ namespace Sudoku
                         value = e.KeyValue - 96;
                     }
 
-                    standardGrid.Grid[sel_i, sel_j] = value;
+                    if(standardGrid != null)
+                        standardGrid.Grid[sel_i, sel_j] = value;
+                    else if(squigglyGrid != null)
+                        squigglyGrid.Grid[sel_i, sel_j] = value;
 
                     highlightSelectedNumber();
 
                 }
 
             }
-
-            if (standardSolver.IsSolved(standardGrid))
+            if (standardGrid != null)
             {
-                MessageBox.Show("Congratulations!!!");
-                standardGrid = null;
+                if (standardSolver.IsSolved(standardGrid))
+                {
+                    MessageBox.Show("Congratulations!!!");
+                    standardGrid = null;
+                }
+            }
+            else if (squigglyGrid != null)
+            {
+                if (squigglySolver.IsSolved(squigglyGrid))
+                {
+                    MessageBox.Show("Congratulations!!!");
+                    squigglyGrid = null;
+                }
             }
 
         }
@@ -318,6 +325,8 @@ namespace Sudoku
             }
             if (type == gameType.Standard)
             {
+                squigglyGrid = null;
+
                 PuzzleGenerator gen = new PuzzleGenerator(level);
                 PuzzleGrid grid = gen.InitGrid();
                 standardSolver = new PuzzleSolver();
@@ -330,31 +339,25 @@ namespace Sudoku
                         if (grid.Grid[i, j] != 0)
                             dataGridView1.Rows[i].Cells[j].Value = -grid.Grid[i, j];
                         standardGrid.Grid[i, j] = -grid.Grid[i, j];
+                        ColorMap[i, j] = Color.White;
                     }
                 }
 
             }
             else
             {
+                standardGrid = null;
+
                 schemeBuilder();
-                /*SquigglyGenerator gen = new SquigglyGenerator(level,Schemes[0]);
-                SquigglyGrid grid = gen.InitGrid();
-                squigglyGrid = new SquigglyGrid();
-                for (int i = 0; i < 9; i++)
-                {
-                    for (int j = 0; j < 9; j++)
-                    {
-                        if (grid.Grid[i, j] != 0)
-                            dataGridView1.Rows[i].Cells[j].Value = - grid.Grid[i, j];
-                        squigglyGrid.Grid[i, j] = - grid.Grid[i, j];
-                    }
-                }*/
+                Random r = new Random();
+                int[,] scheme = Schemes[r.Next(6)];
+
                 bool Completed = false;
-                CustomSquiggly squigglyGrid = null;// new CustomSquiggly(Schemes[0], level);
-                while (squigglyGrid == null)
+                CustomSquiggly squigglyGrid = null;
+                squigglySolver = new SquigglySolver(scheme);
+                while (squigglyGrid == null && !Completed)
                 {
-                    squigglyGrid = Limex(() => new CustomSquiggly(Schemes[0], level), 2000,out Completed);
-                    //MessageBox.Show(Completed.ToString());
+                    squigglyGrid = Limex(() => new CustomSquiggly(scheme, level), 4000,out Completed);
                 }
                 
                 for (int i = 0; i < 9; i++)
@@ -363,10 +366,22 @@ namespace Sudoku
                     {
                         if (squigglyGrid.Grid[i, j] != 0)
                             dataGridView1.Rows[i].Cells[j].Value = - squigglyGrid.Grid[i, j];
-                        dataGridView1.Rows[i].Cells[j].Style.BackColor = colors[Schemes[0][i, j]];
-                        //squigglyGrid.Grid[i, j] = -grid.Grid[i, j];
+                        dataGridView1.Rows[i].Cells[j].Style.BackColor = colors[scheme[i, j]];
+                        ColorMap[i, j] = colors[scheme[i, j]];
                     }
                 }
+
+
+                string rez = "$$$$$$ try\n";
+                for (int ii = 0; ii < 9; ii++)
+                {
+                    for (int jj = 0; jj < 9; jj++)
+                    {
+                        rez += CustomSquiggly.solution[ii, jj] + " ";
+                    }
+                    rez += "\n";
+                }
+                MessageBox.Show(rez);
             }
             LockCellMap();
         }
