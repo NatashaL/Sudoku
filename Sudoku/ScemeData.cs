@@ -12,7 +12,19 @@ namespace Sudoku
 {
     public partial class Form1 : Form
     {
-
+        public void colorBuilder()
+        {
+            colors.Add(Color.AliceBlue);
+            colors.Add(Color.Lavender);
+            colors.Add(Color.MistyRose);
+            colors.Add(Color.LightCoral);
+            colors.Add(Color.LightYellow);
+            colors.Add(Color.LightSkyBlue);
+            colors.Add(Color.LightSlateGray);
+            colors.Add(Color.LightSalmon);
+            colors.Add(Color.Ivory);
+            ColorMap = new Color[9, 9];
+        }
         public void schemeBuilder()
         {
             int[][] scheme = new int[6][];

@@ -62,9 +62,11 @@
     <Compile Include="ScemeData.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Solver.cs" />
     <Compile Include="SquigglyGenerator.cs" />
     <Compile Include="SquigglyGrid.cs" />
     <Compile Include="SquigglySolver.cs" />
+    <Compile Include="Standard.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

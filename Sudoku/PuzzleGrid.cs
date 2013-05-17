@@ -18,6 +18,19 @@ namespace Sudoku
         /// Max number in any part of the array
         /// </summary>
         private const int Max = 9;
+        public int[,] rows = new int[9, 10];
+        public int[,] cols = new int[9, 10];
+        public int[,] groups = new int[9, 10];
+        public static int[] miniSquare = {1,1,1,2,2,2,3,3,3,
+                                          1,1,1,2,2,2,3,3,3,
+                                          1,1,1,2,2,2,3,3,3,
+                                          4,4,4,5,5,5,6,6,6,
+                                          4,4,4,5,5,5,6,6,6,
+                                          4,4,4,5,5,5,6,6,6,
+                                          7,7,7,8,8,8,9,9,9,
+                                          7,7,7,8,8,8,9,9,9,
+                                          7,7,7,8,8,8,9,9,9};
+
 
         /// <summary>
         /// This constructor creates the grid.
@@ -25,6 +38,8 @@ namespace Sudoku
         public PuzzleGrid()
         {
             Grid = new int[9, 9];   
+
+
         }
 
         /// <summary>
@@ -36,6 +51,7 @@ namespace Sudoku
         /// <returns>1 for success, 0 for a failure.</returns>
         public int InitSetCell(int rowA, int columnB, int value)
         {
+            
             int success = 0;
             bool validIndex = false;
             bool validNewVal = false;
@@ -65,6 +81,66 @@ namespace Sudoku
 
             return (success);
         }
+        public void initCell(int row, int col, int val)
+        {
+            Grid[row, col] = val;
+            rows[row, val]++;
+            cols[col, val]++;
+            groups[miniSquare[row * 9 + col], val]++;
+        }
+
+
+        public bool solved()
+        {
+            for (int val = 1; val <= 9; val++)
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    if (rows[i, val] != 1 || cols[i, val] != 1 || groups[i, val] != 1)
+                    {
+                        //MessageBox.Show("rows [" + i + "," + val + "] = " + rows[i, val] + "  cols[" + i + "," + val + "] = " + cols[i, val] + " groups [" + i + "," + val + "] = " + groups[i, val]);
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        public int groupNum(int row, int col)
+        {
+            int result = 0;
+            int r = row / 3;
+            int c = col / 3;
+                       
+            return result;
+        }
+        public void emptyCell(int i, int j, int val){
+            Grid[i, j] = 0;
+            rows[i, val]--;
+            cols[j, val]--;
+            groups[groupNum(i, j), val]--;
+        }
+        public void init()
+        {
+            rows.Initialize();
+            cols.Initialize();
+            groups.Initialize();
+
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    if (Grid[i, j] != 0)
+                    {
+                        int val =Math.Abs( Grid[i, j]);
+                        rows[i, val]++;
+                        cols[j, val]++;
+                        groups[miniSquare[i*9 + j], val]++;
+                    }
+                }
+            }
+        }
+
+
 
         /// <summary>
         /// This function also sets a cell, but validates that is within the user setable range.

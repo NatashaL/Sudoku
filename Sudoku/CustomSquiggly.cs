@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using System.Net.Sockets;
 namespace Sudoku
 {
-    class CustomSquiggly
+    public class CustomSquiggly
     {
         public int[,] scheme;
         public static int[,] solution;
@@ -91,10 +91,32 @@ namespace Sudoku
             SquigglyGrid blanked = gen.Blanker(grid);
             solution = (int[,])Grid.Clone();
             Grid = blanked.Grid;
+            rows.Initialize();
+            cols.Initialize();
+            groups.Initialize();
 
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    if (Grid[i, j] != 0)
+                    {
+                        int val = Math.Abs(Grid[i,j]);
+                        rows[i, val]++;
+                        cols[j, val]++;
+                        groups[getGroup(i, j), val]++;
+                    }
+                }
+            }
 
         }
-
+        public void emptyCell(int i, int j, int val)
+        {
+            Grid[i, j] = 0;
+            rows[i, val]--;
+            cols[j, val]--;
+            groups[getGroup(i, j), val]--;
+        }
         public void dfs(int i, int j)
         {
 
@@ -166,9 +188,33 @@ namespace Sudoku
 
             return false;
         }
+        public void initCell(int row, int col, int val)
+        {
+            Grid[row, col] = val;
+            rows[row, val]++;
+            cols[col, val]++;
+            groups[getGroup(row, col), val]++;
+
+        }
         public int getGroup(int i, int j)
         {
             return scheme[i, j];
+        }
+        public bool isSolved()
+        {
+
+            for (int val = 1; val <= 9; val++)
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    if (rows[i, val] != 1 || cols[i, val] != 1 || groups[i, val] != 1)
+                    {
+                        //MessageBox.Show("rows [" + i + "," + val + "] = " + rows[i, val] + "  cols[" + i + "," + val + "] = " + cols[i, val] + " groups [" + i + "," + val + "] = " + groups[i, val]);
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }
