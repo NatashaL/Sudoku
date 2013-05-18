@@ -21,15 +21,15 @@ namespace Sudoku
         public int[,] rows = new int[9, 10];
         public int[,] cols = new int[9, 10];
         public int[,] groups = new int[9, 10];
-        public static int[] miniSquare = {1,1,1,2,2,2,3,3,3,
-                                          1,1,1,2,2,2,3,3,3,
-                                          1,1,1,2,2,2,3,3,3,
-                                          4,4,4,5,5,5,6,6,6,
-                                          4,4,4,5,5,5,6,6,6,
-                                          4,4,4,5,5,5,6,6,6,
-                                          7,7,7,8,8,8,9,9,9,
-                                          7,7,7,8,8,8,9,9,9,
-                                          7,7,7,8,8,8,9,9,9};
+        public static int[] miniSquare = {0,0,0,1,1,1,2,2,2,
+                                          0,0,0,1,1,1,2,2,2,
+                                          0,0,0,1,1,1,2,2,2,
+                                          3,3,3,4,4,4,5,5,5,
+                                          3,3,3,4,4,4,5,5,5,
+                                          3,3,3,4,4,4,5,5,5,
+                                          6,6,6,7,7,7,8,8,8,
+                                          6,6,6,7,7,7,8,8,8,
+                                          6,6,6,7,7,7,8,8,8};
 
 
         /// <summary>
@@ -131,10 +131,19 @@ namespace Sudoku
                 {
                     if (Grid[i, j] != 0)
                     {
-                        int val =Math.Abs( Grid[i, j]);
-                        rows[i, val]++;
-                        cols[j, val]++;
-                        groups[miniSquare[i*9 + j], val]++;
+                        int val = Math.Abs(Grid[i, j]);
+                        try
+                        {
+                            
+                            rows[i, val]++;
+                            cols[j, val]++;
+
+                            groups[miniSquare[i * 9 + j], val]++;
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(string.Format("i {0}\n j {1}\n i*9+j {2}\n val {3}\n minisquare[i*9 + j] {4}", i, j, i * 9 + j, val, miniSquare[i * 9 + j]));
+                        }
                     }
                 }
             }

@@ -23,6 +23,9 @@ namespace Sudoku
     }
     public partial class Form1 : Form
     {
+        public Standard standard;
+
+
         public PuzzleSolver standardSolver;
         public PuzzleGrid standardGrid;
 
@@ -342,22 +345,24 @@ namespace Sudoku
                 }
             }
             if (type == gameType.Standard)
-            {
+            {/*
                 squigglyGrid = null;
-
                 PuzzleGenerator gen = new PuzzleGenerator(level);
                 PuzzleGrid grid = gen.InitGrid();
                 standardSolver = new PuzzleSolver();
                 standardSolver.SolutionGrid = gen.SolutionGrid;
-                standardGrid = new PuzzleGrid();
+                standardGrid = new PuzzleGrid();*/
+
+                standard = new Standard(level);
+
                 for (int i = 0; i < 9; i++)
                 {
                     for (int j = 0; j < 9; j++)
                     {
-                        if (grid.Grid[i, j] != 0)
-                            dataGridView1.Rows[i].Cells[j].Value = -grid.Grid[i, j];
-                        standardGrid.Grid[i, j] = -grid.Grid[i, j];
-                        standardGrid.init();
+                        if (standard.blanked[i, j] != 0)
+                            dataGridView1.Rows[i].Cells[j].Value = standard.blanked[i, j];
+                        //standardGrid.Grid[i, j] = -grid.Grid[i, j];
+                        //standardGrid.init();
                         ColorMap[i, j] = Color.White;
                     }
                 }

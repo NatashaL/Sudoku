@@ -81,8 +81,6 @@ namespace Sudoku
                 return list[r.Next(list.Count)];
             }
             else return 0;
-
-
         }
         /// <summary>
         /// IsInRow checks if given value occurs in the given row
