@@ -65,6 +65,8 @@
     <Compile Include="SquigglyGenerator.cs" />
     <Compile Include="SquigglyGrid.cs" />
     <Compile Include="SquigglySolver.cs" />
+    <Compile Include="Standard.cs" />
+    <Compile Include="Sudoku.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
