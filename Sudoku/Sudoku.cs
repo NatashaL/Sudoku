@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 namespace Sudoku
 {
     public class Sudoku
     {
         public int[,] mask;
         public int[,] solution;
+        public int[,] userGrid;
         public int[,] scheme;
         public Difficulty diff;
         public int[,] rows;
@@ -20,6 +21,7 @@ namespace Sudoku
             mask = new int[9, 9];
             solution = new int[9, 9];
             scheme = new int[9, 9];
+            userGrid = new int[9, 9];
 
             rows = new int[10, 10];
             cols = new int[10, 10];
@@ -38,7 +40,7 @@ namespace Sudoku
             randIndex = rnd.Next(0, 8);
             newVal = valueSet[randIndex];
 
-            solution[0, 0] = newVal;
+            userGrid[0, 0] = newVal;
             valueSet.Remove(newVal);
 
             for (int i = 1; i < 9; i++)
@@ -46,7 +48,7 @@ namespace Sudoku
                 randIndex = rnd.Next(0, valueSet.Count);
                 newVal = valueSet[randIndex];
                 valueSet.Remove(newVal);
-                solution[i, 0] = newVal;
+                userGrid[i, 0] = newVal;
                 rows[i, newVal] = 1;
                 cols[0, newVal] = 1;
                 groups[scheme[i, 0], newVal] = 1;
@@ -55,7 +57,7 @@ namespace Sudoku
 
             for (int i = 8; i >= 1; i--)
             {
-                newVal = solution[0, 9 - i] = solution[i, 0];
+                newVal = userGrid[0, 9 - i] = userGrid[i, 0];
                 rows[0, newVal] = 1;
                 cols[9 - i, newVal] = 1;
                 groups[scheme[0, 9 - i], newVal] = 1;
@@ -80,31 +82,39 @@ namespace Sudoku
 
         public static bool isSolved(int[,] grid,int[,] scheme)
         {
-            int[,] r = new int[9, 9];
-            int[,] c = new int[9, 9];
-            int[,] g = new int[9, 9];
+            int[,] r = new int[9, 10];
+            int[,] c = new int[9, 10];
+            int[,] g = new int[9, 10];
 
             for (int i = 0; i < 9; i++)
             {
                 for (int j = 0; j < 9; j++)
                 {
+                    if (grid[i, j] == 0) return false;
+
+                    if (r[i, grid[i, j]] == 1 || c[j, grid[i, j]] == 1 || g[scheme[i, j], grid[i, j]] == 1)
+                    {
+                       // MessageBox.Show(r[i, grid[i, j]] + " " + c[j, grid[i, j]] + " " + g[scheme[i, j], grid[i, j]]);
+                        return false;
+                    }
+
                     if (r[i, grid[i, j]] == 0)
                     {
                         r[i, grid[i, j]] = 1;
                     }
-                    else return false;
                     if (c[j, grid[i, j]] == 0)
                     {
                         c[j, grid[i, j]] = 1;
                     }
-                    else return false;
                     if (g[scheme[i, j], grid[i, j]] == 0)
                     {
                         g[scheme[i, j], grid[i, j]] = 1;
                     }
-                    else return false;
                 }
             }
+
+
+
             return true;
         }
 

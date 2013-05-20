@@ -62,6 +62,7 @@
     <Compile Include="ScemeData.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Squiggly.cs" />
     <Compile Include="SquigglyGenerator.cs" />
     <Compile Include="SquigglyGrid.cs" />
     <Compile Include="SquigglySolver.cs" />
