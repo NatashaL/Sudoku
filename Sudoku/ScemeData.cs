@@ -12,7 +12,8 @@ namespace Sudoku
 {
     public partial class Form1 : Form
     {
-
+        public List<int[,]> Schemes = new List<int[,]>();
+        public List<Color> colors = new List<Color>();
         public void schemeBuilder()
         {
             int[][] scheme = new int[6][];
@@ -76,6 +77,17 @@ namespace Sudoku
                 }
                 Schemes.Add(Puzzle);
             }
+
+            colors.Add(Color.AliceBlue);
+            colors.Add(Color.Lavender);
+            colors.Add(Color.MistyRose);
+            colors.Add(Color.LightCoral);
+            colors.Add(Color.LightYellow);
+            colors.Add(Color.LightSkyBlue);
+            colors.Add(Color.LightSlateGray);
+            colors.Add(Color.LightSalmon);
+            colors.Add(Color.Ivory);
+            ColorMap = new Color[9, 9];
 
         }
     }

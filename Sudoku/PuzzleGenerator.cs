@@ -19,7 +19,7 @@ namespace Sudoku
             puzzleSolver = new PuzzleSolver();
             difficulty = difficultyIn;
         }
-
+        
         public PuzzleGrid InitGrid()
         {
             //Randomly fill in the first row and column of puzzlegrid

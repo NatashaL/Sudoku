@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using System.Net.Sockets;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 namespace Sudoku
 {
     public enum gameType
@@ -25,33 +26,18 @@ namespace Sudoku
     {
         public Standard standard;
         public Squiggly squiggly;
-
         public static int[,] CellMap;
         public static Color [,] ColorMap;
-        public static int NORMAL = 0;
         public static int LOCKED = 1;
-
-        public List<int[,]> Schemes = new List<int[,]>();
-        public List<Color> colors = new List<Color>();
-
-
+        public int ticks = 0;
+        public Scores HS;
         public Form1()
         {
 
             InitializeComponent();
             schemeBuilder();
-
-
-            colors.Add(Color.AliceBlue);
-            colors.Add(Color.Lavender);
-            colors.Add(Color.MistyRose);
-            colors.Add(Color.LightCoral);
-            colors.Add(Color.LightYellow);
-            colors.Add(Color.LightSkyBlue);
-            colors.Add(Color.LightSlateGray);
-            colors.Add(Color.LightSalmon);
-            colors.Add(Color.Ivory);
-            ColorMap = new Color[9, 9];
+            // TO DO default view of highScores Martin
+            setHighScoresPanel(gameType.Standard,Difficulty.Easy);
         }
         public void setSquigglyTableView()
         {
@@ -194,6 +180,8 @@ namespace Sudoku
 
 
             setGrid(type, level);
+            ticks = 0;
+            timer.Start();
         }
 
         private void btnMainMenuBack_Click(object sender, EventArgs e)
@@ -272,25 +260,33 @@ namespace Sudoku
                     highlightSelectedNumber();
 
                 }
+                
+            }
 
-            }
-            if (standard != null)
-            {
-                if (Sudoku.isSolved(standard.userGrid,Standard.scheme))
+            if((standard != null && Sudoku.isSolved(standard.userGrid,Standard.scheme)) || 
+                (squiggly != null && Sudoku.isSolved(squiggly.userGrid,squiggly.scheme))){
+                
+                long time = ticks;
+                timer.Stop();
+                DarkenGrid();
+                MessageBox.Show("Congratulations!!!");
+                
+                Form2 form2 = new Form2();
+                form2.Show();
+                gameType type = gameType.Standard;
+                Difficulty level = Difficulty.Easy;
+                if (standard == null)
                 {
-                    MessageBox.Show("Congratulations!!!");
-                    DarkenGrid();
-                    standard = null;
+                    type = gameType.Squiggly;
+                    level = squiggly.diff;
                 }
-            }
-            else if (squiggly != null)
-            {
-                if (Sudoku.isSolved(squiggly.userGrid,squiggly.scheme))
+                else
                 {
-                    DarkenGrid();
-                    MessageBox.Show("Congratulations!!!");
-                    squiggly = null;
+                    level = standard.diff;
                 }
+
+
+                submitHighScore(form2.text, ticks,type,level);
             }
 
         }
@@ -319,7 +315,6 @@ namespace Sudoku
                     if (dataGridView1.Rows[i].Cells[j].Value != "")
                     {
                         CellMap[i, j] = LOCKED;
-                        //dataGridView1.Rows[i].Cells[j].Style.Font = new Font(dataGridView1.Rows[i].Cells[j].Style.Font, FontStyle.Bold);
                         dataGridView1.Rows[i].Cells[j].Style.SelectionBackColor = System.Drawing.ColorTranslator.FromHtml("#FFA1A1");
                     }
                     else
@@ -386,6 +381,96 @@ namespace Sudoku
             Completed = thread.Join(Timeout);
             if (!Completed) thread.Abort();
             return result;
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            ticks++;
+            timerlabel.Text = (new TimeSpan(ticks * 10000000)).ToString();
+
+        }
+        public void setHighScoresPanel(gameType type, Difficulty diff)
+        {
+            HS = BinaryDeserialize();
+
+            lblScoresType.Text = type == gameType.Standard ? "Standard" : "Squiggly";
+            lblScoresDiff.Text = diff == Difficulty.Easy ? "Easy" : (diff == Difficulty.Medium ? "Medium" : "Hard");
+            int d = diff == Difficulty.Easy ? 0 : (diff == Difficulty.Medium ? 1 : 2);
+            List<Label> visibleNames = new List<Label>();
+            visibleNames.Add(label2);
+            visibleNames.Add(label5);
+            visibleNames.Add(label7);
+            visibleNames.Add(label9);
+            visibleNames.Add(label11);
+
+            List<Label> visibleTimes = new List<Label>();
+            visibleTimes.Add(label3);
+            visibleTimes.Add(label4);
+            visibleTimes.Add(label6);
+            visibleTimes.Add(label8);
+            visibleTimes.Add(label10);
+
+            HighScores toBeShown = HS.HS[type][d];
+
+            for (int i = 0; i < toBeShown.highScores.Count; i++)
+            {
+                visibleNames[i].Text = toBeShown.highScores[i].player;
+                visibleTimes[i].Text = (new TimeSpan(toBeShown.highScores[i].time)).ToString();
+            }
+            for (int i = toBeShown.highScores.Count; i < 5; i++)
+            {
+                visibleNames[i].Text = "";
+                visibleTimes[i].Text = "";
+            }
+
+        }
+        public void submitHighScore(string name, int ticks,gameType type, Difficulty diff)
+        {
+            HighScoreItem item = new HighScoreItem();
+            item.player = name;
+            item.time = ticks;
+            if (HS.add(item,type,diff))
+            {
+                MessageBox.Show("You made it in the top 5!");
+                //setHighScoresPanel();
+            }
+        }
+
+        // Serialize an ArrayList object to a binary file.
+        private static void BinarySerialize(Scores HS)
+        {
+            using (FileStream str = File.Create("HighScores.hs"))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Serialize(str, HS);
+            }
+        }
+        // Deserialize an ArrayList object from a binary file.
+        private static Scores BinaryDeserialize()
+        {
+            Scores HS = null;
+            try
+            {
+
+                using (FileStream str = File.OpenRead("HighScores.hs"))
+                {
+                    BinaryFormatter bf = new BinaryFormatter();
+                    HS = (Scores)bf.Deserialize(str);
+                }
+
+                File.Delete("HighScores.hs");
+
+                return HS;
+            }
+            catch(FileNotFoundException f)
+            {
+                return new Scores();
+            }
+        }
+
+        private void Form1_Leave(object sender, EventArgs e)
+        {
+            BinarySerialize(HS);
         }
     }
 
