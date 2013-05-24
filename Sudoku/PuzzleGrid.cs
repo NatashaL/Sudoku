@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sudoku
-{
+{   
+    [Serializable]
     public class PuzzleGrid : ICloneable
     {
         /// <summary>

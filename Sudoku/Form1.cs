@@ -31,13 +31,16 @@ namespace Sudoku
         public static int LOCKED = 1;
         public int ticks = 0;
         public Scores HS;
+        public string FileName;
         public Form1()
         {
 
             InitializeComponent();
             schemeBuilder();
             // TO DO default view of highScores Martin
+            HS = BinaryDeserializeScores();
             setHighScoresPanel(gameType.Standard,Difficulty.Easy);
+            
         }
         public void setSquigglyTableView()
         {
@@ -78,24 +81,27 @@ namespace Sudoku
             if (view == 1)
             {
                 startPanel.Visible = false;
+                highScorePanel.Visible = false;
                 mainGamePanel.Visible = true;
             }
             else if (view == 20)
             {
                 highScorePanel.Visible = false;
+                mainGamePanel.Visible = false;
                 startPanel.Visible = true;
             }
             else if (view == 2)
             {
                 startPanel.Visible = false;
+                mainGamePanel.Visible = false;
                 highScorePanel.Visible = true;
             }
             else if (view == 10)
             {
                 mainGamePanel.Visible = false;
+                highScorePanel.Visible = false;
                 startPanel.Visible = true;
             }
-
             else
             {
                 MessageBox.Show("Ova uste ne e implementirano");
@@ -178,8 +184,14 @@ namespace Sudoku
             dataGridView1.ClearSelection();
             clearHighlight();
 
+            if (standard == null && squiggly == null)
+            {
+                setGrid(type, level);
+            }
+            else
+            {
 
-            setGrid(type, level);
+            }
             ticks = 0;
             timer.Start();
         }
@@ -211,7 +223,10 @@ namespace Sudoku
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (standard == null && squiggly == null) return;
+            if (standard == null && squiggly == null)
+            {
+                return;
+            }
             if (dataGridView1.SelectedCells.Count > 0)
             {
 
@@ -269,24 +284,24 @@ namespace Sudoku
                 long time = ticks;
                 timer.Stop();
                 DarkenGrid();
-                MessageBox.Show("Congratulations!!!");
+                //MessageBox.Show("Congratulations!!!");
                 
-                Form2 form2 = new Form2();
-                form2.Show();
-                gameType type = gameType.Standard;
-                Difficulty level = Difficulty.Easy;
-                if (standard == null)
+                gameType type = standard == null ? gameType.Squiggly : gameType.Standard;
+                Difficulty level = standard == null ? squiggly.diff : standard.diff;
+                int d = level == Difficulty.Easy ? 0 : (level == Difficulty.Medium ? 1 : 2);
+
+                if (HS.HS[type][d].highScores.Count == 5 && ticks > HS.HS[type][d].highScores[4].time)
                 {
-                    type = gameType.Squiggly;
-                    level = squiggly.diff;
+                    MessageBox.Show("\t\tCongratulations!!! \n I'm sorry but you didn't make it in the top 5.");
                 }
                 else
                 {
-                    level = standard.diff;
+                    Form2 form2 = new Form2(this, ticks, type, level);
+                    form2.Show();
+                    form2.name.Focus();
                 }
-
-
-                submitHighScore(form2.text, ticks,type,level);
+                standard = null;
+                squiggly = null;
             }
 
         }
@@ -326,7 +341,6 @@ namespace Sudoku
         }
         public void setGrid(gameType type, Difficulty level)
         {
-
             for (int i = 0; i < 9; i++)
             {
                 for (int j = 0; j < 9; j++)
@@ -334,10 +348,13 @@ namespace Sudoku
                     dataGridView1.Rows[i].Cells[j].Value = "";
                 }
             }
-            if (type == gameType.Standard)
+            if (standard != null || type == gameType.Standard)
             {
-                squiggly = null;
-                standard = new Standard(level);
+                if (standard == null)
+                {
+                    squiggly = null;
+                    standard = new Standard(level);
+                }
                 for (int i = 0; i < 9; i++)
                 {
                     for (int j = 0; j < 9; j++)
@@ -350,16 +367,19 @@ namespace Sudoku
             }
             else
             {
-                standard = null;
-                schemeBuilder();
-                Random random = new Random();
-                squiggly = null;
-                bool Completed = false;
-                while (squiggly == null && !Completed)
+                if (squiggly == null)
                 {
-                    squiggly = Limex(() => new Squiggly(level,Schemes[random.Next(0,Schemes.Count)]), 4000,out Completed);
-                }
+                    standard = null;
+                    schemeBuilder();
 
+                    Random random = new Random();
+                    squiggly = null;
+                    bool Completed = false;
+                    while (squiggly == null && !Completed)
+                    {
+                        squiggly = Limex(() => new Squiggly(level, Schemes[random.Next(0, Schemes.Count)]), 4000, out Completed);
+                    }
+                }
                 for (int i = 0; i < 9; i++)
                 {
                     for (int j = 0; j < 9; j++)
@@ -391,7 +411,7 @@ namespace Sudoku
         }
         public void setHighScoresPanel(gameType type, Difficulty diff)
         {
-            HS = BinaryDeserialize();
+            //HS = BinaryDeserialize();
 
             lblScoresType.Text = type == gameType.Standard ? "Standard" : "Squiggly";
             lblScoresDiff.Text = diff == Difficulty.Easy ? "Easy" : (diff == Difficulty.Medium ? "Medium" : "Hard");
@@ -415,7 +435,7 @@ namespace Sudoku
             for (int i = 0; i < toBeShown.highScores.Count; i++)
             {
                 visibleNames[i].Text = toBeShown.highScores[i].player;
-                visibleTimes[i].Text = (new TimeSpan(toBeShown.highScores[i].time)).ToString();
+                visibleTimes[i].Text = (new TimeSpan(toBeShown.highScores[i].time * 10000000)).ToString();
             }
             for (int i = toBeShown.highScores.Count; i < 5; i++)
             {
@@ -424,41 +444,38 @@ namespace Sudoku
             }
 
         }
-        public void submitHighScore(string name, int ticks,gameType type, Difficulty diff)
+        public void submitHighScore(string name, int ticks, gameType type, Difficulty diff)
         {
             HighScoreItem item = new HighScoreItem();
             item.player = name;
             item.time = ticks;
-            if (HS.add(item,type,diff))
-            {
-                MessageBox.Show("You made it in the top 5!");
-                //setHighScoresPanel();
-            }
+            HS.add(item, type, diff);
+            
         }
 
         // Serialize an ArrayList object to a binary file.
-        private static void BinarySerialize(Scores HS)
+        private static void BinarySerializeScores(Scores HS)
         {
-            using (FileStream str = File.Create("HighScores.hs"))
+            using (FileStream str = File.Create("C:\\Users\\Natasha\\HighScores.hs"))
             {
                 BinaryFormatter bf = new BinaryFormatter();
                 bf.Serialize(str, HS);
             }
         }
         // Deserialize an ArrayList object from a binary file.
-        private static Scores BinaryDeserialize()
+        private static Scores BinaryDeserializeScores()
         {
             Scores HS = null;
             try
             {
 
-                using (FileStream str = File.OpenRead("HighScores.hs"))
+                using (FileStream str = File.OpenRead("C:\\Users\\Natasha\\HighScores.hs"))
                 {
                     BinaryFormatter bf = new BinaryFormatter();
                     HS = (Scores)bf.Deserialize(str);
                 }
 
-                File.Delete("HighScores.hs");
+                File.Delete("C:\\Users\\Natasha\\HighScores.hs");
 
                 return HS;
             }
@@ -467,10 +484,103 @@ namespace Sudoku
                 return new Scores();
             }
         }
-
-        private void Form1_Leave(object sender, EventArgs e)
+        private static void BinarySerializeGame(Sudoku game)
         {
-            BinarySerialize(HS);
+            using (FileStream str = File.Create("C:\\Users\\Natasha\\Sudoku.oku"))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Serialize(str, game);
+            }
+        }
+        // Deserialize an ArrayList object from a binary file.
+        private static Sudoku BinaryDeserializeGame()
+        {
+            Sudoku game = null;
+            try
+            {
+
+                using (FileStream str = File.OpenRead("C:\\Users\\Natasha\\Sudoku.oku"))
+                {
+                    BinaryFormatter bf = new BinaryFormatter();
+                    game = (Sudoku)bf.Deserialize(str);
+                }
+
+                File.Delete("C:\\Users\\Natasha\\Sudoku.oku");
+
+                return game;
+            }
+            catch (FileNotFoundException f)
+            {
+                MessageBox.Show("You don't have any previously saved games.");
+                return game;
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            BinarySerializeScores(HS);
+            DialogResult res = MessageBox.Show("\t\tSave game?\n You may overwrite previously saved game.","Save game?",MessageBoxButtons.YesNoCancel);
+            if (res == DialogResult.Yes)
+            {
+                if (standard != null)
+                {
+                    BinarySerializeGame(standard);
+                }
+                else if(squiggly != null)
+                {
+                    BinarySerializeGame(squiggly);
+                }
+            }
+            else if (res == DialogResult.No)
+            {
+            }
+            else if (res == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void easyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setHighScoresPanel(gameType.Standard, Difficulty.Easy);
+        }
+
+        private void mediumToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setHighScoresPanel(gameType.Standard, Difficulty.Medium);
+        }
+
+        private void hardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setHighScoresPanel(gameType.Standard, Difficulty.Hard);
+        }
+
+        private void easyToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            setHighScoresPanel(gameType.Squiggly, Difficulty.Easy);
+        }
+
+        private void mediumToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            setHighScoresPanel(gameType.Squiggly, Difficulty.Medium);
+        }
+
+        private void hardToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            setHighScoresPanel(gameType.Squiggly, Difficulty.Hard);
+        }
+
+        private void btnToLoadGame_Click(object sender, EventArgs e)
+        {
+            Sudoku game = BinaryDeserializeGame();
+            if (game == null)
+            {
+                MessageBox.Show("You don't have any previously saved games.");
+            }
+            else
+            {
+
+            }
         }
     }
 

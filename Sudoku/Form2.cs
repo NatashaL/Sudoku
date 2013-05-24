@@ -13,10 +13,19 @@ namespace Sudoku
     public partial class Form2 : Form
     {
         public string text = "";
+        public int ticks;
+        public gameType type;
+        public Difficulty diff;
+        public Form1 parent;
 
-        public Form2()
-        {
+        public Form2(Form1 parent,int ticks,gameType type, Difficulty diff)
+        {   
+            this.parent = parent;
+            this.ticks = ticks;
+            this.type = type;
+            this.diff = diff;
             InitializeComponent();
+            name.Focus();
         }
 
         private void name_TextChanged(object sender, EventArgs e)
@@ -45,14 +54,19 @@ namespace Sudoku
             }
             else
             {
+                parent.submitHighScore(name.Text, ticks, type, diff);
                 text = name.Text;
+                parent.setHighScoresPanel(type, diff);
+                parent.changeView(2);
                 this.Close();
             }
+            
         }
 
         private void thanks_Click(object sender, EventArgs e)
         {
-            //this.Close();
+            text = "";
+            this.Close();
         }
 
     }

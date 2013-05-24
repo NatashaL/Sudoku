@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace Sudoku
 {
+    [Serializable]
     public class Sudoku
     {
+
         public int[,] mask;
         public int[,] solution;
         public int[,] userGrid;
@@ -117,6 +119,17 @@ namespace Sudoku
 
             return true;
         }
-
+        /*public void SaveFile()
+        {
+            string FileName = null;
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Sudoku file (*.oku)|*.oku";
+            saveFileDialog.Title = "Save a Sudoku File";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                FileName = saveFileDialog.FileName;
+            }
+        }*/
+        
     }
 }

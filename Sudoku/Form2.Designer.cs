@@ -33,6 +33,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.name = new System.Windows.Forms.TextBox();
             this.thanks = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -47,7 +48,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(97, 36);
+            this.label2.Location = new System.Drawing.Point(21, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 13);
             this.label2.TabIndex = 2;
@@ -55,7 +56,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(27, 96);
+            this.button1.Location = new System.Drawing.Point(24, 116);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(107, 23);
             this.button1.TabIndex = 3;
@@ -65,7 +66,7 @@
             // 
             // name
             // 
-            this.name.Location = new System.Drawing.Point(27, 63);
+            this.name.Location = new System.Drawing.Point(24, 83);
             this.name.Name = "name";
             this.name.Size = new System.Drawing.Size(231, 20);
             this.name.TabIndex = 4;
@@ -73,7 +74,8 @@
             // 
             // thanks
             // 
-            this.thanks.Location = new System.Drawing.Point(151, 96);
+            this.thanks.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.thanks.Location = new System.Drawing.Point(148, 116);
             this.thanks.Name = "thanks";
             this.thanks.Size = new System.Drawing.Size(107, 23);
             this.thanks.TabIndex = 5;
@@ -81,11 +83,23 @@
             this.thanks.UseVisualStyleBackColor = true;
             this.thanks.Click += new System.EventHandler(this.thanks_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(83, 34);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(122, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "You made it in the top 5!";
+            // 
             // Form2
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 131);
+            this.CancelButton = this.thanks;
+            this.ClientSize = new System.Drawing.Size(284, 161);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.thanks);
             this.Controls.Add(this.name);
             this.Controls.Add(this.button1);
@@ -103,8 +117,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox name;
         private System.Windows.Forms.Button thanks;
+        public System.Windows.Forms.TextBox name;
+        private System.Windows.Forms.Label label3;
 
     }
 }

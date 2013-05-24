@@ -12,6 +12,7 @@ namespace Sudoku
     /// a bool. The other methods in this class are helper methods to serve
     /// SolveGrid.
     /// </summary>
+    [Serializable]
     public class SquigglySolver
     {
         public SquigglyGrid SolutionGrid;   //The solution with all values filled

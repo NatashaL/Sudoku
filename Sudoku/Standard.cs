@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sudoku
 {
+    [Serializable]
     public class Standard : Sudoku
     {
         public PuzzleGrid puzzleGrid;
