@@ -9,15 +9,35 @@ namespace Sudoku
     [Serializable]
     public class Sudoku
     {
-
+        /// <summary>
+        /// Describes which fields of the grid are to be shown to the player.
+        /// Starting grid to be solved by player.
+        /// </summary>
         public int[,] mask;
+        /// <summary>
+        /// Solution of the Sudoku
+        /// </summary>
         public int[,] solution;
+        /// <summary>
+        /// The current playing grid, as filled by player.
+        /// </summary>
         public int[,] userGrid;
+        /// <summary>
+        /// Determines the look of the grid
+        /// </summary>
         public int[,] scheme;
+        /// <summary>
+        /// Difficulty of game
+        /// </summary>
         public Difficulty diff;
         public int[,] rows;
         public int[,] cols;
         public int[,] groups;
+
+        /// <summary>
+        /// Returns an Object of type Sudoku
+        /// </summary>
+        /// <param name="diff">Difficulty of Sudoku</param>
         public Sudoku(Difficulty diff)
         {
             mask = new int[9, 9];
@@ -32,6 +52,9 @@ namespace Sudoku
 
             this.diff = diff;
         }
+        /// <summary>
+        /// Randomly initializes the starting grid.
+        /// </summary>
         public void init()
         {
             int newVal = -1;
@@ -68,6 +91,13 @@ namespace Sudoku
 
 
         }
+        /// <summary>
+        /// Checks if the value "value" is invalid for the field [i,j]
+        /// </summary>
+        /// <param name="i">Row index</param>
+        /// <param name="j">Column index</param>
+        /// <param name="value">Value</param>
+        /// <returns>True if invalid, False if valid</returns>
         public bool invalid(int i, int j, int value)
         {
             if (rows[i, value] == 1)
@@ -81,7 +111,12 @@ namespace Sudoku
 
             return false;
         }
-
+        /// <summary>
+        /// Checks to see if [,]grid is fully solved.
+        /// </summary>
+        /// <param name="grid">Grid that needs to be checked.</param>
+        /// <param name="scheme">The scheme describing the grid.</param>
+        /// <returns>True if solved, False if not solved.</returns>
         public static bool isSolved(int[,] grid,int[,] scheme)
         {
             int[,] r = new int[9, 10];
@@ -114,22 +149,7 @@ namespace Sudoku
                     }
                 }
             }
-
-
-
             return true;
         }
-        /*public void SaveFile()
-        {
-            string FileName = null;
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Sudoku file (*.oku)|*.oku";
-            saveFileDialog.Title = "Save a Sudoku File";
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                FileName = saveFileDialog.FileName;
-            }
-        }*/
-        
     }
 }

@@ -8,17 +8,28 @@ namespace Sudoku
 {
     [Serializable]
     public class HighScores
-    {
+    {   
+        /// <summary>
+        /// Represents a List of top 5 high scores achieved.
+        /// </summary>
         public List<HighScoreItem> highScores { get; set; }
         
         public HighScores()
         {
             highScores = new List<HighScoreItem>();
         }
+        /// <summary>
+        /// Sort in decreasing order.
+        /// </summary>
         public void sort()
         {
             highScores.Sort();
         }
+        /// <summary>
+        /// Add item to the list.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>True if item made it in the top 5, False in not.</returns>
         public bool add(HighScoreItem item)
         {
             highScores.Add(item);

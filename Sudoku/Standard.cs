@@ -9,6 +9,12 @@ namespace Sudoku
     [Serializable]
     public class Standard : Sudoku
     {
+        /// <summary>
+        /// PuzzleGrid, PuzzleSolver and PuzzleGenerator 
+        /// are used to generate a starting state of the grid,
+        /// to implement the algorithm for solving the starting grid
+        /// and to check if the blanked grid has a unique solution
+        /// </summary>
         public PuzzleGrid puzzleGrid;
         public PuzzleSolver puzzleSolver;
         public PuzzleGenerator puzzleGenerator;
@@ -22,6 +28,11 @@ namespace Sudoku
                                     {6,6,6,7,7,7,8,8,8},
                                     {6,6,6,7,7,7,8,8,8}};
 
+
+        /// <summary>
+        /// Return object of type Standard:Sudoku
+        /// </summary>
+        /// <param name="diff">Difficulty of Sudoku</param>
         public Standard(Difficulty diff): base (diff)
         {
             base.scheme = scheme;

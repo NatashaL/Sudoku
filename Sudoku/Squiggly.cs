@@ -11,7 +11,6 @@ namespace Sudoku
     {
 
         SquigglyGrid squigglyGrid;
-        SquigglySolver squigglySolver;
         SquigglyGenerator squigglyGenerator;
 
         Random random;
@@ -23,7 +22,7 @@ namespace Sudoku
             base.scheme = scheme;
             foundit = false;
             base.init();
-            dfs(0, 0);
+            solve(0, 0);
 
             squigglyGenerator = new SquigglyGenerator(solution, scheme, diff);
             squigglyGrid = new SquigglyGrid();
@@ -40,42 +39,32 @@ namespace Sudoku
             }
 
         }
-        public void dfs(int i, int j)
+        /// <summary>
+        /// Solve the starting grid
+        /// </summary>
+        /// <param name="i">Row index</param>
+        /// <param name="j">Column index</param>
+        public void solve(int i, int j)
         {
-
             if (foundit) return;
 
             if (i == 9)
             {
                 foundit = true;
-                /*
-                string rez = "$$$$$$ tryxxx";
-                for (int ii = 0; ii < 9; ii++)
-                {
-                    for (int jj = 0; jj < 9; jj++)
-                    {
-                        rez += userGrid[ii, jj] + " ";
-                    }
-                    rez += "\n";
-                }
-                MessageBox.Show(rez);*/
                 solution = (int[,])userGrid.Clone();
                 return;
             }
 
             int ni = i;
             int nj = j + 1;
-
             if (nj == 9)
             {
                 ni = i + 1;
                 nj = 0;
             }
-
-
             if (userGrid[i, j] != 0)
             {
-                dfs(ni, nj);
+                solve(ni, nj);
             }
             else
             {
@@ -87,7 +76,7 @@ namespace Sudoku
                         rows[i, val] = 1;
                         cols[j, val] = 1;
                         groups[base.scheme[i, j], val] = 1;
-                        dfs(ni, nj);
+                        solve(ni, nj);
                         userGrid[i, j] = 0;
                         rows[i, val] = 0;
                         cols[j, val] = 0;

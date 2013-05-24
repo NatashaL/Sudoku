@@ -20,7 +20,9 @@ namespace Sudoku
             puzzleSolver = new PuzzleSolver();
             difficulty = difficultyIn;
         }
-        
+        /// <summary>
+        /// </summary>
+        /// <returns>Returns a fully solved PuzzleGrid</returns>
         public PuzzleGrid InitGrid()
         {
             //Randomly fill in the first row and column of puzzlegrid
@@ -82,6 +84,12 @@ namespace Sudoku
         //	Call SolveGrid to solve puzzlegrid
         //Store solved gamegrid as the correct solution in solutiongrid
 
+
+        /// <summary>
+        /// Removes x fields from solvedGrid, depending on difficulty level
+        /// </summary>
+        /// <param name="solvedGrid">The grid that needs to be blanked</param>
+        /// <returns></returns>
         public PuzzleGrid Blanker(PuzzleGrid solvedGrid)
         {                          //enable blanking of squares based on difficulty
             PuzzleGrid tempGrid;
@@ -131,6 +139,13 @@ namespace Sudoku
             return solvedGrid;
         }
 
+        /// <summary>
+        /// Randomly blanks PuzzleGrid to get the required final grid
+        /// </summary>
+        /// <param name="tempGrid">The grid that needs to be blanked</param>
+        /// <param name="sym">Kind of symmetry. 0 - Vertical, 1 - Horizontal, 2 - Diagonal</param>
+        /// <param name="blankCount">Number of fields that come out blanked.</param>
+        /// <returns>Blanked PuzzleGrid object</returns>
         public PuzzleGrid RandomlyBlank(PuzzleGrid tempGrid, int sym, ref int blankCount)
         {
             //blank one or two squares(depending on if on center line) randomly

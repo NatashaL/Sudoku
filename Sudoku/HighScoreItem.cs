@@ -9,7 +9,13 @@ namespace Sudoku
     [Serializable]
     public class HighScoreItem : IComparable<HighScoreItem>
     {
+        /// <summary>
+        /// name of player that solved the sudoku
+        /// </summary>
         public string player { get; set; }
+        /// <summary>
+        /// The time spent to solve the sudoku.
+        /// </summary>
         public int time { get; set; }
 
         public int CompareTo(HighScoreItem other)

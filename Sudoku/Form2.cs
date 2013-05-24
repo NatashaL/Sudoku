@@ -27,7 +27,11 @@ namespace Sudoku
             InitializeComponent();
             name.Focus();
         }
-
+        /// <summary>
+        /// Checks if the length of the name entered in the textBox is longer than 10 characters.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void name_TextChanged(object sender, EventArgs e)
         {
             int length = name.TextLength;
@@ -44,8 +48,13 @@ namespace Sudoku
                 name.SelectionStart = name.TextLength;
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Saves the achieved score in the list of high scores 
+        /// for the respective sudoku type and difficulty level.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveScore_Click(object sender, EventArgs e)
         {
             if (name.TextLength == 0)
             {
@@ -62,7 +71,11 @@ namespace Sudoku
             }
             
         }
-
+        /// <summary>
+        /// Avoid saving the high score achieved.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void thanks_Click(object sender, EventArgs e)
         {
             text = "";

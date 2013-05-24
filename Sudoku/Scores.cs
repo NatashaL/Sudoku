@@ -8,7 +8,12 @@ namespace Sudoku
 {
     [Serializable]
     public class Scores
-    {
+    {   
+        /// <summary>
+        /// Represent a HashMap with 2 entries, that maps gameType to an array of HighScores Objects.
+        /// Each HighScore Object represents the High scores for 
+        /// the different gameType and Difficulty combination.
+        /// </summary>
         public Dictionary<gameType, HighScores[]> HS;
 
         public Scores()
@@ -24,6 +29,13 @@ namespace Sudoku
             }
 
         }
+        /// <summary>
+        /// Adds an entry to the map, according to the gameType and Difficulty parameters
+        /// </summary>
+        /// <param name="item">HighScoreItem to be added.</param>
+        /// <param name="type">Standard or Squiggly</param>
+        /// <param name="diff">Easy, Medium or Hard</param>
+        /// <returns></returns>
         public bool add(HighScoreItem item, gameType type, Difficulty diff)
         {
             int d = diff == Difficulty.Easy ? 0 : (diff == Difficulty.Medium ? 1 : 2);

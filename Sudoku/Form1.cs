@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -34,72 +35,83 @@ namespace Sudoku
         public string FileName;
         public Form1()
         {
-
+            
             InitializeComponent();
+            this.Text = "Sudoku";
             schemeBuilder();
-            // TO DO default view of highScores Martin
             HS = BinaryDeserializeScores();
             setHighScoresPanel(gameType.Standard,Difficulty.Easy);
-            
         }
+        /// <summary>
+        /// Sets the look of the dataGridView for the Squiggly Sudoku.
+        /// Makes sure there are no dividers between rows and/or columns.
+        /// Makes sure the cells have the same witdh and height.
+        /// </summary>
         public void setSquigglyTableView()
         {
-            dataGridView1.RowCount = 9;
-            dataGridView1.Width = 228;
-            dataGridView1.Height = 228;
-            dataGridView1.Rows[2].DividerHeight = 0;
-            dataGridView1.Rows[5].DividerHeight = 0;
-            dataGridView1.Columns[2].DividerWidth = 0;
-            dataGridView1.Columns[5].DividerWidth = 0;
-            dataGridView1.Columns[2].Width = 25;
-            dataGridView1.Columns[5].Width = 25;
-            dataGridView1.Rows[2].Height = 25;
-            dataGridView1.Rows[5].Height = 25;
+            dataGridView.RowCount = 9;
+            dataGridView.Width = 228;
+            dataGridView.Height = 228;
+            dataGridView.Rows[2].DividerHeight = 0;
+            dataGridView.Rows[5].DividerHeight = 0;
+            dataGridView.Columns[2].DividerWidth = 0;
+            dataGridView.Columns[5].DividerWidth = 0;
+            dataGridView.Columns[2].Width = 25;
+            dataGridView.Columns[5].Width = 25;
+            dataGridView.Rows[2].Height = 25;
+            dataGridView.Rows[5].Height = 25;
             for (int i = 0; i < 9; i++)
             {
-                dataGridView1.Rows[i].Height = 25;
+                dataGridView.Rows[i].Height = 25;
             }
         }
+        /// <summary>
+        /// Sets the look of the dataGridView for the Standard Sudoku.
+        /// Makes sure there ARE dividers between some rows and/or some columns.
+        /// Makes sure the cells have the same witdh and height.
+        /// </summary>
         public void setStandardTableView()
         {
-            dataGridView1.RowCount = 9;
-            dataGridView1.Rows[2].DividerHeight = 3;
-            dataGridView1.Rows[5].DividerHeight = 3;
+            dataGridView.RowCount = 9;
+            dataGridView.Rows[2].DividerHeight = 3;
+            dataGridView.Rows[5].DividerHeight = 3;
             for (int i = 0; i < 9; i++)
             {
-                dataGridView1.Rows[i].Height = 25;
+                dataGridView.Rows[i].Height = 25;
             }
-            dataGridView1.Rows[2].Height = 26;
-            dataGridView1.Rows[5].Height = 26;
-            dataGridView1.Columns[2].DividerWidth = 3;
-            dataGridView1.Columns[5].DividerWidth = 3;
-            dataGridView1.Columns[2].Width = 26;
-            dataGridView1.Columns[5].Width = 26;
+            dataGridView.Rows[2].Height = 26;
+            dataGridView.Rows[5].Height = 26;
+            dataGridView.Columns[2].DividerWidth = 3;
+            dataGridView.Columns[5].DividerWidth = 3;
+            dataGridView.Columns[2].Width = 26;
+            dataGridView.Columns[5].Width = 26;
         }
+
+        /// <summary>
+        /// Takes care of which panel is to be shown to the player.
+        /// </summary>
+        /// <param name="view"></param>
         public void changeView(int view)
         {
-            if (view == 1)
+            if (view == 1) // Main Game Panel is Visible
             {
+                this.Text = "Sudoku";
                 startPanel.Visible = false;
                 highScorePanel.Visible = false;
                 mainGamePanel.Visible = true;
             }
-            else if (view == 20)
+            else if (view == 2) //High Scores Panel is Visible
             {
-                highScorePanel.Visible = false;
-                mainGamePanel.Visible = false;
-                startPanel.Visible = true;
-            }
-            else if (view == 2)
-            {
+                this.Text = "Sudoku - HighScores";
                 startPanel.Visible = false;
                 mainGamePanel.Visible = false;
                 highScorePanel.Visible = true;
             }
-            else if (view == 10)
+            else if (view == 3) // Start Panel is Visible
             {
-                mainGamePanel.Visible = false;
+                this.Text = "Sudoku";
                 highScorePanel.Visible = false;
+                mainGamePanel.Visible = false;
                 startPanel.Visible = true;
             }
             else
@@ -107,19 +119,13 @@ namespace Sudoku
                 MessageBox.Show("Ova uste ne e implementirano");
             }
         }
-        public void clearHighlight()
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                for (int j = 0; j < 9; j++)
-                {
-                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
-                }
-            }
-        }
+        /// <summary>
+        /// Takes the value from the currently selected cell
+        /// and highlights every occurrence of the same number in the grid
+        /// </summary>
         public void highlightSelectedNumber()
         {
-            var selected = dataGridView1.SelectedCells[0];
+            var selected = dataGridView.SelectedCells[0];
             int value = -1;
 
 
@@ -131,33 +137,56 @@ namespace Sudoku
                     {
                         int val = -1;
 
-                        if (int.TryParse(dataGridView1.Rows[i].Cells[j].Value.ToString(), out val) && val == value)
+                        if (int.TryParse(dataGridView.Rows[i].Cells[j].Value.ToString(), out val) && val == value)
                         {
-                            dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.Yellow;
+                            dataGridView.Rows[i].Cells[j].Style.BackColor = Color.Yellow;
                         }
                         else
                         {
-                            dataGridView1.Rows[i].Cells[j].Style.BackColor = ColorMap[i,j];
+                            dataGridView.Rows[i].Cells[j].Style.BackColor = ColorMap[i,j];
                         }
                     }
                 }
             }
         }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        /// <summary>
+        /// Clears the highlighted cells.
+        /// This is used when the newly selected cell has a different value from the previous or
+        /// when the game is paused.
+        /// </summary>
+        public void clearHighlight()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    dataGridView.Rows[i].Cells[j].Style.BackColor = Color.White;
+                }
+            }
+        }
+        /// <summary>
+        /// Calls highlightSelectedNumber() when the grid is still to be solved.
+        /// If it is solved, this feature (highlighting the cells) is disabled.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (standard == null && squiggly == null) return;
             else highlightSelectedNumber();
         }
-
-        private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
-        {
-        }
-
+        /// <summary>
+        /// Takes the selected values for gameType and Difficulty.
+        /// Creates a new game with these parameters,
+        /// sets the grid and starts the timer.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnNewGame_Click(object sender, EventArgs e)
         {
 
-
+            standard = null;
+            squiggly = null;
             gameType type;
             if (radioSquigglyMode.Checked)
             {
@@ -180,66 +209,101 @@ namespace Sudoku
             }
 
             changeView(1);
-            dataGridView1.Focus();
-            dataGridView1.ClearSelection();
+            dataGridView.Focus();
+            dataGridView.ClearSelection();
             clearHighlight();
 
-            if (standard == null && squiggly == null)
-            {
-                setGrid(type, level);
-            }
-            else
-            {
-
-            }
+            setGrid(type, level);
+            
             ticks = 0;
             timer.Start();
         }
-
+        /// <summary>
+        /// From the high scores panel, it returns the player to the StartPanel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMainMenuBack_Click(object sender, EventArgs e)
         {
-            changeView(20);
+            changeView(3);
         }
-
+        /// <summary>
+        /// From the StartPanel, it takes the player to the highScores panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnScores_Click(object sender, EventArgs e)
         {
             changeView(2);
         }
-
+        /// <summary>
+        /// From the MainGamePanel, it returns the player to the StartPanel.
+        /// It asks the player whether to save the current game.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMainGameBack_Click(object sender, EventArgs e)
         {
-            changeView(10);
+            if (saveGame() == 0)
+            {
+                unPauseGrid();
+                timer.Start();
+                return;
+            }
+            unPauseGrid();
+            timer.Stop();
+            timerlabel.Text = (new TimeSpan(0)).ToString();
+            changeView(3);
         }
-
-        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        /// <summary>
+        /// MARTIN
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             if (e.Control is DataGridViewTextBoxEditingControl)
             {
                 DataGridViewTextBoxEditingControl tb = e.Control as DataGridViewTextBoxEditingControl;
-                tb.KeyDown -= dataGridView1_KeyDown;
-                tb.KeyDown += new KeyEventHandler(dataGridView1_KeyDown);
+                tb.KeyDown -= dataGridView_KeyDown;
+                tb.KeyDown += new KeyEventHandler(dataGridView_KeyDown);
             }
         }
-
-        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        /// <summary>
+        /// Takes action according to the keyboard button pressed.
+        ///  - If it is a number from numpad or from the main keyboard, 
+        ///         it writes it down or overwrites the current number in that field.
+        ///  - If it is up/down/left/right/tab/enter, 
+        ///         it selects the respective cell.
+        ///  - If it is escape/backspace or delete, 
+        ///         it deletes the value in the cell.
+        ///  - Else, it doesn't do anything.
+        ///  - It checks if the grid has been solved,
+        ///         and prompts a window according to the result.
+        ///  - If the grid is full but it isn't a valid solution to the game,
+        ///         it doesn't do anything.
+        ///  - If the grid is solved but the time does not make it in the top 5, 
+        ///         it prompts a MessageBox
+        ///  - If the grid is solved AND the time makes it in the top 5, 
+        ///         it prompts a new form, that asks for the player's name
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridView_KeyDown(object sender, KeyEventArgs e)
         {
             if (standard == null && squiggly == null)
             {
                 return;
             }
-            if (dataGridView1.SelectedCells.Count > 0)
+            if (dataGridView.SelectedCells.Count > 0)
             {
-
-                //dataGridView1.SelectedCells[0].Value = "";
-                var selected = dataGridView1.SelectedCells[0];
+                var selected = dataGridView.SelectedCells[0];
                 int sel_i = selected.RowIndex;
                 int sel_j = selected.ColumnIndex;
                 if (CellMap[sel_i, sel_j] == LOCKED) return;
                 if (!(e.KeyValue >= 49 && e.KeyValue <= 57 || e.KeyValue >= 97 && e.KeyValue <= 105))
                 {
-                    //MessageBox.Show(String.Format("{0}",e.KeyValue));
-
-                    if (e.KeyValue == 27 || e.KeyValue == 8 || e.KeyValue == 46)   // Use e.KeyCode == Keys.Enter  etc.
+                    if (e.KeyValue == 27 || e.KeyValue == 8 || e.KeyValue == 46)   // Same as e.KeyCode == Keys.Enter  etc.
                     {
                         selected.Value = "";
                         if (standard != null)
@@ -305,18 +369,25 @@ namespace Sudoku
             }
 
         }
+        /// <summary>
+        /// It is used when the grid has been solved.
+        /// </summary>
         public void DarkenGrid()
         {
             for (int i = 0; i < 9; i++)
             {
                 for(int j=0; j<9;j++)
                 {
-                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.LightGray;
-                    dataGridView1.Rows[i].Cells[j].Style.SelectionBackColor = Color.LightGray;
-                    dataGridView1.Rows[i].Cells[j].Style.SelectionForeColor = Color.Black;
+                    dataGridView.Rows[i].Cells[j].Style.BackColor = Color.LightGray;
+                    dataGridView.Rows[i].Cells[j].Style.SelectionBackColor = Color.LightGray;
+                    dataGridView.Rows[i].Cells[j].Style.SelectionForeColor = Color.Black;
                 }
             }
         }
+        /// <summary>
+        /// It is used to lock the values in the grid that are given from the start.
+        /// It makes sure the player cannot change them.
+        /// </summary>
         public void LockCellMap()
         {
             CellMap = new int[9, 9];
@@ -327,25 +398,33 @@ namespace Sudoku
             {
                 for (int j = 0; j < 9; j++)
                 {
-                    if (dataGridView1.Rows[i].Cells[j].Value != "")
+                    if (dataGridView.Rows[i].Cells[j].Value != "")
                     {
                         CellMap[i, j] = LOCKED;
-                        dataGridView1.Rows[i].Cells[j].Style.SelectionBackColor = System.Drawing.ColorTranslator.FromHtml("#FFA1A1");
+                        dataGridView.Rows[i].Cells[j].Style.SelectionBackColor = System.Drawing.ColorTranslator.FromHtml("#FFA1A1");
                     }
                     else
                     {
-                        dataGridView1.Rows[i].Cells[j].Style.SelectionBackColor = System.Drawing.ColorTranslator.FromHtml("#61D465");
+                        dataGridView.Rows[i].Cells[j].Style.SelectionBackColor = System.Drawing.ColorTranslator.FromHtml("#61D465");
                     }
                 }
             }
         }
+        /// <summary>
+        /// This is used to create a new game object, according to the given parameters,
+        /// to fill the dataGridView with the starting values,
+        /// and to update the text shown on the form.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="level"></param>
         public void setGrid(gameType type, Difficulty level)
         {
+            
             for (int i = 0; i < 9; i++)
             {
                 for (int j = 0; j < 9; j++)
                 {
-                    dataGridView1.Rows[i].Cells[j].Value = "";
+                    dataGridView.Rows[i].Cells[j].Value = "";
                 }
             }
             if (standard != null || type == gameType.Standard)
@@ -360,10 +439,11 @@ namespace Sudoku
                     for (int j = 0; j < 9; j++)
                     {
                         if (standard.mask[i, j] != 0)
-                            dataGridView1.Rows[i].Cells[j].Value = standard.mask[i, j];
+                            dataGridView.Rows[i].Cells[j].Value = standard.mask[i, j];
                         ColorMap[i, j] = Color.White;
                     }
                 }
+                this.Text += " - Standard " + (standard.diff == Difficulty.Easy ? "(easy) " : (standard.diff == Difficulty.Medium ? "(medium)" : "(hard)"));
             }
             else
             {
@@ -385,14 +465,25 @@ namespace Sudoku
                     for (int j = 0; j < 9; j++)
                     {
                         if (squiggly.mask[i, j] != 0)
-                            dataGridView1.Rows[i].Cells[j].Value = squiggly.mask[i, j];
-                        dataGridView1.Rows[i].Cells[j].Style.BackColor = colors[squiggly.scheme[i, j]];
+                            dataGridView.Rows[i].Cells[j].Value = squiggly.mask[i, j];
+                        dataGridView.Rows[i].Cells[j].Style.BackColor = colors[squiggly.scheme[i, j]];
                         ColorMap[i, j] = colors[squiggly.scheme[i, j]];
                     }
                 }
+                this.Text += " - Squiggly " + (squiggly.diff == Difficulty.Easy ? "(easy) " : (squiggly.diff == Difficulty.Medium ? "(medium)" : "(hard)"));
             }
             LockCellMap();
         }
+        /// <summary>
+        /// This is used to timeout the thread used to create a new Squiggly object.
+        /// This function is needed, because not always the starting grid (as randomly filled with values)
+        /// can have a solution. If a solution is not found in less than 4 seconds, it start all over again.
+        /// </summary>
+        /// <typeparam name="CustomSquiggly"></typeparam>
+        /// <param name="F">The function that might need be called multiple times.</param>
+        /// <param name="Timeout">The timespan given to one thread, in miliseconds.</param>
+        /// <param name="Completed">Out parameter, used to check if a solution has been found.</param>
+        /// <returns></returns>
         public static CustomSquiggly Limex<CustomSquiggly>(Func<CustomSquiggly> F, int Timeout, out bool Completed)
         {
             CustomSquiggly result = default(CustomSquiggly);
@@ -402,13 +493,24 @@ namespace Sudoku
             if (!Completed) thread.Abort();
             return result;
         }
-
+        /// <summary>
+        /// It is called every second,
+        /// it increases the number of seconds(ticks) for the current game
+        /// and it updates the label that shows the player how much time has passed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer_Tick(object sender, EventArgs e)
         {
             ticks++;
             timerlabel.Text = (new TimeSpan(ticks * 10000000)).ToString();
 
         }
+        /// <summary>
+        /// It fills the highScorePanel with the highScore lists according to the input parameters.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="diff"></param>
         public void setHighScoresPanel(gameType type, Difficulty diff)
         {
             //HS = BinaryDeserialize();
@@ -444,6 +546,13 @@ namespace Sudoku
             }
 
         }
+        /// <summary>
+        /// This is used to generate a new HighScoreItem object, that needs to be added to the highScores lists.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="ticks"></param>
+        /// <param name="type"></param>
+        /// <param name="diff"></param>
         public void submitHighScore(string name, int ticks, gameType type, Difficulty diff)
         {
             HighScoreItem item = new HighScoreItem();
@@ -453,7 +562,10 @@ namespace Sudoku
             
         }
 
-        // Serialize an ArrayList object to a binary file.
+        /// <summary>
+        /// Serialize a Scores object to a binary file.
+        /// </summary>
+        /// <param name="HS">T object that needs to be serialized.</param>
         private static void BinarySerializeScores(Scores HS)
         {
             using (FileStream str = File.Create("C:\\Users\\Natasha\\HighScores.hs"))
@@ -462,7 +574,10 @@ namespace Sudoku
                 bf.Serialize(str, HS);
             }
         }
-        // Deserialize an ArrayList object from a binary file.
+        /// <summary>
+        /// Deserialize a Scores object from a binary file.
+        /// </summary>
+        /// <returns>Scores()</returns>
         private static Scores BinaryDeserializeScores()
         {
             Scores HS = null;
@@ -484,6 +599,10 @@ namespace Sudoku
                 return new Scores();
             }
         }
+        /// <summary>
+        /// Serialize a Sudoku object to a binary file.
+        /// </summary>
+        /// <param name="game"></param>
         private static void BinarySerializeGame(Sudoku game)
         {
             using (FileStream str = File.Create("C:\\Users\\Natasha\\Sudoku.oku"))
@@ -492,21 +611,21 @@ namespace Sudoku
                 bf.Serialize(str, game);
             }
         }
-        // Deserialize an ArrayList object from a binary file.
+        /// <summary>
+        /// Deserialize a Sudoku object from a binary file.
+        /// </summary>
+        /// <returns></returns>
         private static Sudoku BinaryDeserializeGame()
         {
             Sudoku game = null;
             try
             {
-
                 using (FileStream str = File.OpenRead("C:\\Users\\Natasha\\Sudoku.oku"))
                 {
                     BinaryFormatter bf = new BinaryFormatter();
                     game = (Sudoku)bf.Deserialize(str);
                 }
-
-                File.Delete("C:\\Users\\Natasha\\Sudoku.oku");
-
+                //File.Delete("C:\\Users\\Sudoku.oku");
                 return game;
             }
             catch (FileNotFoundException f)
@@ -515,74 +634,179 @@ namespace Sudoku
                 return game;
             }
         }
-
+        /// <summary>
+        /// It is called on the click of the 'X' button on the form.
+        /// It asks the player whether to save the current game.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             BinarySerializeScores(HS);
-            DialogResult res = MessageBox.Show("\t\tSave game?\n You may overwrite previously saved game.","Save game?",MessageBoxButtons.YesNoCancel);
+            if (!mainGamePanel.Visible) return;
+            if (saveGame() == 0)
+            {
+                unPauseGrid();
+                e.Cancel = true;
+                timer.Start();
+                return;
+            }
+            unPauseGrid();
+            timer.Stop();
+            timerlabel.Text = (new TimeSpan(0)).ToString();
+        }
+        /// <summary>
+        /// It is called whenever the 'X' button on the form or the 'Back' button on the MainGamePanel
+        /// has been clicked.
+        /// It asks the player whether to save the current game.
+        /// </summary>
+        /// <returns></returns>
+        private int saveGame()
+        {
+            timer.Stop();
+            pauseGrid();
+            DialogResult res = MessageBox.Show("Save game?\n You may overwrite previously saved game.", "Save game?", MessageBoxButtons.YesNoCancel);
             if (res == DialogResult.Yes)
             {
                 if (standard != null)
                 {
                     BinarySerializeGame(standard);
                 }
-                else if(squiggly != null)
+                else if (squiggly != null)
                 {
                     BinarySerializeGame(squiggly);
                 }
+                return 2;
             }
             else if (res == DialogResult.No)
             {
+                return 1;
             }
             else if (res == DialogResult.Cancel)
             {
-                e.Cancel = true;
+                return 0;
             }
+            else return -1;
         }
-
+        /// <summary>
+        /// It is used to display the highscores for Standard/Easy.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void easyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             setHighScoresPanel(gameType.Standard, Difficulty.Easy);
         }
-
+        /// <summary>
+        /// It is used to display the highscores for Standard/Medium.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mediumToolStripMenuItem_Click(object sender, EventArgs e)
         {
             setHighScoresPanel(gameType.Standard, Difficulty.Medium);
         }
-
+        /// <summary>
+        /// It is used to display the highscores for Standard/Hard.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void hardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             setHighScoresPanel(gameType.Standard, Difficulty.Hard);
         }
-
+        /// <summary>
+        /// It is used to display the highscores for Squiggly/Easy.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void easyToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             setHighScoresPanel(gameType.Squiggly, Difficulty.Easy);
         }
-
+        /// <summary>
+        /// It is used to display the highscores for Squiggly/Medium.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mediumToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             setHighScoresPanel(gameType.Squiggly, Difficulty.Medium);
         }
-
+        /// <summary>
+        /// It is used to display the highscores for Squiggly/Hard.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void hardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             setHighScoresPanel(gameType.Squiggly, Difficulty.Hard);
         }
-
+        /// <summary>
+        /// It is used to call deserialization of a previously saved game.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnToLoadGame_Click(object sender, EventArgs e)
         {
             Sudoku game = BinaryDeserializeGame();
             if (game == null)
             {
-                MessageBox.Show("You don't have any previously saved games.");
+                MessageBox.Show("Game e null");
+                return;
             }
             else
             {
+                game = BinaryDeserializeGame();
 
+                if (game is Standard)
+                {
+                    standard = (Standard)game;
+                    setStandardTableView();
+                }
+                else
+                {
+                    squiggly = (Squiggly)game;
+                    setSquigglyTableView();
+                }
+                setGrid(gameType.Standard,Difficulty.Easy); //can have any combination of parameters.
+                changeView(1);
+                timer.Start();
+            }
+        }
+        /// <summary>
+        /// It is used to mask the grid, whenever a dialog is open and the timer is stopped.
+        /// </summary>
+        private void pauseGrid()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    dataGridView.Rows[i].Cells[j].Style.ForeColor = Color.Turquoise;
+                    dataGridView.Rows[i].Cells[j].Value = "X";
+                    dataGridView.Rows[i].Cells[j].Selected = false;
+                    dataGridView.Rows[i].Cells[j].Style.BackColor = Color.White;
+                }
+            }
+        }
+        /// <summary>
+        /// It is used to unmask the grid when the dialog has closed.
+        /// </summary>
+        private void unPauseGrid()
+        {
+            Sudoku game = standard == null ? (Sudoku)squiggly : (Sudoku)standard;
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    dataGridView.Rows[i].Cells[j].Style.ForeColor = Color.Black;
+                    if (game.userGrid[i, j] != 0)
+                        dataGridView.Rows[i].Cells[j].Value = game.userGrid[i, j];
+                    else
+                        dataGridView.Rows[i].Cells[j].Value = "";
+                }
             }
         }
     }
-
-
 }

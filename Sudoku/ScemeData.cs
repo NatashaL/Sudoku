@@ -12,8 +12,18 @@ namespace Sudoku
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// List of possible schemes for the Squiggly Sudoku
+        /// </summary>
         public List<int[,]> Schemes = new List<int[,]>();
+        /// <summary>
+        /// List of color to differentiate the different regions in Squiggly Sudoku
+        /// </summary>
         public List<Color> colors = new List<Color>();
+
+        /// <summary>
+        /// Fill the Schemes and colors lists.
+        /// </summary>
         public void schemeBuilder()
         {
             int[][] scheme = new int[6][];
