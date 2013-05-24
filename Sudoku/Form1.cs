@@ -643,6 +643,7 @@ namespace Sudoku
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             BinarySerializeScores(HS);
+            //if (!mainGamePanel.Visible || (standard == null && squiggly == null)) return;
             if (!mainGamePanel.Visible) return;
             if (saveGame() == 0)
             {
@@ -769,6 +770,7 @@ namespace Sudoku
                     squiggly = (Squiggly)game;
                     setSquigglyTableView();
                 }
+                timerlabel.Text = (new TimeSpan(0)).ToString();
                 setGrid(gameType.Standard,Difficulty.Easy); //can have any combination of parameters.
                 changeView(1);
                 timer.Start();
@@ -786,7 +788,6 @@ namespace Sudoku
                     dataGridView.Rows[i].Cells[j].Style.ForeColor = Color.Turquoise;
                     dataGridView.Rows[i].Cells[j].Value = "X";
                     dataGridView.Rows[i].Cells[j].Selected = false;
-                    dataGridView.Rows[i].Cells[j].Style.BackColor = Color.White;
                 }
             }
         }
@@ -801,6 +802,7 @@ namespace Sudoku
                 for (int j = 0; j < 9; j++)
                 {
                     dataGridView.Rows[i].Cells[j].Style.ForeColor = Color.Black;
+
                     if (game.userGrid[i, j] != 0)
                         dataGridView.Rows[i].Cells[j].Value = game.userGrid[i, j];
                     else
