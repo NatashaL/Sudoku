@@ -1,6 +1,4 @@
 #**Sudoku**
-
-===
 Windows Forms Project by: 
 Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 
