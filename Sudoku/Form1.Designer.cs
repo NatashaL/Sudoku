@@ -283,16 +283,18 @@
             // timerlabel
             // 
             this.timerlabel.AutoSize = true;
-            this.timerlabel.BackColor = System.Drawing.Color.Transparent;
+            this.timerlabel.BackColor = System.Drawing.Color.Silver;
             this.timerlabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.timerlabel.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.timerlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.timerlabel.Location = new System.Drawing.Point(193, 251);
+            this.timerlabel.Margin = new System.Windows.Forms.Padding(0);
             this.timerlabel.MaximumSize = new System.Drawing.Size(125, 30);
             this.timerlabel.Name = "timerlabel";
             this.timerlabel.Size = new System.Drawing.Size(119, 30);
             this.timerlabel.TabIndex = 2;
             this.timerlabel.Text = "00:00:00";
+            this.timerlabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnMainGameBack
             // 
@@ -802,8 +804,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(351, 310);
-            this.Controls.Add(this.highScorePanel);
             this.Controls.Add(this.mainGamePanel);
+            this.Controls.Add(this.highScorePanel);
             this.Controls.Add(this.startPanel);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
