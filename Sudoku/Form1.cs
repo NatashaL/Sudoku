@@ -641,7 +641,7 @@ namespace Sudoku
                     BinaryFormatter bf = new BinaryFormatter();
                     game = (Sudoku)bf.Deserialize(str);
                 }
-                //File.Delete("C:\\Users\\Sudoku.oku");
+                File.Delete("C:\\Users\\Sudoku.oku");
                 return game;
             }
             catch (FileNotFoundException)
@@ -837,7 +837,8 @@ namespace Sudoku
             DialogResult clear_all=MessageBox.Show("Are you absolutely sure you want to clear ALL high scores?","ATTENTION!",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
             if (clear_all == DialogResult.Yes)
             {
-                //HS.HS = null;
+                HS = new Scores();
+                setHighScoresPanel(gameType.Standard, Difficulty.Easy);
             }
         }
     }
