@@ -32,7 +32,7 @@ Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 
 Кога играчот прв пат ја вклучува апликацијата на својот компјутер, се креира _скриен_ документ во кој ќе се сериализираат неговите најдобри резултати. 
 После секоја игра завршена со солиден резултат, неговото време да е подобро од најлошото во High Scores, играчот добива можност неговиот резултат да биде зачуван.
-Ако тоа не го сака не мора да го направи, откажувајќи со едноставно кликање на __No Thanks__ копчето во формата за внесување на името.
+Ако тоа не го сака не мора да го направи, откажувајќи со едноставно кликање на **_No Thanks_** копчето во формата за внесување на името.
 
 ( ТУКА СЛИКА ОД ТАА ФОРМА )
 
@@ -77,4 +77,4 @@ Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 
 
 
-[new_game_screen]: http://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png "Слика 1"
+[new_game_screen]: http://igoimpeks.com/projects/sudoku/StartPanel_view.png "Слика 1"

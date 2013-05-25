@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle61 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle62 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle63 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,7 +64,6 @@
             this.btnToLoadGame = new System.Windows.Forms.Button();
             this.btnScores = new System.Windows.Forms.Button();
             this.btnNewGame = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.highScorePanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
@@ -95,6 +95,8 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.mainGamePanel.SuspendLayout();
             this.startPanel.SuspendLayout();
@@ -135,12 +137,12 @@
             // 
             // Column1
             // 
-            dataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle55.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle55.Format = "N0";
-            dataGridViewCellStyle55.NullValue = null;
-            dataGridViewCellStyle55.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle55;
+            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle46.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle46.Format = "N0";
+            dataGridViewCellStyle46.NullValue = null;
+            dataGridViewCellStyle46.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle46;
             this.Column1.HeaderText = "Column1";
             this.Column1.MaxInputLength = 1;
             this.Column1.Name = "Column1";
@@ -151,10 +153,10 @@
             // 
             // Column2
             // 
-            dataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle56.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle56.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle56;
+            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle47.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle47.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle47;
             this.Column2.HeaderText = "Column2";
             this.Column2.MaxInputLength = 1;
             this.Column2.Name = "Column2";
@@ -165,10 +167,10 @@
             // 
             // Column3
             // 
-            dataGridViewCellStyle57.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle57.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle57.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle57;
+            dataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle48.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle48.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle48;
             this.Column3.HeaderText = "Column3";
             this.Column3.MaxInputLength = 1;
             this.Column3.Name = "Column3";
@@ -179,10 +181,10 @@
             // 
             // Column4
             // 
-            dataGridViewCellStyle58.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle58.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle58.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle58;
+            dataGridViewCellStyle49.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle49.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle49.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle49;
             this.Column4.HeaderText = "Column4";
             this.Column4.MaxInputLength = 1;
             this.Column4.Name = "Column4";
@@ -193,10 +195,10 @@
             // 
             // Column5
             // 
-            dataGridViewCellStyle59.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle59.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle59.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle59;
+            dataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle50.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle50.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle50;
             this.Column5.HeaderText = "Column5";
             this.Column5.MaxInputLength = 1;
             this.Column5.Name = "Column5";
@@ -207,10 +209,10 @@
             // 
             // Column6
             // 
-            dataGridViewCellStyle60.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle60.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle60.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle60;
+            dataGridViewCellStyle51.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle51.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle51.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle51;
             this.Column6.HeaderText = "Column6";
             this.Column6.MaxInputLength = 1;
             this.Column6.Name = "Column6";
@@ -221,10 +223,10 @@
             // 
             // Column7
             // 
-            dataGridViewCellStyle61.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle61.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle61.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle61;
+            dataGridViewCellStyle52.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle52.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle52.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle52;
             this.Column7.HeaderText = "Column7";
             this.Column7.MaxInputLength = 1;
             this.Column7.Name = "Column7";
@@ -235,10 +237,10 @@
             // 
             // Column8
             // 
-            dataGridViewCellStyle62.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle62.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle62.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle62;
+            dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle53.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle53.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle53;
             this.Column8.HeaderText = "Column8";
             this.Column8.MaxInputLength = 1;
             this.Column8.Name = "Column8";
@@ -249,10 +251,10 @@
             // 
             // Column9
             // 
-            dataGridViewCellStyle63.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle63.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle63.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle63;
+            dataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle54.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle54.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle54;
             this.Column9.HeaderText = "Column9";
             this.Column9.MaxInputLength = 1;
             this.Column9.Name = "Column9";
@@ -330,6 +332,7 @@
             // radioHardMode
             // 
             this.radioHardMode.AutoSize = true;
+            this.radioHardMode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radioHardMode.Location = new System.Drawing.Point(14, 63);
             this.radioHardMode.Name = "radioHardMode";
             this.radioHardMode.Size = new System.Drawing.Size(48, 17);
@@ -341,6 +344,7 @@
             // radioMediumMode
             // 
             this.radioMediumMode.AutoSize = true;
+            this.radioMediumMode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radioMediumMode.Location = new System.Drawing.Point(14, 40);
             this.radioMediumMode.Name = "radioMediumMode";
             this.radioMediumMode.Size = new System.Drawing.Size(62, 17);
@@ -353,6 +357,7 @@
             // 
             this.radioEasyMode.AutoSize = true;
             this.radioEasyMode.Checked = true;
+            this.radioEasyMode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radioEasyMode.Location = new System.Drawing.Point(14, 17);
             this.radioEasyMode.Name = "radioEasyMode";
             this.radioEasyMode.Size = new System.Drawing.Size(48, 17);
@@ -375,6 +380,7 @@
             // radioSquigglyMode
             // 
             this.radioSquigglyMode.AutoSize = true;
+            this.radioSquigglyMode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radioSquigglyMode.Location = new System.Drawing.Point(79, 15);
             this.radioSquigglyMode.Name = "radioSquigglyMode";
             this.radioSquigglyMode.Size = new System.Drawing.Size(65, 17);
@@ -386,6 +392,7 @@
             // 
             this.radioStandardMode.AutoSize = true;
             this.radioStandardMode.Checked = true;
+            this.radioStandardMode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radioStandardMode.Location = new System.Drawing.Point(14, 15);
             this.radioStandardMode.Name = "radioStandardMode";
             this.radioStandardMode.Size = new System.Drawing.Size(68, 17);
@@ -423,15 +430,6 @@
             this.btnNewGame.Text = " New Game";
             this.btnNewGame.UseVisualStyleBackColor = true;
             this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = global::Sudoku.Properties.Resources.SudokuLogo;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(324, 143);
-            this.panel1.TabIndex = 5;
             // 
             // highScorePanel
             // 
@@ -709,14 +707,33 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(150, 150);
             // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::Sudoku.Properties.Resources.SudokuLogo_transparent;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(324, 143);
+            this.panel1.TabIndex = 5;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(3, -3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(345, 311);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(351, 310);
+            this.Controls.Add(this.startPanel);
             this.Controls.Add(this.highScorePanel);
             this.Controls.Add(this.mainGamePanel);
-            this.Controls.Add(this.startPanel);
+            this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -798,6 +815,7 @@
         private System.Windows.Forms.ToolStripMenuItem easyToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mediumToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem hardToolStripMenuItem1;
+        private System.Windows.Forms.GroupBox groupBox1;
 
     }
 }
