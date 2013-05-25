@@ -32,10 +32,8 @@ namespace Sudoku
         public static int LOCKED = 1;
         public int ticks = 0;
         public Scores HS;
-        public string FileName;
         public Form1()
         {
-            
             InitializeComponent();
             this.Text = "Sudoku";
             schemeBuilder();
@@ -568,7 +566,8 @@ namespace Sudoku
         /// <param name="HS">T object that needs to be serialized.</param>
         private static void BinarySerializeScores(Scores HS)
         {
-            using (FileStream str = File.Create("C:\\Users\\Natasha\\HighScores.hs"))
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            using (FileStream str = File.Create(path+"\\HighScores.hs"))
             {
                 BinaryFormatter bf = new BinaryFormatter();
                 bf.Serialize(str, HS);
@@ -580,21 +579,22 @@ namespace Sudoku
         /// <returns>Scores()</returns>
         private static Scores BinaryDeserializeScores()
         {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             Scores HS = null;
             try
             {
 
-                using (FileStream str = File.OpenRead("C:\\Users\\Natasha\\HighScores.hs"))
+                using (FileStream str = File.OpenRead(path+"\\HighScores.hs"))
                 {
                     BinaryFormatter bf = new BinaryFormatter();
                     HS = (Scores)bf.Deserialize(str);
                 }
 
-                File.Delete("C:\\Users\\Natasha\\HighScores.hs");
+                File.Delete(path+"\\HighScores.hs");
 
                 return HS;
             }
-            catch(FileNotFoundException f)
+            catch(FileNotFoundException)
             {
                 return new Scores();
             }
@@ -605,7 +605,8 @@ namespace Sudoku
         /// <param name="game"></param>
         private static void BinarySerializeGame(Sudoku game)
         {
-            using (FileStream str = File.Create("C:\\Users\\Natasha\\Sudoku.oku"))
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            using (FileStream str = File.Create(path+"\\Sudoku.oku"))
             {
                 BinaryFormatter bf = new BinaryFormatter();
                 bf.Serialize(str, game);
@@ -617,10 +618,11 @@ namespace Sudoku
         /// <returns></returns>
         private static Sudoku BinaryDeserializeGame()
         {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             Sudoku game = null;
             try
             {
-                using (FileStream str = File.OpenRead("C:\\Users\\Natasha\\Sudoku.oku"))
+                using (FileStream str = File.OpenRead(path+"\\Sudoku.oku"))
                 {
                     BinaryFormatter bf = new BinaryFormatter();
                     game = (Sudoku)bf.Deserialize(str);
@@ -628,7 +630,7 @@ namespace Sudoku
                 //File.Delete("C:\\Users\\Sudoku.oku");
                 return game;
             }
-            catch (FileNotFoundException f)
+            catch (FileNotFoundException)
             {
                 MessageBox.Show("You don't have any previously saved games.");
                 return game;
