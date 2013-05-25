@@ -771,7 +771,7 @@ namespace Sudoku
             Sudoku game = BinaryDeserializeGame();
             if (game == null)
             {
-                MessageBox.Show("Game e null");
+                //MessageBox.Show("Game e null");
                 return;
             }
             else
