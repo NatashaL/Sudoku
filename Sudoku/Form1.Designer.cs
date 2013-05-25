@@ -284,11 +284,13 @@
             // 
             this.timerlabel.AutoSize = true;
             this.timerlabel.BackColor = System.Drawing.Color.Transparent;
+            this.timerlabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.timerlabel.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.timerlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.timerlabel.Location = new System.Drawing.Point(193, 251);
-            this.timerlabel.MaximumSize = new System.Drawing.Size(130, 30);
+            this.timerlabel.MaximumSize = new System.Drawing.Size(125, 30);
             this.timerlabel.Name = "timerlabel";
-            this.timerlabel.Size = new System.Drawing.Size(117, 30);
+            this.timerlabel.Size = new System.Drawing.Size(119, 30);
             this.timerlabel.TabIndex = 2;
             this.timerlabel.Text = "00:00:00";
             // 
@@ -465,6 +467,7 @@
             // 
             // btnClearHS
             // 
+            this.btnClearHS.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.btnClearHS.Location = new System.Drawing.Point(248, 260);
             this.btnClearHS.Name = "btnClearHS";
             this.btnClearHS.Size = new System.Drawing.Size(75, 23);
@@ -472,6 +475,8 @@
             this.btnClearHS.Text = "Clear";
             this.btnClearHS.UseVisualStyleBackColor = true;
             this.btnClearHS.Click += new System.EventHandler(this.btnClearHS_Click);
+            this.btnClearHS.MouseLeave += new System.EventHandler(this.btnClearHS_MouseLeave);
+            this.btnClearHS.MouseHover += new System.EventHandler(this.btnClearHS_MouseHover);
             // 
             // panel2
             // 
@@ -693,21 +698,21 @@
             // easyToolStripMenuItem
             // 
             this.easyToolStripMenuItem.Name = "easyToolStripMenuItem";
-            this.easyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.easyToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.easyToolStripMenuItem.Text = "Easy";
             this.easyToolStripMenuItem.Click += new System.EventHandler(this.easyToolStripMenuItem_Click);
             // 
             // mediumToolStripMenuItem
             // 
             this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
-            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.mediumToolStripMenuItem.Text = "Medium";
             this.mediumToolStripMenuItem.Click += new System.EventHandler(this.mediumToolStripMenuItem_Click);
             // 
             // hardToolStripMenuItem
             // 
             this.hardToolStripMenuItem.Name = "hardToolStripMenuItem";
-            this.hardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hardToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.hardToolStripMenuItem.Text = "Hard";
             this.hardToolStripMenuItem.Click += new System.EventHandler(this.hardToolStripMenuItem_Click);
             // 
@@ -797,8 +802,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(351, 310);
-            this.Controls.Add(this.mainGamePanel);
             this.Controls.Add(this.highScorePanel);
+            this.Controls.Add(this.mainGamePanel);
             this.Controls.Add(this.startPanel);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

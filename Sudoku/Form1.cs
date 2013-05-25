@@ -615,7 +615,7 @@ namespace Sudoku
         /// <summary>
         /// Serialize a Sudoku object to a binary file.
         /// </summary>
-        /// <param name="game"></param>
+        /// <param name="game">Game that needs to be serialized</param>
         private static void BinarySerializeGame(Sudoku game)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -629,7 +629,7 @@ namespace Sudoku
         /// <summary>
         /// Deserialize a Sudoku object from a binary file.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Saved game</returns>
         private static Sudoku BinaryDeserializeGame()
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -831,7 +831,11 @@ namespace Sudoku
                 }
             }
         }
-
+        /// <summary>
+        /// It is used to clear all High Scores
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClearHS_Click(object sender, EventArgs e)
         {
             DialogResult clear_all=MessageBox.Show("Are you absolutely sure you want to clear ALL high scores?","ATTENTION!",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
@@ -840,6 +844,16 @@ namespace Sudoku
                 HS = new Scores();
                 setHighScoresPanel(gameType.Standard, Difficulty.Easy);
             }
+        }
+
+        private void btnClearHS_MouseHover(object sender, EventArgs e)
+        {
+            btnClearHS.ForeColor = Color.FromArgb(255, 0, 0, 0);
+        }
+
+        private void btnClearHS_MouseLeave(object sender, EventArgs e)
+        {
+            btnClearHS.ForeColor = Color.FromArgb(255, 32, 32, 32);
         }
     }
 }
