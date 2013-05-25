@@ -27,6 +27,7 @@ namespace Sudoku
     {
         public Standard standard;
         public Squiggly squiggly;
+        public Sudoku sudoku;
         public static int[,] CellMap;
         public static Color [,] ColorMap;
         public static int LOCKED = 1;
@@ -186,6 +187,7 @@ namespace Sudoku
             SaveScoreHasAppeared = false;
             standard = null;
             squiggly = null;
+            sudoku = null;
             gameType type;
             if (radioSquigglyMode.Checked)
             {
@@ -300,6 +302,7 @@ namespace Sudoku
         {
             if (standard == null && squiggly == null)
             {
+                System.Media.SystemSounds.Asterisk.Play();
                 return;
             }
             if (dataGridView.SelectedCells.Count > 0)
@@ -307,7 +310,11 @@ namespace Sudoku
                 var selected = dataGridView.SelectedCells[0];
                 int sel_i = selected.RowIndex;
                 int sel_j = selected.ColumnIndex;
-                if (CellMap[sel_i, sel_j] == LOCKED) return;
+                if (CellMap[sel_i, sel_j] == LOCKED)
+                {
+                    System.Media.SystemSounds.Asterisk.Play();
+                    return;
+                }
                 if (!(e.KeyValue >= 49 && e.KeyValue <= 57 || e.KeyValue >= 97 && e.KeyValue <= 105))
                 {
                     if (e.KeyValue == 27 || e.KeyValue == 8 || e.KeyValue == 46)   // Same as e.KeyCode == Keys.Enter  etc.
@@ -321,6 +328,10 @@ namespace Sudoku
                         {
                             squiggly.userGrid[selected.RowIndex, selected.ColumnIndex] = 0;
                         }
+                    }
+                    else
+                    {
+                        System.Media.SystemSounds.Asterisk.Play();
                     }
                 }
                 else
@@ -376,6 +387,7 @@ namespace Sudoku
                 }
                 standard = null;
                 squiggly = null;
+                sudoku = null;
             }
 
         }
@@ -443,6 +455,7 @@ namespace Sudoku
                 {
                     squiggly = null;
                     standard = new Standard(level);
+                    sudoku = standard;
                 }
                 for (int i = 0; i < 9; i++)
                 {
@@ -468,6 +481,7 @@ namespace Sudoku
                     while (squiggly == null && !Completed)
                     {
                         squiggly = Limex(() => new Squiggly(level, Schemes[random.Next(0, Schemes.Count)]), 4000, out Completed);
+                        sudoku = squiggly;
                     }
                 }
                 for (int i = 0; i < 9; i++)
@@ -513,6 +527,10 @@ namespace Sudoku
         private void timer_Tick(object sender, EventArgs e)
         {
             ticks++;
+            if (sudoku != null)
+            {
+                sudoku.ticks++;
+            }
             timerlabel.Text = (new TimeSpan(ticks * 10000000)).ToString();
 
         }
@@ -523,8 +541,6 @@ namespace Sudoku
         /// <param name="diff"></param>
         public void setHighScoresPanel(gameType type, Difficulty diff)
         {
-            //HS = BinaryDeserialize();
-
             lblScoresType.Text = type == gameType.Standard ? "Standard" : "Squiggly";
             lblScoresDiff.Text = diff == Difficulty.Easy ? "Easy" : (diff == Difficulty.Medium ? "Medium" : "Hard");
             int d = diff == Difficulty.Easy ? 0 : (diff == Difficulty.Medium ? 1 : 2);
@@ -619,6 +635,15 @@ namespace Sudoku
         private static void BinarySerializeGame(Sudoku game)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            try
+            {
+               // File.OpenRead(path + "\\Sudoku.oku");
+                File.Delete(path + "\\Sudoku.oku");
+            }
+            catch (Exception e) {
+                MessageBox.Show("!!");
+            }
+
             using (FileStream str = File.Create(path+"\\Sudoku.oku"))
             {
                 File.SetAttributes(path + "\\Sudoku.oku", File.GetAttributes(path + "\\Sudoku.oku") | FileAttributes.Hidden);
@@ -641,7 +666,7 @@ namespace Sudoku
                     BinaryFormatter bf = new BinaryFormatter();
                     game = (Sudoku)bf.Deserialize(str);
                 }
-                File.Delete("C:\\Users\\Sudoku.oku");
+               // File.Delete(path + "\\Sudoku.oku");
                 return game;
             }
             catch (FileNotFoundException)
@@ -781,14 +806,16 @@ namespace Sudoku
                 if (game is Standard)
                 {
                     standard = (Standard)game;
+                    sudoku = standard;
                     setStandardTableView();
                 }
                 else
                 {
                     squiggly = (Squiggly)game;
+                    sudoku = squiggly;
                     setSquigglyTableView();
                 }
-                timerlabel.Text = (new TimeSpan(0)).ToString();
+                timerlabel.Text = (new TimeSpan(game.ticks)).ToString();
                 setGrid(gameType.Standard,Difficulty.Easy); //can have any combination of parameters.
                 changeView(1);
                 timer.Start();

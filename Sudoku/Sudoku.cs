@@ -33,6 +33,10 @@ namespace Sudoku
         public int[,] rows;
         public int[,] cols;
         public int[,] groups;
+        /// <summary>
+        /// number of seconds the player has been playing
+        /// </summary>
+        public int ticks;
 
         /// <summary>
         /// Returns an Object of type Sudoku
@@ -49,7 +53,7 @@ namespace Sudoku
             cols = new int[10, 10];
             groups = new int[10, 10];
 
-
+            ticks = 0;
             this.diff = diff;
         }
         /// <summary>
