@@ -312,7 +312,10 @@ namespace Sudoku
                 int sel_j = selected.ColumnIndex;
                 if (CellMap[sel_i, sel_j] == LOCKED)
                 {
-                    System.Media.SystemSounds.Asterisk.Play();
+                    if (!(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right))
+                    {
+                        System.Media.SystemSounds.Asterisk.Play();
+                    }
                     return;
                 }
                 if (!(e.KeyValue >= 49 && e.KeyValue <= 57 || e.KeyValue >= 97 && e.KeyValue <= 105))
@@ -329,7 +332,7 @@ namespace Sudoku
                             squiggly.userGrid[selected.RowIndex, selected.ColumnIndex] = 0;
                         }
                     }
-                    else
+                    else if (!(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right))
                     {
                         System.Media.SystemSounds.Asterisk.Play();
                     }
