@@ -4,7 +4,7 @@ Windows Forms Project by:
 Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 
 ---
-**MK**/[EN](https://www.google.com)
+**MK** / [EN](#1-description)
 ##1. Опис на апликацијата
 Апликацијата што ја развиваме е класичната игра Sudoku, која ја проширивме застапувајќи 2 варијанти на играта: **Classic Sudoku** и **Squiggly Sudoku**.
 
@@ -78,7 +78,7 @@ Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 
 ---
 ---
-[MK](https://www.google.com)/**EN**
+[MK](#1---) / **EN**
 ##1. Description
 This application that we are developing is the classic game od Sudoku, featuring 2 variants: **Classic Sudoku** and **Squiggly Sudoku**.
 
