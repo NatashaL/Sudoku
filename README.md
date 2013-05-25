@@ -4,7 +4,7 @@ Windows Forms Project by:
 Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 
 ---
-**MK** / [EN](#1-description)
+**Македонски** / [English](#1-description)
 ##1. Опис на апликацијата
 Апликацијата што ја развиваме е класичната игра Sudoku, која ја проширивме застапувајќи 2 варијанти на играта: **Classic Sudoku** и **Squiggly Sudoku**.
 
@@ -78,8 +78,18 @@ Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 
 ---
 ---
-[MK](#1---) / **EN**
-##1. Description
-This application that we are developing is the classic game od Sudoku, featuring 2 variants: **Classic Sudoku** and **Squiggly Sudoku**.
 
+
+**English** / [Македонски](#1---)
+##1. Description
+This application that we are developing is the classic game of Sudoku, featuring 2 variants: **Classic Sudoku** and **Squiggly Sudoku**.
+
+For complete player satisfaction, along with the clean and simple design, we implemented various algorithms suitable for the variants of the game, saving an unfinished game and continuing it at a later time as well as High Scores for the variants and levels individually.
+
+##2. How to play
+###2.1 New Game
+![alt text][new_game_screen_en]
+
+On the main window (image 1) you have the ability to start a **New Game**, to **Load** an already saved game, or to view the **High Scores**
 [new_game_screen]: http://igoimpeks.com/projects/sudoku/StartPanel_view.png "Слика 1"
+[new_game_screen_en]: http://igoimpeks.com/projects/sudoku/StartPanel_view.png "Image 1" 
