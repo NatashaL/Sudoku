@@ -357,16 +357,19 @@ namespace Sudoku
                 DarkenGrid();
                 //MessageBox.Show("Congratulations!!!");
                 System.Media.SoundPlayer finishSoundPlayer = new System.Media.SoundPlayer(@"C:\Windows\Media\tada.wav");
+                System.Media.SoundPlayer finish_no_high_SoundPlayer = new System.Media.SoundPlayer(@"C:\Windows\Media\chimes.wav");
                 gameType type = standard == null ? gameType.Squiggly : gameType.Standard;
                 Difficulty level = standard == null ? squiggly.diff : standard.diff;
                 int d = level == Difficulty.Easy ? 0 : (level == Difficulty.Medium ? 1 : 2);
                 SaveScoreHasAppeared = true;
                 if (HS.HS[type][d].highScores.Count == 5 && ticks > HS.HS[type][d].highScores[4].time)
                 {
+                    finish_no_high_SoundPlayer.Play();
                     MessageBox.Show("\t\tCongratulations!!! \n I'm sorry but you didn't make it in the top 5.");
                 }
                 else
                 {
+                    finishSoundPlayer.Play();
                     Form2 form2 = new Form2(this, ticks, type, level);
                     form2.Show();
                     form2.name.Focus();
@@ -578,6 +581,7 @@ namespace Sudoku
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             using (FileStream str = File.Create(path+"\\HighScores.hs"))
             {
+                File.SetAttributes(path + "\\HighScores.hs", File.GetAttributes(path + "\\HighScores.hs") | FileAttributes.Hidden);
                 BinaryFormatter bf = new BinaryFormatter();
                 bf.Serialize(str, HS);
             }
@@ -617,6 +621,7 @@ namespace Sudoku
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             using (FileStream str = File.Create(path+"\\Sudoku.oku"))
             {
+                File.SetAttributes(path + "\\Sudoku.oku", File.GetAttributes(path + "\\Sudoku.oku") | FileAttributes.Hidden);
                 BinaryFormatter bf = new BinaryFormatter();
                 bf.Serialize(str, game);
             }

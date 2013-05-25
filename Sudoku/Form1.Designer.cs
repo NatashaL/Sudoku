@@ -66,7 +66,13 @@
             this.btnNewGame = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.highScorePanel = new System.Windows.Forms.Panel();
+            this.btnClearHS = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -97,12 +103,6 @@
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.btnClearHS = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.mainGamePanel.SuspendLayout();
             this.startPanel.SuspendLayout();
@@ -283,11 +283,12 @@
             // timerlabel
             // 
             this.timerlabel.AutoSize = true;
-            this.timerlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.timerlabel.Location = new System.Drawing.Point(222, 248);
-            this.timerlabel.MaximumSize = new System.Drawing.Size(100, 30);
+            this.timerlabel.BackColor = System.Drawing.Color.Transparent;
+            this.timerlabel.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.timerlabel.Location = new System.Drawing.Point(193, 251);
+            this.timerlabel.MaximumSize = new System.Drawing.Size(130, 30);
             this.timerlabel.Name = "timerlabel";
-            this.timerlabel.Size = new System.Drawing.Size(90, 25);
+            this.timerlabel.Size = new System.Drawing.Size(117, 30);
             this.timerlabel.TabIndex = 2;
             this.timerlabel.Text = "00:00:00";
             // 
@@ -462,6 +463,16 @@
             this.highScorePanel.TabStop = true;
             this.highScorePanel.Visible = false;
             // 
+            // btnClearHS
+            // 
+            this.btnClearHS.Location = new System.Drawing.Point(248, 260);
+            this.btnClearHS.Name = "btnClearHS";
+            this.btnClearHS.Size = new System.Drawing.Size(75, 23);
+            this.btnClearHS.TabIndex = 17;
+            this.btnClearHS.Text = "Clear";
+            this.btnClearHS.UseVisualStyleBackColor = true;
+            this.btnClearHS.Click += new System.EventHandler(this.btnClearHS_Click);
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -484,6 +495,51 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(326, 196);
             this.panel2.TabIndex = 16;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 141);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(16, 13);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "5.";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 111);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(16, 13);
+            this.label13.TabIndex = 26;
+            this.label13.Text = "4.";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(7, 78);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(16, 13);
+            this.label14.TabIndex = 25;
+            this.label14.Text = "3.";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(7, 45);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(16, 13);
+            this.label15.TabIndex = 24;
+            this.label15.Text = "2.";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(7, 13);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(16, 13);
+            this.label16.TabIndex = 23;
+            this.label16.Text = "1.";
             // 
             // label10
             // 
@@ -637,21 +693,21 @@
             // easyToolStripMenuItem
             // 
             this.easyToolStripMenuItem.Name = "easyToolStripMenuItem";
-            this.easyToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.easyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.easyToolStripMenuItem.Text = "Easy";
             this.easyToolStripMenuItem.Click += new System.EventHandler(this.easyToolStripMenuItem_Click);
             // 
             // mediumToolStripMenuItem
             // 
             this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
-            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mediumToolStripMenuItem.Text = "Medium";
             this.mediumToolStripMenuItem.Click += new System.EventHandler(this.mediumToolStripMenuItem_Click);
             // 
             // hardToolStripMenuItem
             // 
             this.hardToolStripMenuItem.Name = "hardToolStripMenuItem";
-            this.hardToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.hardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.hardToolStripMenuItem.Text = "Hard";
             this.hardToolStripMenuItem.Click += new System.EventHandler(this.hardToolStripMenuItem_Click);
             // 
@@ -736,69 +792,14 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 141);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(16, 13);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "5.";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(7, 111);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(16, 13);
-            this.label13.TabIndex = 26;
-            this.label13.Text = "4.";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(7, 78);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(16, 13);
-            this.label14.TabIndex = 25;
-            this.label14.Text = "3.";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(7, 45);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(16, 13);
-            this.label15.TabIndex = 24;
-            this.label15.Text = "2.";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(7, 13);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(16, 13);
-            this.label16.TabIndex = 23;
-            this.label16.Text = "1.";
-            // 
-            // btnClearHS
-            // 
-            this.btnClearHS.Location = new System.Drawing.Point(248, 260);
-            this.btnClearHS.Name = "btnClearHS";
-            this.btnClearHS.Size = new System.Drawing.Size(75, 23);
-            this.btnClearHS.TabIndex = 17;
-            this.btnClearHS.Text = "Clear";
-            this.btnClearHS.UseVisualStyleBackColor = true;
-            this.btnClearHS.Click += new System.EventHandler(this.btnClearHS_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(351, 310);
+            this.Controls.Add(this.mainGamePanel);
             this.Controls.Add(this.highScorePanel);
             this.Controls.Add(this.startPanel);
-            this.Controls.Add(this.mainGamePanel);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
