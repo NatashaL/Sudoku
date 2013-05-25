@@ -216,7 +216,7 @@ namespace Sudoku
 
             setGrid(type, level);
             
-            ticks = 0;
+            ticks = sudoku.ticks;
             timer.Start();
         }
         /// <summary>
@@ -530,9 +530,9 @@ namespace Sudoku
             if (sudoku != null)
             {
                 sudoku.ticks++;
-            }
-            timerlabel.Text = (new TimeSpan(ticks * 10000000)).ToString();
 
+                timerlabel.Text = (new TimeSpan(sudoku.ticks * 10000000)).ToString();
+            }
         }
         /// <summary>
         /// It fills the highScorePanel with the highScore lists according to the input parameters.
@@ -794,6 +794,7 @@ namespace Sudoku
         private void btnToLoadGame_Click(object sender, EventArgs e)
         {
             Sudoku game = BinaryDeserializeGame();
+            sudoku = game;
             if (game == null)
             {
                 //MessageBox.Show("Game e null");
@@ -806,13 +807,13 @@ namespace Sudoku
                 if (game is Standard)
                 {
                     standard = (Standard)game;
-                    sudoku = standard;
+                    //sudoku = standard;
                     setStandardTableView();
                 }
                 else
                 {
                     squiggly = (Squiggly)game;
-                    sudoku = squiggly;
+                    //sudoku = squiggly;
                     setSquigglyTableView();
                 }
                 timerlabel.Text = (new TimeSpan(game.ticks)).ToString();
