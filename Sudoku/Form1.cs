@@ -32,6 +32,7 @@ namespace Sudoku
         public static int LOCKED = 1;
         public int ticks = 0;
         public Scores HS;
+        public bool SaveScoreHasAppeared = false;
         public Form1()
         {
             InitializeComponent();
@@ -182,7 +183,7 @@ namespace Sudoku
         /// <param name="e"></param>
         private void btnNewGame_Click(object sender, EventArgs e)
         {
-
+            SaveScoreHasAppeared = false;
             standard = null;
             squiggly = null;
             gameType type;
@@ -242,6 +243,14 @@ namespace Sudoku
         /// <param name="e"></param>
         private void btnMainGameBack_Click(object sender, EventArgs e)
         {
+            if (SaveScoreHasAppeared == true)
+            {
+                unPauseGrid();
+                timer.Stop();
+                timerlabel.Text = (new TimeSpan(0)).ToString();
+                changeView(3);
+                return;
+            }
             if (saveGame() == 0)
             {
                 unPauseGrid();
@@ -347,11 +356,11 @@ namespace Sudoku
                 timer.Stop();
                 DarkenGrid();
                 //MessageBox.Show("Congratulations!!!");
-                
+                System.Media.SoundPlayer finishSoundPlayer = new System.Media.SoundPlayer(@"C:\Windows\Media\tada.wav");
                 gameType type = standard == null ? gameType.Squiggly : gameType.Standard;
                 Difficulty level = standard == null ? squiggly.diff : standard.diff;
                 int d = level == Difficulty.Easy ? 0 : (level == Difficulty.Medium ? 1 : 2);
-
+                SaveScoreHasAppeared = true;
                 if (HS.HS[type][d].highScores.Count == 5 && ticks > HS.HS[type][d].highScores[4].time)
                 {
                     MessageBox.Show("\t\tCongratulations!!! \n I'm sorry but you didn't make it in the top 5.");
@@ -646,7 +655,7 @@ namespace Sudoku
         {
             BinarySerializeScores(HS);
             //if (!mainGamePanel.Visible || (standard == null && squiggly == null)) return;
-            if (!mainGamePanel.Visible) return;
+            if (!mainGamePanel.Visible || SaveScoreHasAppeared==true) return;
             if (saveGame() == 0)
             {
                 unPauseGrid();
@@ -654,9 +663,11 @@ namespace Sudoku
                 timer.Start();
                 return;
             }
+                
             unPauseGrid();
             timer.Stop();
             timerlabel.Text = (new TimeSpan(0)).ToString();
+            
         }
         /// <summary>
         /// It is called whenever the 'X' button on the form or the 'Back' button on the MainGamePanel
@@ -668,7 +679,7 @@ namespace Sudoku
         {
             timer.Stop();
             pauseGrid();
-            DialogResult res = MessageBox.Show("Save game?\n You may overwrite previously saved game.", "Save game?", MessageBoxButtons.YesNoCancel);
+            DialogResult res = MessageBox.Show("Would you like to save this game and resume at a later time?\nThis will overwrite previously saved games.", "Save game?", MessageBoxButtons.YesNoCancel);
             if (res == DialogResult.Yes)
             {
                 if (standard != null)
@@ -804,12 +815,24 @@ namespace Sudoku
                 for (int j = 0; j < 9; j++)
                 {
                     dataGridView.Rows[i].Cells[j].Style.ForeColor = Color.Black;
-
-                    if (game.userGrid[i, j] != 0)
-                        dataGridView.Rows[i].Cells[j].Value = game.userGrid[i, j];
-                    else
-                        dataGridView.Rows[i].Cells[j].Value = "";
+                    try
+                    {
+                        if (game.userGrid[i, j] != 0)
+                            dataGridView.Rows[i].Cells[j].Value = game.userGrid[i, j];
+                        else
+                            dataGridView.Rows[i].Cells[j].Value = "";
+                    }
+                    catch { }
                 }
+            }
+        }
+
+        private void btnClearHS_Click(object sender, EventArgs e)
+        {
+            DialogResult clear_all=MessageBox.Show("Are you absolutely sure you want to clear ALL high scores?","ATTENTION!",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            if (clear_all == DialogResult.Yes)
+            {
+                //HS.HS = null;
             }
         }
     }

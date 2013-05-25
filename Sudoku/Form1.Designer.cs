@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,6 +64,7 @@
             this.btnToLoadGame = new System.Windows.Forms.Button();
             this.btnScores = new System.Windows.Forms.Button();
             this.btnNewGame = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.highScorePanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
@@ -95,8 +96,13 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.btnClearHS = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.mainGamePanel.SuspendLayout();
             this.startPanel.SuspendLayout();
@@ -137,12 +143,12 @@
             // 
             // Column1
             // 
-            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle46.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle46.Format = "N0";
-            dataGridViewCellStyle46.NullValue = null;
-            dataGridViewCellStyle46.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle46;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column1.HeaderText = "Column1";
             this.Column1.MaxInputLength = 1;
             this.Column1.Name = "Column1";
@@ -153,10 +159,10 @@
             // 
             // Column2
             // 
-            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle47.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle47.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle47;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column2.HeaderText = "Column2";
             this.Column2.MaxInputLength = 1;
             this.Column2.Name = "Column2";
@@ -167,10 +173,10 @@
             // 
             // Column3
             // 
-            dataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle48.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle48.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle48;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column3.HeaderText = "Column3";
             this.Column3.MaxInputLength = 1;
             this.Column3.Name = "Column3";
@@ -181,10 +187,10 @@
             // 
             // Column4
             // 
-            dataGridViewCellStyle49.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle49.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle49.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle49;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column4.HeaderText = "Column4";
             this.Column4.MaxInputLength = 1;
             this.Column4.Name = "Column4";
@@ -195,10 +201,10 @@
             // 
             // Column5
             // 
-            dataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle50.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle50.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle50;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle5;
             this.Column5.HeaderText = "Column5";
             this.Column5.MaxInputLength = 1;
             this.Column5.Name = "Column5";
@@ -209,10 +215,10 @@
             // 
             // Column6
             // 
-            dataGridViewCellStyle51.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle51.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle51.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle51;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle6;
             this.Column6.HeaderText = "Column6";
             this.Column6.MaxInputLength = 1;
             this.Column6.Name = "Column6";
@@ -223,10 +229,10 @@
             // 
             // Column7
             // 
-            dataGridViewCellStyle52.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle52.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle52.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle52;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle7;
             this.Column7.HeaderText = "Column7";
             this.Column7.MaxInputLength = 1;
             this.Column7.Name = "Column7";
@@ -237,10 +243,10 @@
             // 
             // Column8
             // 
-            dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle53.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle53.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle53;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle8;
             this.Column8.HeaderText = "Column8";
             this.Column8.MaxInputLength = 1;
             this.Column8.Name = "Column8";
@@ -251,10 +257,10 @@
             // 
             // Column9
             // 
-            dataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle54.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle54.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle54;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle9;
             this.Column9.HeaderText = "Column9";
             this.Column9.MaxInputLength = 1;
             this.Column9.Name = "Column9";
@@ -431,8 +437,18 @@
             this.btnNewGame.UseVisualStyleBackColor = true;
             this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::Sudoku.Properties.Resources.SudokuLogo_transparent;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(324, 143);
+            this.panel1.TabIndex = 5;
+            // 
             // highScorePanel
             // 
+            this.highScorePanel.Controls.Add(this.btnClearHS);
             this.highScorePanel.Controls.Add(this.panel2);
             this.highScorePanel.Controls.Add(this.lblScoresDiff);
             this.highScorePanel.Controls.Add(this.label12);
@@ -448,7 +464,12 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.label13);
+            this.panel2.Controls.Add(this.label14);
+            this.panel2.Controls.Add(this.label15);
+            this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.label8);
@@ -467,7 +488,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(150, 142);
+            this.label10.Location = new System.Drawing.Point(159, 141);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(41, 13);
             this.label10.TabIndex = 22;
@@ -476,7 +497,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(18, 142);
+            this.label11.Location = new System.Drawing.Point(27, 141);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(41, 13);
             this.label11.TabIndex = 21;
@@ -485,7 +506,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(150, 112);
+            this.label8.Location = new System.Drawing.Point(159, 111);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(35, 13);
             this.label8.TabIndex = 20;
@@ -494,7 +515,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 112);
+            this.label9.Location = new System.Drawing.Point(27, 111);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 13);
             this.label9.TabIndex = 19;
@@ -503,7 +524,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(150, 79);
+            this.label6.Location = new System.Drawing.Point(159, 78);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 13);
             this.label6.TabIndex = 18;
@@ -512,7 +533,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(18, 79);
+            this.label7.Location = new System.Drawing.Point(27, 78);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 17;
@@ -521,7 +542,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(150, 46);
+            this.label4.Location = new System.Drawing.Point(159, 45);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 16;
@@ -530,7 +551,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 46);
+            this.label5.Location = new System.Drawing.Point(27, 45);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 15;
@@ -539,7 +560,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(150, 14);
+            this.label3.Location = new System.Drawing.Point(159, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 14;
@@ -548,7 +569,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 14);
+            this.label2.Location = new System.Drawing.Point(27, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 13;
@@ -707,15 +728,6 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(150, 150);
             // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = global::Sudoku.Properties.Resources.SudokuLogo_transparent;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(324, 143);
-            this.panel1.TabIndex = 5;
-            // 
             // groupBox1
             // 
             this.groupBox1.Location = new System.Drawing.Point(3, -3);
@@ -724,13 +736,68 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 141);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(16, 13);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "5.";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 111);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(16, 13);
+            this.label13.TabIndex = 26;
+            this.label13.Text = "4.";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(7, 78);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(16, 13);
+            this.label14.TabIndex = 25;
+            this.label14.Text = "3.";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(7, 45);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(16, 13);
+            this.label15.TabIndex = 24;
+            this.label15.Text = "2.";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(7, 13);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(16, 13);
+            this.label16.TabIndex = 23;
+            this.label16.Text = "1.";
+            // 
+            // btnClearHS
+            // 
+            this.btnClearHS.Location = new System.Drawing.Point(248, 260);
+            this.btnClearHS.Name = "btnClearHS";
+            this.btnClearHS.Size = new System.Drawing.Size(75, 23);
+            this.btnClearHS.TabIndex = 17;
+            this.btnClearHS.Text = "Clear";
+            this.btnClearHS.UseVisualStyleBackColor = true;
+            this.btnClearHS.Click += new System.EventHandler(this.btnClearHS_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(351, 310);
-            this.Controls.Add(this.startPanel);
             this.Controls.Add(this.highScorePanel);
+            this.Controls.Add(this.startPanel);
             this.Controls.Add(this.mainGamePanel);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -816,6 +883,12 @@
         private System.Windows.Forms.ToolStripMenuItem mediumToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem hardToolStripMenuItem1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button btnClearHS;
 
     }
 }
