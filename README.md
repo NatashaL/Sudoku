@@ -2,6 +2,7 @@
 
 Windows Forms Project by: 
 Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
+[**Binary Release**](https://github.com/NatashaL/Sudoku/blob/master/Sudoku/bin/Release/Sudoku.exe)
 
 ---
 **Македонски** / [English](#1-description)
