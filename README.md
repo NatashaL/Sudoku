@@ -67,7 +67,7 @@ Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 
 ###3.1 Податочни структури
 
-Главните податоци и [функции](#algs) за играта се чуваат во класа ```c# public class Sudoku{}``` од која пак наследуваат двете класи ```c# public class Standard``` и ```c# public class Squiggly```.
+Главните податоци и [функции](#algs) за играта се чуваат во класа ```public class Sudoku``` од која пак наследуваат двете класи ```public class Standard``` и ```public class Squiggly```.
 
 ```c#
 public class Sudoku
@@ -100,7 +100,7 @@ public class Sudoku
         /// number of seconds the player has been playing
         /// </summary>
         public int ticks;
-        ```
+```
 
 
 ###3.2 Алгоритми
