@@ -28,16 +28,16 @@ Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 
 Тука sе чуваат најдобрите 5 играчи, сортирани според времето на завршување на играта, за двете варијанти на судоку и сите нивоа на тежина посебно.
 
-Податоците тука се [**_сериализирани_**](#32-)* и се достапни и после исклучување на играта.
-
-Исто така овозможено е бришење на сите highscores со стискање на копчето **Clear**, при што се појавува соодветно предупредување.
-
-(ТУКА СЛИКА ОД ХАЈ СКОРС ПАНЕЛ)
+![alt text][HS_panel]
 
 После секоја игра завршена со солиден резултат, неговото време да е подобро од најлошото во High Scores, играчот добива можност неговиот резултат да биде зачуван.
 Ако тоа не го сака не мора да го направи, откажувајќи со едноставно кликање на **_No Thanks_** копчето во формата за внесување на името.
 
-( ТУКА СЛИКА ОД ТАА ФОРМА )
+![alt text][enter_HS]
+
+Податоците се [**_сериализирани_**](#32-)* и се достапни и после исклучување на играта.
+
+Исто така овозможено е бришење на сите highscores со стискање на копчето **Clear**, при што се појавува соодветно предупредување.
 
 Штом се променат High Scores, тие се ажурираат само во извршната верзија, а по затворањето на апликацијата новата верзија од резултатите се запишува врз старата.
 
@@ -104,6 +104,7 @@ public class Sudoku
 ```
 
 ####3.1.1 Standard Sudoku
+![alt text][Standard_sudoku]
 ```c#
     public class Standard : Sudoku
 ```
@@ -112,6 +113,7 @@ public class Sudoku
 #####Регионите се наједноставно одделени со две вертикални и две хоризонтални линии.
 
 ####3.1.2 Squiggly Sudoku
+![alt text][Squiggly_sudoku]
 ```c#
     public class Squiggly : Sudoku
 ```
@@ -164,7 +166,7 @@ public class Sudoku
 
 ###3.4 GUI
 
-За представување на матрицата за судоку користевме dataGridView контрола со измени на предодредените карактеристики.
+За претставување на матрицата за судоку користевме dataGridView контрола со измени на предодредените карактеристики.
 
 
 ---
@@ -198,6 +200,10 @@ GNU General Public License for more details.
 [GNU General Public License](https://github.com/NatashaL/Sudoku/blob/master/COPYING.md)
 
 [new_game_screen]: http://igoimpeks.com/projects/sudoku/StartPanel_view.png "Слика 1"
+[HS_panel]: http://igoimpeks.com/projects/sudoku/HighScores_panel.png "Слика 2"
+[enter_HS]: http://igoimpeks.com/projects/sudoku/enter_HS.png "Слика 3"
+[Standard_sudoku]: http://igoimpeks.com/projects/sudoku/standard.png "Слика 4"
+[Squiggly_sudoku]: http://igoimpeks.com/projects/sudoku/squiggly.png "Слика 5"
 [new_game_screen_en]: http://igoimpeks.com/projects/sudoku/StartPanel_view.png "Image 1" 
 
 
