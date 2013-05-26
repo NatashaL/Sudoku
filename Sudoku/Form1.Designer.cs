@@ -103,6 +103,9 @@
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnInGameNew = new System.Windows.Forms.Button();
+            this.btnInGamePause = new System.Windows.Forms.Button();
+            this.btnInGameResume = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.mainGamePanel.SuspendLayout();
             this.startPanel.SuspendLayout();
@@ -128,7 +131,7 @@
             this.Column7,
             this.Column8,
             this.Column9});
-            this.dataGridView.Location = new System.Drawing.Point(49, 0);
+            this.dataGridView.Location = new System.Drawing.Point(47, 0);
             this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersVisible = false;
@@ -272,6 +275,9 @@
             // 
             // mainGamePanel
             // 
+            this.mainGamePanel.Controls.Add(this.btnInGameResume);
+            this.mainGamePanel.Controls.Add(this.btnInGamePause);
+            this.mainGamePanel.Controls.Add(this.btnInGameNew);
             this.mainGamePanel.Controls.Add(this.timerlabel);
             this.mainGamePanel.Controls.Add(this.btnMainGameBack);
             this.mainGamePanel.Controls.Add(this.dataGridView);
@@ -286,20 +292,20 @@
             this.timerlabel.AutoSize = true;
             this.timerlabel.BackColor = System.Drawing.Color.Silver;
             this.timerlabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.timerlabel.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.timerlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.timerlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.timerlabel.Location = new System.Drawing.Point(193, 251);
+            this.timerlabel.Location = new System.Drawing.Point(112, 246);
             this.timerlabel.Margin = new System.Windows.Forms.Padding(0);
             this.timerlabel.MaximumSize = new System.Drawing.Size(125, 30);
             this.timerlabel.Name = "timerlabel";
-            this.timerlabel.Size = new System.Drawing.Size(119, 30);
+            this.timerlabel.Size = new System.Drawing.Size(113, 30);
             this.timerlabel.TabIndex = 2;
             this.timerlabel.Text = "00:00:00";
             this.timerlabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnMainGameBack
             // 
-            this.btnMainGameBack.Location = new System.Drawing.Point(6, 259);
+            this.btnMainGameBack.Location = new System.Drawing.Point(6, 253);
             this.btnMainGameBack.Name = "btnMainGameBack";
             this.btnMainGameBack.Size = new System.Drawing.Size(75, 23);
             this.btnMainGameBack.TabIndex = 1;
@@ -800,6 +806,37 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
+            // btnInGameNew
+            // 
+            this.btnInGameNew.Location = new System.Drawing.Point(249, 235);
+            this.btnInGameNew.Name = "btnInGameNew";
+            this.btnInGameNew.Size = new System.Drawing.Size(75, 23);
+            this.btnInGameNew.TabIndex = 3;
+            this.btnInGameNew.Text = " New Game";
+            this.btnInGameNew.UseVisualStyleBackColor = true;
+            this.btnInGameNew.Click += new System.EventHandler(this.btnInGameNew_Click);
+            // 
+            // btnInGamePause
+            // 
+            this.btnInGamePause.Location = new System.Drawing.Point(249, 264);
+            this.btnInGamePause.Name = "btnInGamePause";
+            this.btnInGamePause.Size = new System.Drawing.Size(75, 23);
+            this.btnInGamePause.TabIndex = 4;
+            this.btnInGamePause.Text = "Pause";
+            this.btnInGamePause.UseVisualStyleBackColor = true;
+            this.btnInGamePause.Click += new System.EventHandler(this.btnInGamePause_Click);
+            // 
+            // btnInGameResume
+            // 
+            this.btnInGameResume.Location = new System.Drawing.Point(249, 263);
+            this.btnInGameResume.Name = "btnInGameResume";
+            this.btnInGameResume.Size = new System.Drawing.Size(75, 23);
+            this.btnInGameResume.TabIndex = 5;
+            this.btnInGameResume.Text = "Resume";
+            this.btnInGameResume.UseVisualStyleBackColor = true;
+            this.btnInGameResume.Visible = false;
+            this.btnInGameResume.Click += new System.EventHandler(this.btnInGameResume_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -898,6 +935,9 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button btnClearHS;
+        private System.Windows.Forms.Button btnInGameResume;
+        private System.Windows.Forms.Button btnInGamePause;
+        private System.Windows.Forms.Button btnInGameNew;
 
     }
 }

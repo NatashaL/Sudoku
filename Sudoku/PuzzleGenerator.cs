@@ -74,7 +74,7 @@ namespace Sudoku
             do
             {
                 puzzleSolver = new PuzzleSolver();
-                puzzleSolver.SolveGrid((PuzzleGrid)tempGrid.Clone(), false); //Slv to fill remainder of grid
+                puzzleSolver.SolveGrid((PuzzleGrid)tempGrid.Clone(), false); //Solve to fill remainder of grid
                 SolutionGrid = puzzleSolver.SolutionGrid;
             } while (SolutionGrid == null || SolutionGrid.IsBlank());
             PermaGrid = Blanker(SolutionGrid);       //call Blanker to carry out the

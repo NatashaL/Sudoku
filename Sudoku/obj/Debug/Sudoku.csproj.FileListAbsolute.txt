@@ -1,0 +1,47 @@
+c:\users\natasha\documents\visual studio 2012\Projects\Sudoku\Sudoku\bin\Debug\Sudoku.exe.config
+c:\users\natasha\documents\visual studio 2012\Projects\Sudoku\Sudoku\bin\Debug\Sudoku.exe
+c:\users\natasha\documents\visual studio 2012\Projects\Sudoku\Sudoku\bin\Debug\Sudoku.pdb
+c:\users\natasha\documents\visual studio 2012\Projects\Sudoku\Sudoku\obj\Debug\Sudoku.csprojResolveAssemblyReference.cache
+c:\users\natasha\documents\visual studio 2012\Projects\Sudoku\Sudoku\obj\Debug\Sudoku.Form1.resources
+c:\users\natasha\documents\visual studio 2012\Projects\Sudoku\Sudoku\obj\Debug\Sudoku.Properties.Resources.resources
+c:\users\natasha\documents\visual studio 2012\Projects\Sudoku\Sudoku\obj\Debug\Sudoku.csproj.GenerateResource.Cache
+c:\users\natasha\documents\visual studio 2012\Projects\Sudoku\Sudoku\obj\Debug\Sudoku.exe
+c:\users\natasha\documents\visual studio 2012\Projects\Sudoku\Sudoku\obj\Debug\Sudoku.pdb
+C:\Users\Natasha\Documents\GitHub\Sudoku\Sudoku\bin\Debug\Sudoku.exe.config
+C:\Users\Natasha\Documents\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.exe
+C:\Users\Natasha\Documents\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.pdb
+\\vmware-host\Shared Folders\Desktop\sud\Sudoku\bin\Debug\Sudoku.exe.config
+\\vmware-host\Shared Folders\Desktop\sud\Sudoku\obj\Debug\Sudoku.exe
+\\vmware-host\Shared Folders\Desktop\sud\Sudoku\obj\Debug\Sudoku.pdb
+\\vmware-host\Shared Folders\Desktop\sud\Sudoku\bin\Debug\Sudoku.exe
+\\vmware-host\Shared Folders\Desktop\sud\Sudoku\bin\Debug\Sudoku.pdb
+\\vmware-host\Shared Folders\Desktop\sud\Sudoku\obj\Debug\Sudoku.csprojResolveAssemblyReference.cache
+\\vmware-host\Shared Folders\Desktop\sud\Sudoku\obj\Debug\Sudoku.Form1.resources
+\\vmware-host\Shared Folders\Desktop\sud\Sudoku\obj\Debug\Sudoku.Properties.Resources.resources
+\\vmware-host\Shared Folders\Desktop\sud\Sudoku\obj\Debug\Sudoku.csproj.GenerateResource.Cache
+C:\Users\Игор Трајковски\AppData\Local\Apps\2.0\KJQ5LMO3.TH2\6WC8XWB8.J1H\gith..tion_317444273a93ac29_0001.0000_855c896e1f9f6b94\vmware-host\Shared Folders\Documents\GitHub\Sudoku\Sudoku\bin\Debug\Sudoku.exe.config
+C:\Users\Игор Трајковски\AppData\Local\Apps\2.0\KJQ5LMO3.TH2\6WC8XWB8.J1H\gith..tion_317444273a93ac29_0001.0000_855c896e1f9f6b94\vmware-host\Shared Folders\Documents\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.exe
+C:\Users\Игор Трајковски\AppData\Local\Apps\2.0\KJQ5LMO3.TH2\6WC8XWB8.J1H\gith..tion_317444273a93ac29_0001.0000_855c896e1f9f6b94\vmware-host\Shared Folders\Documents\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.pdb
+C:\Users\Игор Трајковски\AppData\Local\Apps\2.0\KJQ5LMO3.TH2\6WC8XWB8.J1H\gith..tion_317444273a93ac29_0001.0000_855c896e1f9f6b94\vmware-host\Shared Folders\Documents\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.csprojResolveAssemblyReference.cache
+C:\Users\Игор Трајковски\AppData\Local\Apps\2.0\KJQ5LMO3.TH2\6WC8XWB8.J1H\gith..tion_317444273a93ac29_0001.0000_855c896e1f9f6b94\vmware-host\Shared Folders\Documents\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.Form1.resources
+C:\Users\Игор Трајковски\AppData\Local\Apps\2.0\KJQ5LMO3.TH2\6WC8XWB8.J1H\gith..tion_317444273a93ac29_0001.0000_855c896e1f9f6b94\vmware-host\Shared Folders\Documents\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.Properties.Resources.resources
+C:\Users\Игор Трајковски\AppData\Local\Apps\2.0\KJQ5LMO3.TH2\6WC8XWB8.J1H\gith..tion_317444273a93ac29_0001.0000_855c896e1f9f6b94\vmware-host\Shared Folders\Documents\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.csproj.GenerateResource.Cache
+\\vmware-host\Shared Folders\Desktop\s\Sudoku\bin\Debug\Sudoku.exe.config
+\\vmware-host\Shared Folders\Desktop\s\Sudoku\obj\Debug\Sudoku.exe
+\\vmware-host\Shared Folders\Desktop\s\Sudoku\obj\Debug\Sudoku.pdb
+\\vmware-host\Shared Folders\Desktop\s\Sudoku\bin\Debug\Sudoku.exe
+\\vmware-host\Shared Folders\Desktop\s\Sudoku\bin\Debug\Sudoku.pdb
+\\vmware-host\Shared Folders\Desktop\s\Sudoku\obj\Debug\Sudoku.csprojResolveAssemblyReference.cache
+\\vmware-host\Shared Folders\Desktop\s\Sudoku\obj\Debug\Sudoku.Form1.resources
+\\vmware-host\Shared Folders\Desktop\s\Sudoku\obj\Debug\Sudoku.Properties.Resources.resources
+\\vmware-host\Shared Folders\Desktop\s\Sudoku\obj\Debug\Sudoku.csproj.GenerateResource.Cache
+C:\Users\Игор Трајковски\GitHub\Sudoku\Sudoku\bin\Debug\Sudoku.exe.config
+C:\Users\Игор Трајковски\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.exe
+C:\Users\Игор Трајковски\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.pdb
+C:\Users\Игор Трајковски\GitHub\Sudoku\Sudoku\bin\Debug\Sudoku.exe
+C:\Users\Игор Трајковски\GitHub\Sudoku\Sudoku\bin\Debug\Sudoku.pdb
+C:\Users\Игор Трајковски\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.csprojResolveAssemblyReference.cache
+C:\Users\Игор Трајковски\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.Form1.resources
+C:\Users\Игор Трајковски\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.Properties.Resources.resources
+C:\Users\Игор Трајковски\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.csproj.GenerateResource.Cache
+C:\Users\Игор Трајковски\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.Form2.resources

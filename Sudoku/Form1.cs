@@ -183,8 +183,7 @@ namespace Sudoku
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnNewGame_Click(object sender, EventArgs e)
-        {
+        private void startGame(){
             SaveScoreHasAppeared = false;
             standard = null;
             squiggly = null;
@@ -216,9 +215,13 @@ namespace Sudoku
             clearHighlight();
 
             setGrid(type, level);
-            
+
             ticks = sudoku.ticks;
             timer.Start();
+        }
+        private void btnNewGame_Click(object sender, EventArgs e)
+        {
+            startGame();
         }
         /// <summary>
         /// From the high scores panel, it returns the player to the StartPanel
@@ -590,7 +593,7 @@ namespace Sudoku
             item.player = name;
             item.time = ticks;
             HS.add(item, type, diff);
-            
+            BinarySerializeScores(HS);
         }
 
         /// <summary>
@@ -875,6 +878,7 @@ namespace Sudoku
             if (clear_all == DialogResult.Yes)
             {
                 HS = new Scores();
+                BinarySerializeScores(HS);
                 setHighScoresPanel(gameType.Standard, Difficulty.Easy);
             }
         }
@@ -892,6 +896,31 @@ namespace Sudoku
         private void dataGridView_KeyUp(object sender, KeyEventArgs e)
         {
             highlightSelectedNumber();
+        }
+
+        private void btnInGamePause_Click(object sender, EventArgs e)
+        {
+            pauseGrid();
+            timer.Stop();
+            btnInGamePause.Visible = false;
+            btnInGameResume.Visible = true;
+            btnInGameNew.Enabled = false;
+            btnMainGameBack.Enabled = false;
+        }
+
+        private void btnInGameResume_Click(object sender, EventArgs e)
+        {
+            unPauseGrid();
+            timer.Start();
+            btnInGameResume.Visible = false;
+            btnInGamePause.Visible = true;
+            btnInGameNew.Enabled = true;
+            btnMainGameBack.Enabled = true;
+        }
+
+        private void btnInGameNew_Click(object sender, EventArgs e)
+        {
+            startGame();
         }
     }
 }
