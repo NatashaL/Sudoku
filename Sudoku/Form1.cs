@@ -41,6 +41,7 @@ namespace Sudoku
             schemeBuilder();
             HS = BinaryDeserializeScores();
             setHighScoresPanel(gameType.Standard,Difficulty.Easy);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle; 
         }
         /// <summary>
         /// Sets the look of the dataGridView for the Squiggly Sudoku.
@@ -316,6 +317,7 @@ namespace Sudoku
                     {
                         System.Media.SystemSounds.Asterisk.Play();
                     }
+                    
                     return;
                 }
                 if (!(e.KeyValue >= 49 && e.KeyValue <= 57 || e.KeyValue >= 97 && e.KeyValue <= 105))
@@ -885,6 +887,11 @@ namespace Sudoku
         private void btnClearHS_MouseLeave(object sender, EventArgs e)
         {
             btnClearHS.ForeColor = Color.FromArgb(255, 32, 32, 32);
+        }
+
+        private void dataGridView_KeyUp(object sender, KeyEventArgs e)
+        {
+            highlightSelectedNumber();
         }
     }
 }
