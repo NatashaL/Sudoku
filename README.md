@@ -26,9 +26,14 @@ Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 
 ###2.2 High Scores
 
-Се чуваат најдобрите 5 играчи за двете варијанти на судоку и сите нивоа на тежина посебно. 
+Тука sе чуваат најдобрите 5 играчи, сортирани според времето на завршување на играта, за двете варијанти на судоку и сите нивоа на тежина посебно.
+
+Податоците тука се [**_сериализирани_**](#1-description)* и се достапни и после исклучување на играта.
+
+Исто така овозможено е бришење на сите highscores со стискање на копчето **Clear**, при што се појавува соодветно предупредување.
 
 (ТУКА СЛИКА ОД ХАЈ СКОРС ПАНЕЛ)
+
 
 Кога играчот прв пат ја вклучува апликацијата на својот компјутер, се креира _скриен_ документ во кој ќе се сериализираат неговите најдобри резултати. 
 После секоја игра завршена со солиден резултат, неговото време да е подобро од најлошото во High Scores, играчот добива можност неговиот резултат да биде зачуван.
@@ -46,11 +51,8 @@ Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 За зачувување на моменталната игра, направивме да нема експлицитно копче за кликање, туку во моментот кога ќе сака играчот да замине од апликацијата или да премине во друг поглед (панел), да му се понуди опција за зачувување на недовршената игра.
 
 ###2.4 Load Game
-**Load Game** дава можност
+За да продолжеме веќе зачувана игра, во главното мени одбираме **Load game**. Зачуваната игра, _доколку има таква_ веднаш продолжува, во спротивно се прикажува соодветна порака.
 
-
-
-######недовршено
 ###2.5 Правила
 #####Правилата се едноставни:
 
@@ -65,7 +67,41 @@ Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 
 ###3.1 Податочни структури
 
-######недовршено
+Главните податоци и [функции](#algs) за играта се чуваат во класа ```c# public class Sudoku{}``` од која пак наследуваат двете класи ```c# public class Standard``` и ```c# public class Squiggly```.
+
+```c#
+public class Sudoku
+    {
+        /// <summary>
+        /// Describes which fields of the grid are to be shown to the player.
+        /// Starting grid to be solved by player.
+        /// </summary>
+        public int[,] mask;
+        /// <summary>
+        /// Solution of the Sudoku
+        /// </summary>
+        public int[,] solution;
+        /// <summary>
+        /// The current playing grid, as filled by player.
+        /// </summary>
+        public int[,] userGrid;
+        /// <summary>
+        /// Determines the look of the grid
+        /// </summary>
+        public int[,] scheme;
+        /// <summary>
+        /// Difficulty of game
+        /// </summary>
+        public Difficulty diff;
+        public int[,] rows;
+        public int[,] cols;
+        public int[,] groups;
+        /// <summary>
+        /// number of seconds the player has been playing
+        /// </summary>
+        public int ticks;
+        ```
+
 
 ###3.2 Алгоритми
 
@@ -91,5 +127,7 @@ For complete player satisfaction, along with the clean and simple design, we imp
 ![alt text][new_game_screen_en]
 
 On the main window (image 1) you have the ability to start a **New Game**, to **Load** an already saved game, or to view the **High Scores**
+
+If you want to start a new game with different settings than the pre-defined, you can select a different **mode** and **difficulty** on the right hand side of this window.
 [new_game_screen]: http://igoimpeks.com/projects/sudoku/StartPanel_view.png "Слика 1"
 [new_game_screen_en]: http://igoimpeks.com/projects/sudoku/StartPanel_view.png "Image 1" 
