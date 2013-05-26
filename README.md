@@ -6,7 +6,7 @@ Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 ---
 **Македонски** / [English](#1-description)
 ##1. Опис на апликацијата
-Апликацијата што ја развиваме е класичната игра Sudoku, која ја проширивме застапувајќи 2 варијанти на играта: [**Classic Sudoku**](#311-standard-sudoku) и [**Squiggly Sudoku**](#312-squiggly-sudoku).
+Апликацијата што ја развиваме е класичната игра Sudoku, која ја проширивме застапувајќи 2 варијанти на играта: [**Standard Sudoku**](#311-standard-sudoku) и [**Squiggly Sudoku**](#312-squiggly-sudoku).
 
 Со цел да обезбедиме комплетно задоволство кај играчот, покрај чистиот и едноставен дизајн, имлементиравме различни алгоритми соодветни за варијантите на играта, зачувување на недовршена игра и нејзино продолжување во друго време и High Scores за секое ниво на тежина одделно.
 
@@ -16,9 +16,9 @@ Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 
 ![alt text][new_game_screen]
 
-На почетниот прозорец (слика 1) при стартување на апликацијата имаме можност да започнеме нова игра **(New game)**, да продолжиме веќе постоечка игра **(Load game)** како и да видиме листа со рекорди **(High scores)**.
+На почетниот прозорец (слика 1) при стартување на апликацијата имаме можност да започнеме нова игра **(New game)**, да продолжиме веќе постоечка игра [**(Load game)**](#24-load-game) како и да видиме листа со рекорди [**(High scores)**](#22-high-scores).
 
-Доколку сакаме да започнеме нова игра најпрво се селектира варијантата на sudoku што сакаме да решаваме. Има две понудени опции **Standard Sudoku** и **Squiggly Sudoku**. За секоја од нив се одбира едно од трите нивоа на тежина:
+Доколку сакаме да започнеме нова игра најпрво се селектира варијантата на sudoku што сакаме да решаваме. Има две понудени опции [**Standard Sudoku**](#311-standard-sudoku) и [**Standard Sudoku**](#311-standard-sudoku). За секоја од нив се одбира едно од трите нивоа на тежина:
 
 * Easy
 * Medium
@@ -139,11 +139,32 @@ public class Sudoku
 
 ###3.3 Алгоритми
 
-##### недовршено
+За да биде целосна играта на судоку имплементиравме различни алгоритми за генерирање и валидирање на успешно решение.
+
+####3.3.1 Почетна состојба
+`InitGrid();`
+Со повикување на оваа фукнција прво се пополнува првата редица и првата колона со случајни броеви, запазувајќи го правилото да нема две исти соодветно, потоа се повикуваат останатите методи.
+
+####3.3.2 Решавање
+#####`SolveGrid();`
+Оваа функција го решава [**Standard Sudoku**](#311-standard-sudoku) со пополнување на полињата кои за дадената почетна состојба имаат најмал број на можни вредности. Тука за проверка се користат 3 функции `IsInRow();`, `IsInCol();` и `IsIn3x3();`. Полињата што остануваат се пополнуваат користејќи ја истата техника за генерирање на пермутации рекурзивно.
+
+#####`solve();`
+Оваа функција решава [**Squiggly Sudoku**](#312-squiggly-sudoku). Тука алгоритмот е поедноставен со тоа што се користи само рекурзивната техника за генерирање на пермутации, кои не носат кон решението.
+     
+####3.3.3 Одстранувае на полиња
+#####`Blanker();`
+Оваа функција прима како аргумент решена матрица од погорните функции, и во зависност од одбраната тежина враќа нова матрица со соодветен број на одстранети полиња, за играчот да ги пополнува.
+
+Прво се бира случајна позиција во матрицата, се бриши вредноста и се повикува соодветната функција за решавање со која се проверува дали новодобиената матрица има уникатно решение. Ако има и не е постигнат саканиот број на празни полиња, постапката продолжува се додека истиот не се постигне. Во моментот кога ќе се најде повеќе од едно решение, вредноста на последното избришано поле се враќа и се бира друго за бришење и постапката продолжува.
+
+####3.3.3 Валидација на корисничко решение
+#####`IsSolved();`
+Кога сите полиња се пополнети, се повикува оваа функција која се придржува на [правилата](##25-) за да одреди дали дадената игра е точно решена.
 
 ###3.4 GUI
 
-##### недовршено
+За представување на матрицата за судоку користевме dataGridView контрола со измени на предодредените карактеристики.
 
 
 ---
@@ -163,5 +184,21 @@ For complete player satisfaction, along with the clean and simple design, we imp
 On the main window (image 1) you have the ability to start a **New Game**, to **Load** an already saved game, or to view the **High Scores**
 
 If you want to start a new game with different settings than the pre-defined, you can select a different **mode** and **difficulty** on the right hand side of this window.
+#License
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+[GNU General Public License](https://github.com/NatashaL/Sudoku/blob/master/COPYING.md)
+
 [new_game_screen]: http://igoimpeks.com/projects/sudoku/StartPanel_view.png "Слика 1"
 [new_game_screen_en]: http://igoimpeks.com/projects/sudoku/StartPanel_view.png "Image 1" 
+
+
+
