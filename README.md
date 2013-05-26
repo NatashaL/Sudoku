@@ -2,7 +2,7 @@
 
 Windows Forms Project by: 
 Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
-[**Binary Release**](http://igoimpeks.com/projects/sudoku/Sudoku.exe)
+#####[**Binary Release**](http://igoimpeks.com/projects/sudoku/Sudoku.exe)
 
 ---
 **Македонски** / [English](#1-description)
@@ -41,10 +41,6 @@ Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 Исто така овозможено е бришење на сите highscores со стискање на копчето **Clear**, при што се појавува соодветно предупредување.
 
 Штом се променат High Scores, тие се ажурираат само во извршната верзија, а по затворањето на апликацијата новата верзија од резултатите се запишува врз старата.
-
-
-
-######недовршено
 
 ###2.3 Save game
 За зачувување на моменталната игра, направивме да нема експлицитно копче за кликање, туку во моментот кога ќе сака играчот да замине од апликацијата или да премине во друг поглед (панел), да му се понуди опција за зачувување на недовршената игра.
