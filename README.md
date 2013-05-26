@@ -67,7 +67,7 @@ Natasha Lazarova, Martin Ivanovski and Stevica Bozinovski
 
 Главните податоци и [функции](#33-) за играта се чуваат во класа ```public class Sudoku``` од која пак наследуваат двете класи ```public class Standard``` и ```public class Squiggly```.
 
-Секоја променлива и функција содржи xml summary, со детално објаснување.
+Секоја променлива и функција содржи **xml _summary_**, со детално објаснување.
 
 ```c#
 public class Sudoku
