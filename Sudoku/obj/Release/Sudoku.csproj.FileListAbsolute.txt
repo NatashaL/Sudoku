@@ -7,3 +7,12 @@ C:\Users\Игор Трајковски\GitHub\Sudoku\Sudoku\bin\Release\Sudoku.p
 C:\Users\Игор Трајковски\GitHub\Sudoku\Sudoku\obj\Release\Sudoku.Properties.Resources.resources
 C:\Users\Игор Трајковски\GitHub\Sudoku\Sudoku\obj\Release\Sudoku.exe
 C:\Users\Игор Трајковски\GitHub\Sudoku\Sudoku\obj\Release\Sudoku.pdb
+E:\Documents\Documents\GitHub\Sudoku\Sudoku\bin\Release\Sudoku.exe.config
+E:\Documents\Documents\GitHub\Sudoku\Sudoku\obj\Release\Sudoku.exe
+E:\Documents\Documents\GitHub\Sudoku\Sudoku\obj\Release\Sudoku.pdb
+E:\Documents\Documents\GitHub\Sudoku\Sudoku\bin\Release\Sudoku.exe
+E:\Documents\Documents\GitHub\Sudoku\Sudoku\bin\Release\Sudoku.pdb
+E:\Documents\Documents\GitHub\Sudoku\Sudoku\obj\Release\Sudoku.Form1.resources
+E:\Documents\Documents\GitHub\Sudoku\Sudoku\obj\Release\Sudoku.Form2.resources
+E:\Documents\Documents\GitHub\Sudoku\Sudoku\obj\Release\Sudoku.Properties.Resources.resources
+E:\Documents\Documents\GitHub\Sudoku\Sudoku\obj\Release\Sudoku.csproj.GenerateResource.Cache

@@ -593,7 +593,6 @@ namespace Sudoku
             item.player = name;
             item.time = ticks;
             HS.add(item, type, diff);
-            BinarySerializeScores(HS);
         }
 
         /// <summary>
@@ -878,7 +877,6 @@ namespace Sudoku
             if (clear_all == DialogResult.Yes)
             {
                 HS = new Scores();
-                BinarySerializeScores(HS);
                 setHighScoresPanel(gameType.Standard, Difficulty.Easy);
             }
         }
