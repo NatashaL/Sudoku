@@ -50,6 +50,9 @@
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mainGamePanel = new System.Windows.Forms.Panel();
+            this.btnInGameResume = new System.Windows.Forms.Button();
+            this.btnInGamePause = new System.Windows.Forms.Button();
+            this.btnInGameNew = new System.Windows.Forms.Button();
             this.timerlabel = new System.Windows.Forms.Label();
             this.btnMainGameBack = new System.Windows.Forms.Button();
             this.startPanel = new System.Windows.Forms.Panel();
@@ -103,9 +106,6 @@
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnInGameNew = new System.Windows.Forms.Button();
-            this.btnInGamePause = new System.Windows.Forms.Button();
-            this.btnInGameResume = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.mainGamePanel.SuspendLayout();
             this.startPanel.SuspendLayout();
@@ -286,6 +286,37 @@
             this.mainGamePanel.Size = new System.Drawing.Size(327, 286);
             this.mainGamePanel.TabIndex = 1;
             this.mainGamePanel.Visible = false;
+            // 
+            // btnInGameResume
+            // 
+            this.btnInGameResume.Location = new System.Drawing.Point(249, 263);
+            this.btnInGameResume.Name = "btnInGameResume";
+            this.btnInGameResume.Size = new System.Drawing.Size(75, 23);
+            this.btnInGameResume.TabIndex = 5;
+            this.btnInGameResume.Text = "Resume";
+            this.btnInGameResume.UseVisualStyleBackColor = true;
+            this.btnInGameResume.Visible = false;
+            this.btnInGameResume.Click += new System.EventHandler(this.btnInGameResume_Click);
+            // 
+            // btnInGamePause
+            // 
+            this.btnInGamePause.Location = new System.Drawing.Point(249, 264);
+            this.btnInGamePause.Name = "btnInGamePause";
+            this.btnInGamePause.Size = new System.Drawing.Size(75, 23);
+            this.btnInGamePause.TabIndex = 4;
+            this.btnInGamePause.Text = "Pause";
+            this.btnInGamePause.UseVisualStyleBackColor = true;
+            this.btnInGamePause.Click += new System.EventHandler(this.btnInGamePause_Click);
+            // 
+            // btnInGameNew
+            // 
+            this.btnInGameNew.Location = new System.Drawing.Point(249, 235);
+            this.btnInGameNew.Name = "btnInGameNew";
+            this.btnInGameNew.Size = new System.Drawing.Size(75, 23);
+            this.btnInGameNew.TabIndex = 3;
+            this.btnInGameNew.Text = " New Game";
+            this.btnInGameNew.UseVisualStyleBackColor = true;
+            this.btnInGameNew.Click += new System.EventHandler(this.btnInGameNew_Click);
             // 
             // timerlabel
             // 
@@ -806,37 +837,6 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
-            // btnInGameNew
-            // 
-            this.btnInGameNew.Location = new System.Drawing.Point(249, 235);
-            this.btnInGameNew.Name = "btnInGameNew";
-            this.btnInGameNew.Size = new System.Drawing.Size(75, 23);
-            this.btnInGameNew.TabIndex = 3;
-            this.btnInGameNew.Text = " New Game";
-            this.btnInGameNew.UseVisualStyleBackColor = true;
-            this.btnInGameNew.Click += new System.EventHandler(this.btnInGameNew_Click);
-            // 
-            // btnInGamePause
-            // 
-            this.btnInGamePause.Location = new System.Drawing.Point(249, 264);
-            this.btnInGamePause.Name = "btnInGamePause";
-            this.btnInGamePause.Size = new System.Drawing.Size(75, 23);
-            this.btnInGamePause.TabIndex = 4;
-            this.btnInGamePause.Text = "Pause";
-            this.btnInGamePause.UseVisualStyleBackColor = true;
-            this.btnInGamePause.Click += new System.EventHandler(this.btnInGamePause_Click);
-            // 
-            // btnInGameResume
-            // 
-            this.btnInGameResume.Location = new System.Drawing.Point(249, 263);
-            this.btnInGameResume.Name = "btnInGameResume";
-            this.btnInGameResume.Size = new System.Drawing.Size(75, 23);
-            this.btnInGameResume.TabIndex = 5;
-            this.btnInGameResume.Text = "Resume";
-            this.btnInGameResume.UseVisualStyleBackColor = true;
-            this.btnInGameResume.Visible = false;
-            this.btnInGameResume.Click += new System.EventHandler(this.btnInGameResume_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -848,6 +848,7 @@
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();

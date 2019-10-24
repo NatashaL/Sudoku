@@ -55,3 +55,14 @@ E:\Documents\Documents\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.Form1.resources
 E:\Documents\Documents\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.Form2.resources
 E:\Documents\Documents\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.Properties.Resources.resources
 E:\Documents\Documents\GitHub\Sudoku\Sudoku\obj\Debug\Sudoku.csproj.GenerateResource.Cache
+C:\Users\atasinar\Documents\Sudoku\Sudoku\bin\Debug\Sudoku.exe.config
+C:\Users\atasinar\Documents\Sudoku\Sudoku\bin\Debug\Sudoku.exe
+C:\Users\atasinar\Documents\Sudoku\Sudoku\bin\Debug\Sudoku.pdb
+C:\Users\atasinar\Documents\Sudoku\Sudoku\obj\Debug\Sudoku.csprojAssemblyReference.cache
+C:\Users\atasinar\Documents\Sudoku\Sudoku\obj\Debug\Sudoku.Form1.resources
+C:\Users\atasinar\Documents\Sudoku\Sudoku\obj\Debug\Sudoku.Form2.resources
+C:\Users\atasinar\Documents\Sudoku\Sudoku\obj\Debug\Sudoku.Properties.Resources.resources
+C:\Users\atasinar\Documents\Sudoku\Sudoku\obj\Debug\Sudoku.csproj.GenerateResource.cache
+C:\Users\atasinar\Documents\Sudoku\Sudoku\obj\Debug\Sudoku.csproj.CoreCompileInputs.cache
+C:\Users\atasinar\Documents\Sudoku\Sudoku\obj\Debug\Sudoku.exe
+C:\Users\atasinar\Documents\Sudoku\Sudoku\obj\Debug\Sudoku.pdb
